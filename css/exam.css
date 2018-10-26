@@ -1,0 +1,16 @@
+#exam_frame {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background-image: url('../img/exam_frame.png');
+    background-size: 100%;
+}
+
+.exam_frame_center {
+    margin: 0 200px;
+    text-align: center;
+}
+
+#exam_title {
+    margin-top: 100px;
+}
