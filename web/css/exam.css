@@ -1,3 +1,8 @@
+body {
+    background-image: url('../img/exam_bg.jpg');
+    background-size: 100% 100%;
+}
+
 #exam_frame {
     width: 800px;
     height: 620px;
@@ -35,7 +40,7 @@
 }
 
 .exam_body {
-    padding: 8px;
+    padding: 4px 8px;
     border: #d9d9d9 dashed 1px;
 }
 
@@ -57,21 +62,26 @@
 }
 
 #exam_question_title {
-    height: 30px;
+    height: 24px;
+    display: inline-block;
     font-weight: 600;
     font-size: 15px;
-    border-bottom: #d9d9d9 dashed 1px;
 }
 
 #exam_question_option {
     font-size: 14px;
     line-height: 24px;
+    border-top: #d9d9d9 dashed 1px;
 }
 
 #exam_answer {
     padding: 6px 8px;
     background-color: #eff0ef;
     border: 1px #dddddd solid;
+}
+
+.exam_answer_input {
+    cursor: pointer;
 }
 
 #exam_action {
@@ -87,6 +97,7 @@
     border: 1px solid #cccccc;
     border-radius: 4px;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }
 
 #exam_left_time {

@@ -1,15 +1,71 @@
-div {
+body {
+    background-image: url('../img/index_bg.jpg');
+    background-size: 100% 100%;
+}
+
+#index_title {
+    color: burlywood;
+    display: inline-block;
+    margin: 20px;
+    font-size: 26px;
+    font-family: cursive;
+    animation: showAnimation 0.5s;
+    -webkit-animation: showAnimation 0.5s;
+}
+
+.border_div {
     width: 100%;
-    height: 33.33%;
+    height: 25%;
+}
+
+.center_div {
+    width: 100%;
+    height: 50%;
     text-align: center;
 }
 
-button {
-    width: 400px;
-    height: 100px;
-    border-radius: 10px;
-    margin: 20px 70px 20px 70px;
-    font-size: 20px;
-    background-color: orangered;
-    border: 0px;
+#index_container {
+    width: 560px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.index_menu_item {
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 0 40px;
+    cursor: pointer;
+    animation: showAndMoveAnimation 0.5s;
+    -webkit-animation: showAndMoveAnimation 0.5s;
+}
+
+#index_menu_item1 {
+    background-image: url('../img/index_menu_item1.png');
+    background-size: 100% 100%;
+}
+
+#index_menu_item2 {
+    background-image: url('../img/index_menu_item2.png');
+    background-size: 100% 100%;
+}
+
+@keyframes showAndMoveAnimation {
+    from {opacity: 0; margin-top: -80px;}
+    to {opacity: 1; margin-top: 0px;}
+}
+
+@-webkit-keyframes showAndMoveAnimation {
+    from {opacity: 0; margin-top: -80px;}
+    to {opacity: 1; margin-top: 0px;}
+}
+
+@keyframes showAnimation {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes showAnimation {
+    from {opacity: 0}
+    to {opacity: 1;}
 }
