@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dengke.dao.AdminUserMapper">
+
+    <select id="getUser" resultType="AdminUser">
+
+        select * from admin_user
+    </select>
+
+
+
+    <insert id="addUser">
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into user_info
+        (password,balance,type,last_login_time)
+        values
+        (#{password},#{balance},#{type},#{lastLoginTime})
+    </insert>
+</mapper>
