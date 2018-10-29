@@ -1,23 +1,23 @@
+layui.use('element', function () {
+    var element = layui.element;
+});
+
 layui.use('table', function () {
     var table = layui.table;
 
     table.render({
         elem: '#report_table'
-        , url: 'http://localhost/DengKe/resource/table_data2.json'
-        , title: '用户数据表'
+        // , url: 'http://localhost/DengKe/resource/table_data2.json'
         , height: 600
         , limit: 10
         , limits: [10,30,60,90]
-        , totalRow: true
         , cols: [[
-            { field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true, totalRowText: '合计行' }
-            , { field: 'username', title: '用户名', width: 120, edit: 'text' }
-            , { field: 'experience', title: '积分', width: 80, sort: true, totalRow: true }
-            , { field: 'sex', title: '性别', width: 80, edit: 'text', sort: true }
-            , { field: 'logins', title: '登入次数', width: 100, sort: true, totalRow: true }
-            , { field: 'sign', title: '签名' }
-            , { field: 'city', title: '城市', width: 100 }
-            , { fixed: 'right', width: 178, align: 'center', toolbar: '#table_toolbar' }
+            { field: 'id', title: '编号', width: 120, fixed: 'left', align: 'center' } 
+            , { field: 'time', title: '时间', width: 200, align: 'center' }
+            , { field: 'name', title: '姓名', width: 200, align: 'center' }
+            , { field: 'score', title: '得分', width: 200, align: 'center' }
+            , { field: 'level', title: '等级', width: 200, align: 'center' }
+            , { title: '操作', width: 200, align: 'center', unresize: true, toolbar: '#table_toolbar' }
         ]]
         , page: true
         // , response: {
