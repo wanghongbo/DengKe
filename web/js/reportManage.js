@@ -1,23 +1,22 @@
-layui.use('element', function () {
-    var element = layui.element;
-});
+
 
 layui.use('table', function () {
     var table = layui.table;
 
     table.render({
         elem: '#report_table'
-        // , url: 'http://localhost/DengKe/resource/table_data2.json'
+        , url: 'http://localhost/DengKe/resource/report1.json'
         , height: 600
         , limit: 10
         , limits: [10,30,60,90]
         , cols: [[
-            { field: 'id', title: '编号', width: 120, fixed: 'left', align: 'center' } 
+            { field: 'id', title: '编号', width: 100, align: 'center' } 
             , { field: 'time', title: '时间', width: 200, align: 'center' }
-            , { field: 'name', title: '姓名', width: 200, align: 'center' }
-            , { field: 'score', title: '得分', width: 200, align: 'center' }
-            , { field: 'level', title: '等级', width: 200, align: 'center' }
-            , { title: '操作', width: 200, align: 'center', unresize: true, toolbar: '#table_toolbar' }
+            , { field: 'name', title: '姓名', width: 100, align: 'center' }
+            , { field: 'score', title: '得分', width: 100, align: 'center' }
+            , { field: 'level', title: '评级', width: 100, align: 'center' }
+            , { field: 'catalog', title: '类型', width: 180, align: 'center' }
+            , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table_toolbar' }
         ]]
         , page: true
         // , response: {
@@ -43,15 +42,10 @@ layui.use('table', function () {
     //监听工具条
     table.on('tool(report_table)', function (obj) {
         var data = obj.data;
-        if (obj.event === 'detail') {
-            layer.msg('ID：' + data.id + ' 的查看操作');
+        if (obj.event === 'download') {
+            layer.msg('ID：' + data.id + ' 的下载操作');
         } else if (obj.event === 'del') {
-            layer.confirm('真的删除行么', function (index) {
-                obj.del();
-                layer.close(index);
-            });
-        } else if (obj.event === 'edit') {
-            layer.alert('编辑行：<br>' + JSON.stringify(data))
+            confirm("确定删除报告？");
         }
     });
 
@@ -73,6 +67,5 @@ layui.use('table', function () {
     };
 
     $('.layui-btn').on('click', function () {
-        alert('测评');
     });
 });
