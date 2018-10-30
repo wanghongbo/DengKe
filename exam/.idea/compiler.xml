@@ -9,6 +9,7 @@
         <module name="dao" />
         <module name="entity" />
         <module name="eurekaserver" />
+        <module name="service-bg" />
         <module name="service-fg" />
       </profile>
     </annotationProcessing>
