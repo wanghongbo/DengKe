@@ -1,6 +1,7 @@
 package com.dengke.servicefg.controller;
 
 
+import com.dengke.entity.Subject;
 import com.dengke.entity.SubjectType;
 import com.dengke.entity.common.JsonObjectUtil;
 import com.dengke.entity.common.RtnConstants;
@@ -27,10 +28,20 @@ public class SubjectController extends BaseController {
             if(CollectionUtils.isEmpty(subjectTypes)){
                 return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
             }
+            log.info(JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"",subjectTypes));
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"",subjectTypes);
         }catch (Exception e){
             log.error("获取题目类型出错",e);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
         }
+    }
+
+    @RequestMapping("/add")
+    public String add(HttpServletRequest request){
+        Subject subject = new Subject();
+        subject.setTitle("asd123我的");
+        subjectService.addSubject(subject);
+        return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+
     }
 }

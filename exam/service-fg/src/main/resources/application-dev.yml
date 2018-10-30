@@ -12,10 +12,13 @@ spring:
 # mysql 属性配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
     ##?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8
     username: root
     password: 123456
+    #tomcat:
+     # initSQL: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+    #type: com.alibaba.druid.pool.DruidDataSource
     jpa:
 #    hibernate:
 #      #ddl-auto: create #ddl-auto:设为create表示每次都重新建表
