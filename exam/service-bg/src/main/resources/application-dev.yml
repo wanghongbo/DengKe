@@ -3,10 +3,10 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 8763
+  port: 8762
 spring:
   application:
-    name: service-fg
+    name: service-bg
 
 #####################################################################################################
 # mysql 属性配置

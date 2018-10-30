@@ -1,24 +1,23 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://172.18.142.198:8761/eureka/
 server:
-  port: 8763
+  port: 8762
+  tomcat:
+    max-threads: 50000
 spring:
   application:
-    name: service-fg
+    name: service-bg
 
 #####################################################################################################
 # mysql 属性配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://172.18.142.198:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8
     ##?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8
-    username: root
-    password: 123456
-    #tomcat:
-     # initSQL: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
-    #type: com.alibaba.druid.pool.DruidDataSource
+    username: duoduo
+    password: OJNIS*MO73C0ZDrT
     jpa:
 #    hibernate:
 #      #ddl-auto: create #ddl-auto:设为create表示每次都重新建表
@@ -29,17 +28,17 @@ spring:
   redis:
     #数据库索引
     database: 0
-    host: 127.0.0.1
+    host: 172.18.142.198
     port: 6379
-    password:
+    password: OJNIS*MO73C0ZDrT
     jedis:
       pool:
         #最大连接数
-        max-active: 8
+        max-active: 500
         #最大阻塞等待时间(负数表示没限制)
         max-wait: -1
         #最大空闲
-        max-idle: 8
+        max-idle: 500
         #最小空闲
         min-idle: 0
     #连接超时时间
@@ -57,7 +56,7 @@ spring:
 # mybatis mapper xml 配置
 mybatis:
   # mybatis.type-aliases-package：指定domain类的基包，即指定其在*Mapper.xml文件中可以使用简名来代替全类名（看后边的UserMapper.xml介绍）
-  type-aliases-package: com.dengke.entity
+  type-aliases-package: com.dz.entity
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis-config.xml
 #####################################################################################################
@@ -72,6 +71,7 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
     com.springms: DEBUG
+  path: C:\\logs\\info.log
 #####################################################################################################
 
 

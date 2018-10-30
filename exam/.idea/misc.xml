@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/service-fg/pom.xml" />
         <option value="$PROJECT_DIR$/entity/pom.xml" />
         <option value="$PROJECT_DIR$/dao/pom.xml" />
+        <option value="$PROJECT_DIR$/service-bg/pom.xml" />
       </list>
     </option>
   </component>
