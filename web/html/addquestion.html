@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/add-question.css">
+    <script src="../js/add-question.js"></script>
     <title>添加题目</title>
 </head>
 
 <body>
-    <div class="ad-bg">
+    <div id="ad-bg" class="ad-bg">
         <div class="ad-main-container">
             <div class="ad-title">
                 <span class="ad-span-left">添加题目</span>
@@ -20,7 +21,7 @@
                 <span class="ad-span-left">题目</span>
             </div>
             <div class="ad-input-container">
-                <textarea class="ad-question-input" cols="30" rows="10"></textarea>
+                <textarea id="ad-question" class="ad-question-input" cols="30" rows="10"></textarea>
             </div>
             <div class="ad-input-container">
                 <div class="ad-left">
@@ -32,10 +33,10 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">A :</span>
-                    <input type="text" class="ad-answer-input">
+                    <input type="text" id="ad-optionA" class="ad-answer-input">
                 </div>
                 <div class="ad-right">
-                    <select class="ad-score-select">
+                    <select id="ad-answerA" class="ad-score-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -47,10 +48,10 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">B :</span>
-                    <input type="text" class="ad-answer-input">
+                    <input type="text" id="ad-optionB" class="ad-answer-input">
                 </div>
                 <div class="ad-right">
-                    <select class="ad-score-select">
+                    <select id="ad-answerB" class="ad-score-select">
                         <option value="1">1</option>
                         <option value="2" selected="selected">2</option>
                         <option value="3">3</option>
@@ -62,10 +63,10 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">C :</span>
-                    <input type="text" class="ad-answer-input">
+                    <input type="text" id="ad-optionC" class="ad-answer-input">
                 </div>
                 <div class="ad-right">
-                    <select class="ad-score-select">
+                    <select id="ad-answerC" class="ad-score-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3" selected="selected">3</option>
@@ -77,10 +78,10 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">D :</span>
-                    <input type="text" class="ad-answer-input">
+                    <input type="text" id="ad-optionD" class="ad-answer-input">
                 </div>
                 <div class="ad-right">
-                    <select class="ad-score-select">
+                    <select id="ad-answerD" class="ad-score-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -92,10 +93,10 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">E :</span>
-                    <input type="text" class="ad-answer-input">
+                    <input type="text" id="ad-optionE" class="ad-answer-input">
                 </div>
                 <div class="ad-right">
-                    <select class="ad-score-select">
+                    <select id="ad-answerE" class="ad-score-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -105,8 +106,8 @@
                 </div>
             </div>
             <div class="ad-action-container">
-                <div class="ad-action ad-cancel">取消</div>
-                <div class="ad-action ad-confirm">确定</div>
+                <div id="ad-cancel" class="ad-action ad-cancel">取消</div>
+                <div id="ad-confirm" class="ad-action ad-confirm">确定</div>
             </div>
         </div>
     </div>

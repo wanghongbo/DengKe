@@ -20,8 +20,6 @@ function showTab3() {
 }
 
 $(document).ready(function () {
-    showTab1();
-
     $("#tab1").click(function (e) { 
         showTab1();
     });
@@ -29,4 +27,6 @@ $(document).ready(function () {
     $("#tab3").click(function (e) { 
         showTab3();
     });
+    
+    $("#tab1").trigger("click");
 });

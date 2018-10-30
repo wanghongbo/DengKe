@@ -4,7 +4,7 @@ layui.use('table', function () {
     table.render({
         elem: '#question-table'
         , url: 'http://127.0.0.1:5500/resource/report2.json'
-        , height: 800
+        , height: 600
         , limit: 10
         , limits: [10,30,60,90]
         , cols: [[
@@ -20,6 +20,9 @@ layui.use('table', function () {
 
 $(document).ready(function () {
     $("#add-question").click(function (e) { 
-        showAddQuestionDialog();
+        showAddQuestionDialog(function(result) {
+            var str = JSON.stringify(result);
+            alert(str);
+        });
     });
 });
