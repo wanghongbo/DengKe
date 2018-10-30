@@ -1,0 +1,109 @@
+.ad-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+}
+
+.ad-main-container {
+    width: 500px;
+    height: 420px;
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.ad-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 600;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: rgb(248, 248, 248);
+    border-bottom: 1px solid lightgray;
+}
+
+.ad-span-left {
+    padding-left: 10px;
+}
+
+.ad-span-option {
+    width: 20px;
+    display: inline-block;
+}
+
+.ad-score-select {
+    margin-left: 10px;
+    width: 60px;
+}
+
+.ad-question-title {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+
+.ad-input-container {
+    margin-top: 8px;
+}
+
+.ad-question-input {
+    width: 472px;
+    height: 60px;
+    margin: auto;
+    display: block;
+    resize: none;
+    border: 1px solid #ffa07a7a;
+    font-size: 16px;
+}
+
+.ad-left {
+    width: 400px;
+    display: inline-block;
+}
+
+.ad-right {
+    width: 80px;
+    float: right;
+    margin-right: 12px;
+}
+
+.ad-answer-input {
+    width: 350px;
+    height: 18px;
+    margin-left: 10px;
+    border: 1px solid #ffa07a7a;
+    font-size: 14px;
+}
+
+.ad-action-container {
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.ad-action {
+    float: right;
+    margin: 10px;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ad-confirm {
+    color: white;
+    background-color: #1E9FFF;
+    border-color: #1E9FFF;
+}
+
+.ad-cancel {
+    background-color: white;
+    border: 1px solid #dedede;
+}

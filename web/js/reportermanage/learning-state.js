@@ -4,8 +4,8 @@ layui.use('table', function () {
     var table = layui.table;
 
     table.render({
-        elem: '#report_table'
-        , url: 'http://localhost/DengKe/resource/report1.json'
+        elem: '#report-table'
+        , url: 'http://127.0.0.1:5500/resource/report1.json'
         , height: 600
         , limit: 10
         , limits: [10,30,60,90]
@@ -16,7 +16,7 @@ layui.use('table', function () {
             , { field: 'score', title: '得分', width: 100, align: 'center' }
             , { field: 'level', title: '评级', width: 100, align: 'center' }
             , { field: 'catalog', title: '类型', width: 180, align: 'center' }
-            , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table_toolbar' }
+            , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }
         ]]
         , page: true
         // , response: {
@@ -36,11 +36,11 @@ layui.use('table', function () {
 layui.use('table', function () {
     var table = layui.table;
     //监听表格复选框选择
-    table.on('checkbox(report_table)', function (obj) {
+    table.on('checkbox(report-table)', function (obj) {
         console.log(obj)
     });
     //监听工具条
-    table.on('tool(report_table)', function (obj) {
+    table.on('tool(report-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'download') {
             layer.msg('ID：' + data.id + ' 的下载操作');

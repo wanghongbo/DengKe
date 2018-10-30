@@ -1,95 +1,95 @@
 body {
-    background-image: url('../img/exam_bg.jpg');
+    background-image: url('../img/exam-bg.jpg');
     background-size: 100% 100%;
 }
 
-#exam_frame {
+#exam-frame {
     width: 800px;
     height: 620px;
     margin: 0 auto;
-    background-image: url('../img/exam_frame.png');
+    background-image: url('../img/exam-frame.png');
     background-size: 100%;
 }
 
-.exam_frame_center {
+.exam-frame-center {
     float: left;
     width: 800px;
     text-align: center;
 }
 
-#exam_title {
+#exam-title {
     height: 32px;
     margin-top: 170px;
     font-size: 14px;
-    background-image: url('../img/exam_title_line.png');
+    background-image: url('../img/exam-title-line.png');
     background-repeat: no-repeat;
     background-size: 600px 6px;
     background-position-x: center;
     background-position-y: bottom;
 }
 
-.exam_title_span {
+.exam-title-span {
     margin: auto 10px;
 }
 
-#exam_name {
+#exam-name {
     margin: 10px auto;
     font-size: 20px;
     font-weight: 600;
     color: #6ACBFE;
 }
 
-.exam_body {
+.exam-body {
     padding: 4px 8px;
     border: #d9d9d9 dashed 1px;
 }
 
-#exam_question_index {
+#exam-question-index {
     font-weight: 600;
     font-size: 14px;
 }
 
-.exam_frame_block {
+.exam-frame-block {
     float: left;
     margin: 6px auto 2px 100px;
     width: 580px;
 }
 
-.exam_frame_left {
+.exam-frame-left {
     float: left;
     margin: 2px auto 2px 0px;
     width: 580px;
 }
 
-#exam_question_title {
+#exam-question-title {
     height: 24px;
     display: inline-block;
     font-weight: 600;
     font-size: 15px;
 }
 
-#exam_question_option {
+#exam-question-option {
     font-size: 14px;
     line-height: 24px;
     border-top: #d9d9d9 dashed 1px;
 }
 
-#exam_answer {
+#exam-answer {
     padding: 6px 8px;
     background-color: #eff0ef;
     border: 1px #dddddd solid;
 }
 
-.exam_answer_input {
+.exam-answer-input {
     cursor: pointer;
 }
 
-#exam_action {
+#exam-action {
     padding: 6px 0px;
     width: 598px;
 }
 
-.exam_action_button {
+.exam-action-button {
     width: 80px;
     margin: 0 10px 0 0;
     padding: 5px 0px;
@@ -100,13 +100,13 @@ body {
     cursor: pointer;
 }
 
-#exam_left_time {
+#exam-left-time {
     padding: 6px 0px;
     font-size: 12px;
     color: red;
     float: right;
 }
 
-#exam_action_submit {
+#exam-action-submit {
     background-color: blanchedalmond;
 }
