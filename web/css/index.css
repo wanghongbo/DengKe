@@ -1,41 +1,106 @@
 body {
-    background-color: #2d67c6;
+    background-color: #2d67c682;
 }
 
 .top-bg {
     width: 100%;
-    height: 10%;
+    height: 40px;
 }
 
-.first-bg {
+.content-bg {
     width: 100%;
-    height: 35%;
-}
-
-.second-bg {
-    width: 100%;
-    height: 35%;
-}
-
-.bottom-bg {
-    width: 100%;
-    height: 20%;
 }
 
 .container {
-    width: 600px;
-    height: 400px;
-    margin: auto;
-    padding: 40px 20px 0px 20px;
-    background-color: red;
+    width: 820px;
+    height: 360px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+}
+
+.menu-title {
+    font-weight: 600;
+}
+
+.menu-content {
+    padding: 20px 40px;
+    display: inline-block;
 }
 
 .menu-item {
-    width: 180px;
+    width: 208px;
     height: 120px;
     margin: 10px;
     float: left;
-    background-color: #2d67c6
+    position: relative;
+    line-height: 120px;
+    padding-left: 12px;
+    text-align: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position-x: 8px;
+    background-position-y: center;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: skyblue !important;
+}
+
+.menu-item:active {
+    left: 1px !important;
+    top: 1px !important;
+}
+
+#first-menu-content div:nth-child(1) {
+    background-color: lightblue;
+    background-image: url("../img/11motion.png");
+}
+
+#first-menu-content div:nth-child(2) {
+    background-color: lightcoral;
+    background-image: url("../img/12pressure.png");
+}
+
+#first-menu-content div:nth-child(3) {
+    background-color: #00ffff80;
+    background-image: url("../img/13delay.png");
+}
+
+#first-menu-content div:nth-child(4) {
+    background-color: lightgoldenrodyellow;
+    background-image: url("../img/14state.png");
+}
+
+#first-menu-content div:nth-child(5) {
+    background-color: lightgray;
+    background-image: url("../img/15style.png");
+}
+
+#first-menu-content div:nth-child(6) {
+    background-color: lightgreen;
+    background-image: url("../img/16anxiety.png");
+}
+
+#second-menu-content div:nth-child(1) {
+    background-color: lightgrey;
+    background-image: url("../img/21skill.png");
+}
+
+#second-menu-content div:nth-child(2) {
+    background-color: lightpink;
+    background-image: url("../img/22ability.png");
+}
+
+#second-menu-content div:nth-child(3) {
+    background-color: lightsalmon;
+    background-image: url("../img/23time.png");
+}
+
+#second-menu-content div:nth-child(4) {
+    background-color: lightseagreen;
+    background-image: url("../img/24learn.png");
 }
 
 @keyframes showAndMoveAnimation {

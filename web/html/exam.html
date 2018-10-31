@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/exam.css">
+    <script src="../external/jquery-3.3.1.min.js"></script>
+    <script src="../external/jquery.cookie.js"></script>
+    <script src="../js/exam.js"></script>
     <title>登科学能评测系统</title>
 </head>
+
 <body>
-<div id="exam-frame">
-    <div id="exam-title" class="exam-frame-center">
-        <span class="exam-title-span">测评时间：60分钟</span>
-        <span class="exam-title-span">用户名：王鸿博</span>
+    <div class="title-bar">
+        <span id="exit">退出</span>
+        <span id="user-name"></span>
+        <span>您好：</span>
     </div>
-    <div id="exam-name" class="exam-frame-center">学习能力检测</div>
-    <div class="exam-body exam-frame-block">
-        <div id="exam-question-index" class="exam-frame-left">第1/30题：</div>
-        <span id="exam-question-title">我每天坚持课前预习新的学习内容。</span>
-        <br>
-        <div id="exam-question-option" class="exam-frame-left">
-            <span>A、完全不符合</span>
+    <div id="exam-frame">
+        <div id="exam-title" class="exam-frame-center">
+            <span class="exam-title-span">测评时间：60分钟</span>
+            <span class="exam-title-span">用户名：王鸿博</span>
+        </div>
+        <div id="exam-name" class="exam-frame-center">学习能力检测</div>
+        <div class="exam-body exam-frame-block">
+            <div id="exam-question-index" class="exam-frame-left">第1/30题：</div>
+            <span id="exam-question-title">我每天坚持课前预习新的学习内容。</span>
             <br>
-            <span>B、不太符合</span>
-            <br>
-            <span>C、一般</span>
-            <br>
-            <span>D、比较符合</span>
-            <br>
-            <span>E、完全符合</span>
+            <div id="exam-question-option" class="exam-frame-left">
+                <span>A、完全不符合</span>
+                <br>
+                <span>B、不太符合</span>
+                <br>
+                <span>C、一般</span>
+                <br>
+                <span>D、比较符合</span>
+                <br>
+                <span>E、完全符合</span>
+            </div>
+        </div>
+        <div id="exam-answer" class="exam-frame-block">
+            选择答案：
+            <label for="radio1">A</label>
+            <input type="radio" name="answer" id="radio1" class="exam-answer-input">
+            <label for="radio2">B</label>
+            <input type="radio" name="answer" id="radio2" class="exam-answer-input">
+            <label for="radio3">C</label>
+            <input type="radio" name="answer" id="radio3" class="exam-answer-input">
+            <label for="radio4">D</label>
+            <input type="radio" name="answer" id="radio4" class="exam-answer-input">
+            <label for="radio5">E</label>
+            <input type="radio" name="answer" id="radio5" class="exam-answer-input">
+        </div>
+        <div id="exam-action" class="exam-frame-block">
+            <input type="button" class="exam-action-button" value="首题">
+            <input type="button" class="exam-action-button" value="上一题">
+            <input type="button" class="exam-action-button" value="下一题">
+            <input type="button" class="exam-action-button" value="尾题">
+            <input type="submit" id="exam-action-submit" class="exam-action-button" value="提交试卷">
+            <span id="exam-left-time">剩余时间：59分7秒</span>
         </div>
     </div>
-    <div id="exam-answer" class="exam-frame-block">
-        选择答案：
-        <label for="radio1">A</label>
-        <input type="radio" name="answer" id="radio1" class="exam-answer-input">
-        <label for="radio2">B</label>
-        <input type="radio" name="answer" id="radio2" class="exam-answer-input">
-        <label for="radio3">C</label>
-        <input type="radio" name="answer" id="radio3" class="exam-answer-input">
-        <label for="radio4">D</label>
-        <input type="radio" name="answer" id="radio4" class="exam-answer-input">
-        <label for="radio5">E</label>
-        <input type="radio" name="answer" id="radio5" class="exam-answer-input">
-    </div>
-    <div id="exam-action" class="exam-frame-block">
-        <input type="button" class="exam-action-button" value="首题">
-        <input type="button" class="exam-action-button" value="上一题">
-        <input type="button" class="exam-action-button" value="下一题">
-        <input type="button" class="exam-action-button" value="尾题">
-        <input type="submit" id="exam-action-submit" class="exam-action-button" value="提交试卷">
-        <span id="exam-left-time">剩余时间：59分7秒</span>
-    </div>
-</div>
 </body>
+
 </html>
