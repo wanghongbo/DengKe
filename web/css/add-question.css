@@ -77,11 +77,12 @@
 }
 
 .ad-answer-input {
-    width: 350px;
-    height: 18px;
+    width: 346px;
+    height: 20px;
     margin-left: 10px;
+    padding-left: 4px;
     border: 1px solid #ffa07a7a;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .ad-action-container {

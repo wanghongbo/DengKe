@@ -1,52 +1,79 @@
 body {
-    /* background-image: url('../img/bg.jpg');
-    background-size: 100% 100%; */
-    background-image: none;
     background-color: #2d67c6;
 }
 
-#title {
-    color: burlywood;
-    display: inline-block;
-    margin: 20px;
-    font-size: 26px;
-    font-family: cursive;
-    animation: showAnimation 0.5s;
-    -webkit-animation: showAnimation 0.5s;
-}
-
-.border-div {
+.top-bg {
     width: 100%;
-    height: 25%;
+    height: 10%;
 }
 
-.center-div {
+.first-bg {
     width: 100%;
-    height: 50%;
-    text-align: center;
+    height: 35%;
 }
 
-#container {
+.second-bg {
+    width: 100%;
+    height: 35%;
+}
+
+.bottom-bg {
+    width: 100%;
+    height: 20%;
+}
+
+.container {
     width: 600px;
     height: 400px;
-    margin: 0 auto;
+    margin: auto;
+    padding: 40px 20px 0px 20px;
+    background-color: red;
 }
 
 .menu-item {
     width: 180px;
-    height: 180px;
+    height: 120px;
+    margin: 10px;
     float: left;
-    margin: 0 60px;
-    cursor: pointer;
-    animation: showAndMoveAnimation 0.5s;
-    -webkit-animation: showAndMoveAnimation 0.5s;
-    background-size: 100% 100%;
+    background-color: #2d67c6
 }
 
-#menu-item1 {
-    background-image: url('../img/index-menu-item1.png');
+@keyframes showAndMoveAnimation {
+    from {
+        opacity: 0;
+        margin-top: -80px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0px;
+    }
 }
 
-#menu-item2 {
-    background-image: url('../img/index-menu-item2.png');
+@-webkit-keyframes showAndMoveAnimation {
+    from {
+        opacity: 0;
+        margin-top: -80px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+@keyframes showAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes showAnimation {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1;
+    }
 }

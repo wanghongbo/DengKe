@@ -8,7 +8,7 @@ layui.use('table', function () {
         , limit: 10
         , limits: [10,30,60,90]
         , cols: [[
-            { field: 'id', title: '题号', width: 100, fixed: 'left', align: 'center' }
+            { field: 'id', title: '题号', width: 100, align: 'center' }
             , { field: 'title', title: '题目', width: 400, align: 'center' }
             , { field: 'options', title: '选项', width: 400, align: 'center' }
             , { field: 'catalog', title: '类型', width: 180, align: 'center' }
