@@ -1,5 +1,5 @@
 body {
-    background-color: #2d67c682;
+    background-color: #93b1e1;
 }
 
 .top-bg {
@@ -64,7 +64,7 @@ body {
 }
 
 #first-menu-content div:nth-child(3) {
-    background-color: #00ffff80;
+    background-color: #7fffff;
     background-image: url("../img/13delay.png");
 }
 

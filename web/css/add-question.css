@@ -43,6 +43,7 @@
 .ad-score-select {
     margin-left: 10px;
     width: 60px;
+    border: 1px solid #ffd8c8;
 }
 
 .ad-question-title {
@@ -61,9 +62,9 @@
     margin: auto;
     display: block;
     resize: none;
-    border: 1px solid #ffa07a7a;
+    border: 1px solid #ffd8c8;
     font-size: 16px;
-}
+}   
 
 .ad-left {
     width: 400px;
@@ -81,7 +82,7 @@
     height: 20px;
     margin-left: 10px;
     padding-left: 4px;
-    border: 1px solid #ffa07a7a;
+    border: 1px solid #ffd8c8;
     font-size: 13px;
 }
 

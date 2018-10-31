@@ -1,16 +1,18 @@
 body {
-    background-color: #2d67c682;
+    background-color: #93b1e1;
 }
 
 .title-bar {
     height: 60px;
     padding: 0px 20px;
+    background-color: #466f90;
 }
 
 .title-bar span {
     height: 60px;
     line-height: 60px;
     float: right;
+    color: white;
 }
 
 #exit {
@@ -20,10 +22,6 @@ body {
 
 #exit:hover {
     color: rgb(196, 92, 92);
-}
-
-#user-name {
-    color: #0061ff;
 }
 
 #exam-frame {
