@@ -23,7 +23,7 @@ $(document).ready(function () {
         showAddQuestionDialog(function(result) {
             console.log(JSON.stringify(result));
             if (result != null) {
-                httpPostQuestion(result);
+                http.postQuestion(result);
             }
         });
     });
