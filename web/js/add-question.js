@@ -26,8 +26,8 @@ function initUI() {
             }
         }
     }
-    $("#ad-question").focus();
-    activeElement = $("#ad-question");
+    $("#ad-title").focus();
+    activeElement = $("#ad-title");
 }
 
 function bindEvent() {
@@ -55,17 +55,18 @@ function bindEvent() {
 
 function confirm() {
     var result = {};
-    result.question = $("#ad-question").val();
-    result.answerA = $("#ad-answer1").val();
-    result.scoreA = $("#ad-score1").val();
-    result.answerB = $("#ad-answer2").val();
-    result.scoreB = $("#ad-score2").val();
-    result.answerC = $("#ad-answer3").val();
-    result.scoreC = $("#ad-score3").val();
-    result.answerD = $("#ad-answer4").val();
-    result.scoreD = $("#ad-score4").val();
-    result.answerE = $("#ad-answer5").val();
-    result.scoreE = $("#ad-score5").val();
+    result.title = $("#ad-title").val();
+    result.optionA = $("#ad-answer1").val();
+    result.scoreA = Number($("#ad-score1").val());
+    result.optionB = $("#ad-answer2").val();
+    result.scoreB = Number($("#ad-score2").val());
+    result.optionC = $("#ad-answer3").val();
+    result.scoreC = Number($("#ad-score3").val());
+    result.optionD = $("#ad-answer4").val();
+    result.scoreD = Number($("#ad-score4").val());
+    result.optionE = $("#ad-answer5").val();
+    result.scoreE = Number($("#ad-score5").val());
+    result.type = questionType.toString();
     closeAddQuestionDialog(result);
 }
 

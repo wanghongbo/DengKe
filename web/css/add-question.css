@@ -55,7 +55,7 @@
     border: 1px solid #ffd8c8;
 }
 
-.ad-question-title {
+.ad-title-bar {
     width: 100%;
     height: 30px;
     line-height: 30px;
@@ -65,7 +65,7 @@
     margin-top: 8px;
 }
 
-.ad-question-input {
+.ad-title-input {
     width: 472px;
     height: 60px;
     margin: auto;

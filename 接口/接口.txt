@@ -1,0 +1,79 @@
+后台: http://6058f2c0.ngrok.io
+
+1.	查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
+
+返回值 正常:
+{
+    "code": 1,
+    "msg": "",
+    "data": {
+        "page": [
+            {
+                "id": 2,
+                "scoreA": 0,
+                "scoreB": 0,
+                "scoreC": 0,
+                "scoreD": 0,
+                "scoreE": 0,
+                "scoreF": 0,
+                "status": "1",
+                "title": "asd123我的",
+                "type": "1"
+            }
+        ],
+        "pageCount": 6,
+        "pageNo": 2,
+        "totalCount": 6
+    }
+}
+
+异常:{
+    "code": 2,
+    "msg": "",
+    "data": ""
+}
+
+
+2. 新增题目: POST /subject/add
+   {
+		"scoreA": 0,
+		"scoreB": 0,
+		"scoreC": 0,
+		"scoreD": 0,
+		"scoreE": 0,
+		"scoreF": 0,
+		"title": "asd123我的",
+		"type": "1"
+	}
+	
+返回值 正常:
+{
+    "code": 1,
+    "msg": "",
+    "data": ""
+}
+异常:{
+    "code": 2,
+    "msg": "",
+    "data": ""
+}
+
+3. 删除题目: GET /subject/delete?id=1
+
+返回值 正常:
+{
+    "code": 1,
+    "msg": "",
+    "data": ""
+}
+异常:{
+    "code": 2,
+    "msg": "",
+    "data": ""
+}
+
+4. 编辑题目: POST /subject/update (参考新增题目接口，加上id列即可)
+
+5. 查询报告: GET /report/getPage?pageNo=1&pageSize=10 (参考查询题目接口)
+
+6. 删除报告: GET /report/delete?id=1 (参考删除题目接口)

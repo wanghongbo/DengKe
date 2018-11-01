@@ -21,8 +21,10 @@ layui.use('table', function () {
 $(document).ready(function () {
     $("#add-question").click(function (e) { 
         showAddQuestionDialog(function(result) {
-            var str = JSON.stringify(result);
-            alert(str);
+            console.log(JSON.stringify(result));
+            if (result != null) {
+                httpPostQuestion(result);
+            }
         });
     });
 });
