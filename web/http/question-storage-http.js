@@ -1,11 +1,20 @@
 function httpPostQuestion(data) {
     var url = serverAddress + "/subject/add";
-    $.post(url, data,
-        function (data, textStatus, jqXHR) {
-            console.log("data" + data);
-            console.log("status" + textStatus);
-            console.log("jqXHR" + jqXHR);
+    $.ajax({
+        type: "POST",
+        url: url,
+        headers: {
+            "Content-Type": "application/json"
         },
-        "json"
-    );
+        data: data,
+        success: function(data) {
+            console.log("data: " + data);
+        },
+        error: function(err) {
+            console.log("err: " + err);
+        },
+        complete: function(XMLHttpRequest, status) {
+            console.log("status: " + status);
+        }
+    })
 }
