@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/add-question.css">
     <script src="../external/jquery-3.3.1.min.js"></script>
+    <script src="../js/question-option-model.js"></script>
     <script src="../js/add-question.js"></script>
-    <script src="../js/question-model.js"></script>
     <title>添加题目</title>
 </head>
 
@@ -22,7 +22,7 @@
             <div class="ad-question-title">
                 <span class="ad-span-left">题目</span>
                 <select class="ad-type-select ad-title-right" disabled="disabled">
-                    <option id="ad-type" value="">学习动机测评</option>
+                    <option id="ad-type" value=""></option>
                 </select>
                 <span class="ad-title-right">类型</span>
             </div>
@@ -39,10 +39,11 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">A :</span>
-                    <input type="text" id="ad-optionA" class="ad-answer-input" value="完全不符合">
+                    <input type="text" id="ad-answer1" class="ad-answer-input" value="">
                 </div>
                 <div class="ad-right">
-                    <select id="ad-answerA" class="ad-score-select">
+                    <select id="ad-score1" class="ad-score-select">
+                        <option value="0" selected="selected">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -54,12 +55,13 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">B :</span>
-                    <input type="text" id="ad-optionB" class="ad-answer-input" value="不太符合">
+                    <input type="text" id="ad-answer2" class="ad-answer-input" value="">
                 </div>
                 <div class="ad-right">
-                    <select id="ad-answerB" class="ad-score-select">
+                    <select id="ad-score2" class="ad-score-select">
+                        <option value="0" selected="selected">0</option>
                         <option value="1">1</option>
-                        <option value="2" selected="selected">2</option>
+                        <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -69,13 +71,14 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">C :</span>
-                    <input type="text" id="ad-optionC" class="ad-answer-input" value="一般">
+                    <input type="text" id="ad-answer3" class="ad-answer-input" value="">
                 </div>
                 <div class="ad-right">
-                    <select id="ad-answerC" class="ad-score-select">
+                    <select id="ad-score3" class="ad-score-select">
+                        <option value="0" selected="selected">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        <option value="3" selected="selected">3</option>
+                        <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
@@ -84,14 +87,15 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">D :</span>
-                    <input type="text" id="ad-optionD" class="ad-answer-input" value="比较符合">
+                    <input type="text" id="ad-answer4" class="ad-answer-input" value="">
                 </div>
                 <div class="ad-right">
-                    <select id="ad-answerD" class="ad-score-select">
+                    <select id="ad-score4" class="ad-score-select">
+                        <option value="0" selected="selected">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4" selected="selected">4</option>
+                        <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
                 </div>
@@ -99,15 +103,16 @@
             <div class="ad-input-container">
                 <div class="ad-left">
                     <span class="ad-span-left ad-span-option">E :</span>
-                    <input type="text" id="ad-optionE" class="ad-answer-input" value="完全符合">
+                    <input type="text" id="ad-answer5" class="ad-answer-input" value="">
                 </div>
                 <div class="ad-right">
-                    <select id="ad-answerE" class="ad-score-select">
+                    <select id="ad-score5" class="ad-score-select">
+                        <option value="0" selected="selected">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5" selected="selected">5</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
             </div>

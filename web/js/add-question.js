@@ -1,8 +1,36 @@
 var activeElement;
 
 $(document).ready(function () {
-    init();
+    initUI();
+    bindEvent();
+});
 
+function initUI() {
+    if (typeof (questionType) != "undefined") {
+        var typeName = getQuestionTypeName(questionType)
+        if (typeName != undefined) {
+            $("#ad-type").text(typeName);
+        }
+
+        var options = getQuestionOptions(questionType);
+        if (options != null) {
+            for (index in options) {
+                //设置答案
+                var item = options[index];
+                var i = Number(index) + 1;
+                var answerId = "#ad-answer" + i;
+                $(answerId).val(item.answer);
+                //设置分数
+                var scoreId = "#ad-score" + i;
+                $(scoreId).val(item.score);
+            }
+        }
+    }
+    $("#ad-question").focus();
+    activeElement = $("#ad-question");
+}
+
+function bindEvent() {
     $("#ad-cancel").click(function (e) {
         closeAddQuestionDialog(null);
     });
@@ -19,61 +47,48 @@ $(document).ready(function () {
                 $(this).css("border-color", "#ffd8c8");
             }
         })
-        $(this).focus(function (e) { 
+        $(this).focus(function (e) {
             activeElement = $(this);
         });
     });
-});
+}
 
-function init() {
-    var typeName = "";
-    switch(questionType) {
-        case 1:
-        typeName = "学习动机测评";
-        break;
-        case 2:
-        typeName = "学习压力测评";
-        break;
-        case 3:
-        typeName = "学习拖延测评";
-        break;
-        case 4:
-        typeName = "学习状态测评";
-        break;
-        case 5:
-        typeName = "学习风格测评";
-        break;
-        case 6:
-        typeName = "学习焦虑测评";
-        break;
-        case 7:
-        typeName = "学习方法与技能测评";
-        break;
-        case 8:
-        typeName = "学习能力检测";
-        break;
-        case 9:
-        typeName = "时间管理能力测评";
-        break;
-        case 10:
-        typeName = "自主学习能力测评";
-        break;
-        default:
-        typeName = "";
-    }
-    $("#ad-type").text(typeName);
+function confirm() {
+    var result = {};
+    result.question = $("#ad-question").val();
+    result.answerA = $("#ad-answer1").val();
+    result.scoreA = $("#ad-score1").val();
+    result.answerB = $("#ad-answer2").val();
+    result.scoreB = $("#ad-score2").val();
+    result.answerC = $("#ad-answer3").val();
+    result.scoreC = $("#ad-score3").val();
+    result.answerD = $("#ad-answer4").val();
+    result.scoreD = $("#ad-score4").val();
+    result.answerE = $("#ad-answer5").val();
+    result.scoreE = $("#ad-score5").val();
+    closeAddQuestionDialog(result);
 }
 
 function validate() {
     var pass = true;
-    $($("#ad-bg").find("input, textarea").get().reverse()).each(function () {
+    var emptyCount = 0;
+    $($("#ad-bg").find("textarea, input").get().reverse()).each(function (e) {
         if ($(this).val() == "") {
-            pass = false;
-            $(this).css("border-color", "red");
+            emptyCount++;
+            if (emptyCount > 3) {
+                pass = false;
+                $(this).css("border-color", "red");
+            } else {
+                $(this).css("border-color", "#ffd8c8");
+            }
             if (activeElement != undefined) {
                 activeElement.focus();
             } else {
                 $(this).focus();
+            }
+        } else {
+            if (emptyCount < 4) {
+                emptyCount = 4;
             }
         }
     });
@@ -82,20 +97,4 @@ function validate() {
     } else {
         return false;
     }
-}
-
-function confirm() {
-    var result = {};
-    result.question = $("#ad-question").val();
-    result.optionA = $("#ad-optionA").val();
-    result.answerA = $("#ad-answerA").val();
-    result.optionB = $("#ad-optionB").val();
-    result.answerB = $("#ad-answerB").val();
-    result.optionC = $("#ad-optionC").val();
-    result.answerC = $("#ad-answerC").val();
-    result.optionD = $("#ad-optionD").val();
-    result.answerD = $("#ad-answerD").val();
-    result.optionE = $("#ad-optionE").val();
-    result.answerE = $("#ad-answerE").val();
-    closeAddQuestionDialog(result);
 }
