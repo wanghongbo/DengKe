@@ -6,7 +6,9 @@ function httpPostQuestion(data) {
         headers: {
             "Content-Type": "application/json"
         },
-        data: data,
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(data),
         success: function(data) {
             console.log("data: " + data);
         },
