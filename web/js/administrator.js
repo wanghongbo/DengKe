@@ -31,11 +31,11 @@ function showPage(url) {
 }
 
 function showReporterManagePage() {
-    showPage("http://127.0.0.1:5500/html/reportermanage.html");
+    showPage("../html/reportermanage.html");
 }
 
 function showQuestionStoragePage() {
-    showPage("http://127.0.0.1:5500/html/questionstorage.html")
+    showPage("..//html/questionstorage.html")
 }
 
 $(document).ready(function () {

@@ -5,7 +5,7 @@ layui.use('table', function () {
 
     table.render({
         elem: '#report-table'
-        , url: 'http://127.0.0.1:5500/resource/report1.json'
+        , url: '../resource/report1.json'
         , height: 600
         , limit: 10
         , limits: [10,30,60,90]

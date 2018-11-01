@@ -3,7 +3,7 @@ layui.use('table', function () {
 
     table.render({
         elem: '#question-table'
-        , url: 'http://127.0.0.1:5500/resource/report2.json'
+        , url: '../resource/report2.json'
         , height: 600
         , limit: 10
         , limits: [10,30,60,90]
@@ -14,7 +14,7 @@ layui.use('table', function () {
             , { field: 'catalog', title: '类型', width: 180, align: 'center' }
             , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }
         ]]
-        , page: true
+        , page: false
     });
 });
 
