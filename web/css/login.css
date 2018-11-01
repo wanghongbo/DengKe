@@ -1,5 +1,5 @@
 body {
-    background-color: #2d67c6;
+    background-color: #818286;
 }
 
 .border-div {
@@ -20,6 +20,7 @@ body {
     background-color: white;
     border-radius: 8px;
     border: 1px solid #cccccc;
+    box-shadow: 1px 1px 30px #333333;
 }
 
 .input {
@@ -48,7 +49,7 @@ body {
     height: 40px;
     line-height: 38px;
     text-align: center;
-    background-color: #1885e0;
+    background-color: #818286;
     border-radius: 4px;
     border: 1px solid #cccccc;
     margin-top: 30px;

@@ -1,7 +1,27 @@
 layui.use('element', function () {
 });
 
-function showTab(url) {
+/*
+1：学习动机测评
+2：学习压力测评
+3：学习拖延测评
+4：学习状态测评
+5：学习风格测评
+6：学习焦虑测评
+7：学习方法与技能测评
+8：学习能力检测
+9：时间管理能力测评
+10：自主学习能力检测
+*/
+var questionType = 1;
+
+/*
+1：学习状态报告
+2：学习能力报告
+*/
+var reporterType = 1;
+
+function showPage(url) {
     $.ajax({
         url: url,
         success: function (result) {
@@ -10,22 +30,28 @@ function showTab(url) {
     });
 }
 
-function showTab1() {
-    showTab("http://127.0.0.1:5500/html/reportermanage/learningstate.html");
+function showReporterManagePage() {
+    showPage("http://127.0.0.1:5500/html/reportermanage.html");
 }
 
-function showTab3() {
-    showTab("http://127.0.0.1:5500/html/questionstorage/learningmotion.html")
+function showQuestionStoragePage() {
+    showPage("http://127.0.0.1:5500/html/questionstorage.html")
 }
 
 $(document).ready(function () {
-    $("#tab1").click(function (e) { 
-        showTab1();
+    $(".reporter-manage-item").click(function (e) { 
+        reporterType = Number($(e.target).attr("type"));
+        showReporterManagePage();
     });
 
-    $("#tab3").click(function (e) { 
-        showTab3();
+    $(".question-storage-item").click(function (e) { 
+        questionType = Number($(e.target).attr("type"));
+        showQuestionStoragePage();
     });
     
-    $("#tab1").trigger("click");
+    $(".reporter-manage-item:first").trigger("click");
+
+    $("#exit").click(function() {
+        window.location.assign("../html/login.html");
+    })
 });
