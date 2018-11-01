@@ -11,4 +11,8 @@ public interface SubjectMapper {
     List<Subject> getSubjects(@Param("type") String type,@Param("status")String status);
     void add(Subject subject);
     void updateStatus(@Param("id")long id,@Param("status")String status);
+
+
+    int getCount(@Param("type")String type,@Param("status")String status);
+    List<Subject> getPage(@Param("type")String type,@Param("status")String status,@Param("start")int start,@Param("pageSize")int pageSize);
 }

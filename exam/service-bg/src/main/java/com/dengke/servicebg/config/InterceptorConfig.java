@@ -13,9 +13,9 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //这里可以添加多个拦截器
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/user/login","/user/noLogin","/user/logout");
-        super.addInterceptors(registry);
+//        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
+//                .excludePathPatterns("/user/login","/user/noLogin","/user/logout");
+//        super.addInterceptors(registry);
     }
 
 }

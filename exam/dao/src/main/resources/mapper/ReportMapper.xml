@@ -27,6 +27,16 @@
         select * from report order by id desc
     </select>
 
+    <select id="getCount" resultType="Integer">
+        select count(*) from report where status  =#{status}
+    </select>
+
+    <select id="getPage" resultType="Report">
+        select * from report where status = #{status}
+        and id>=(select id from  report where status = #{status} limit #{start},1)
+        limit #{pageSize}
+    </select>
+
     <select id="getReportDetails" resultType="ReportDetail">
         select * from report_detail
         where report_id = #{reportId}

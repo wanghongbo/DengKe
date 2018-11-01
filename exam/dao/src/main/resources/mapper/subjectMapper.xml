@@ -34,4 +34,14 @@
     <update id="updateStatus">
         update subject set status = #{status} where id = #{id}
     </update>
+
+    <select id="getCount" resultType="Integer">
+        select count(*) from subject where type = #{type} and status  =#{status}
+    </select>
+
+    <select id="getPage" resultType="Subject">
+        select * from subject where type = #{type} and status = #{status}
+        and id>=(select id from  subject where type = #{type} and status = #{status} limit #{start},1)
+        limit #{pageSize}
+    </select>
 </mapper>
