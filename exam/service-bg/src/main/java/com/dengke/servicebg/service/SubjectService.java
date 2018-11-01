@@ -52,6 +52,15 @@ public class SubjectService {
         }
     }
 
+    public void updateSubject(Subject subject){
+        try {
+            subjectMapper.update(subject);
+        }catch (Exception e){
+            log.error("编辑题目出错",e);
+            throw  e;
+        }
+    }
+
     public void deleteSubject(long id){
         try {
             subjectMapper.updateStatus(id,Constants.SUBJECT_STATUS_DEL);

@@ -86,4 +86,16 @@ public class SubjectController extends BaseController {
         }
     }
 
+    @RequestMapping("/update")
+    public String update(@RequestBody Subject subject){
+        try {
+            log.info(JSON.toJSONString(subject));
+            subjectService.updateSubject(subject);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+        }catch (Exception e){
+            log.error("编辑题目出错",e);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
+        }
+    }
+
 }

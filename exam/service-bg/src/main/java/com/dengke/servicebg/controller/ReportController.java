@@ -27,8 +27,8 @@ public class ReportController extends BaseController {
     @Resource
     private ReportService reportService;
 
-    @RequestMapping("/get")
-    public String getReports(HttpServletRequest request){
+    @RequestMapping("/getPage")
+    public String getPage(HttpServletRequest request){
         try{
             int pageNo = ServletRequestUtils.getIntParameter(request,"pageNo",1);
             int pageSize = ServletRequestUtils.getIntParameter(request,"pageSize",10);
@@ -37,6 +37,18 @@ public class ReportController extends BaseController {
         }catch (Exception e){
             log.error("查询报告出错",e);
             return  JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
+        }
+    }
+
+    @RequestMapping("delete")
+    public String delete(HttpServletRequest request){
+        try {
+            long id = ServletRequestUtils.getLongParameter(request,"id");
+            reportService.delete(id);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+        }catch (Exception e){
+            log.error("删除报告出错",e);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
         }
     }
 

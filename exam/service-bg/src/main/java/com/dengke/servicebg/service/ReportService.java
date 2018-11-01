@@ -3,6 +3,7 @@ package com.dengke.servicebg.service;
 import com.dengke.dao.ReportMapper;
 import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
+import com.dengke.entity.common.Constants;
 import com.dengke.entity.common.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +20,11 @@ public class ReportService {
     @Resource
     private ReportMapper reportMapper;
 
-    public void addReport(Report report, List<ReportDetail> reportDetails){
+    public void delete(long id){
         try {
-            reportMapper.add(report);
-            long reportId = report.getId();
-            for(ReportDetail reportDetail:reportDetails){
-                reportDetail.setReportId(reportId);
-                reportMapper.addDetail(reportDetail);
-            }
+            reportMapper.updateStatus(id,Constants.SUBJECT_STATUS_DEL);
         }catch (Exception e){
-            log.error("生成报告出错",e);
+            log.error("删除报告出错",e);
             throw  e;
         }
     }

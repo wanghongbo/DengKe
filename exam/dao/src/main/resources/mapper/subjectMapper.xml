@@ -31,6 +31,16 @@
         #{optionF},#{scoreF},#{type},#{status})
     </insert>
 
+    <update id="update">
+
+        update subject set
+        title=#{title},option_a=#{optionA},score_a=#{scoreA},option_b=#{optionB},score_b=#{scoreB},
+        option_c=#{optionC},score_c=#{scoreC},option_d=#{optionD},score_d=#{scoreD},option_e=#{optionE},score_e=#{scoreE},
+        option_f=#{optionF},score_f=#{scoreF}
+        where id = #{id}
+
+    </update>
+
     <update id="updateStatus">
         update subject set status = #{status} where id = #{id}
     </update>

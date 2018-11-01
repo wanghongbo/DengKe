@@ -27,6 +27,10 @@
         select * from report order by id desc
     </select>
 
+    <update id="updateStatus">
+        update report set status = #{status} where id = #{id}
+    </update>
+
     <select id="getCount" resultType="Integer">
         select count(*) from report where status  =#{status}
     </select>
