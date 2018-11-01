@@ -11,4 +11,8 @@ public interface ReportMapper {
     void addDetail(ReportDetail reportDetail);
     List<Report> getReports();
     List<ReportDetail> getReportDetails(@Param("reportId")long reportId);
+    void updateStatus(@Param("id")long id,@Param("status")String status);
+
+    int getCount(@Param("status")String status);
+    List<Report> getPage(@Param("status")String status,@Param("start")int start,@Param("pageSize")int pageSize);
 }
