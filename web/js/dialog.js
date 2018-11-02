@@ -1,6 +1,8 @@
 var callback;
 
-function showAddQuestionDialog(closeCallback) {
+var dialog = function() {};
+
+dialog.showAddQuestion = function(closeCallback) {
     callback = closeCallback
     $.ajax({
         url: "../html/addquestion.html",
@@ -10,7 +12,7 @@ function showAddQuestionDialog(closeCallback) {
     });
 }
 
-function closeAddQuestionDialog(result) {
+dialog.closeAddQuestion = function(result) {
     if (result != null && callback != null) {
         callback(result);
     }

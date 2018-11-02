@@ -10,7 +10,7 @@ layui.use('table', function () {
         , limit: 10
         , limits: [10,30,60,90]
         , cols: [[
-            { field: 'id', title: '编号', width: 100, align: 'center' } 
+            { field: 'id', title: '编号', width: 60, align: 'center' } 
             , { field: 'time', title: '时间', width: 200, align: 'center' }
             , { field: 'name', title: '姓名', width: 100, align: 'center' }
             , { field: 'score', title: '得分', width: 100, align: 'center' }
@@ -35,17 +35,16 @@ layui.use('table', function () {
 
 layui.use('table', function () {
     var table = layui.table;
-    //监听表格复选框选择
-    table.on('checkbox(report-table)', function (obj) {
-        console.log(obj)
-    });
     //监听工具条
     table.on('tool(report-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'download') {
             layer.msg('ID：' + data.id + ' 的下载操作');
         } else if (obj.event === 'del') {
-            confirm("确定删除报告？");
+            layer.confirm('确定删除报告么？', function (index) {
+                obj.del();
+                layer.close(index);
+            });
         }
     });
 

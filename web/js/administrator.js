@@ -1,6 +1,13 @@
 layui.use('element', function () {
 });
 
+layui.use('layer', function () {
+    var layer = layui.layer;
+    layer.config({
+        offset: ['200px', '']
+    });
+});
+
 /*
 1：学习动机测评
 2：学习压力测评
@@ -13,13 +20,13 @@ layui.use('element', function () {
 9：时间管理能力测评
 10：自主学习能力检测
 */
-var questionType = 1;
+var questionType = "1";
 
 /*
 1：学习状态报告
 2：学习能力报告
 */
-var reporterType = 1;
+var reporterType = "1";
 
 function showPage(url) {
     $.ajax({
@@ -39,19 +46,19 @@ function showQuestionStoragePage() {
 }
 
 $(document).ready(function () {
-    $(".reporter-manage-item").click(function (e) { 
-        reporterType = Number($(e.target).attr("type"));
+    $(".reporter-manage-item").click(function (e) {
+        reporterType = $(e.target).attr("type");
         showReporterManagePage();
     });
 
-    $(".question-storage-item").click(function (e) { 
-        questionType = Number($(e.target).attr("type"));
+    $(".question-storage-item").click(function (e) {
+        questionType = $(e.target).attr("type");
         showQuestionStoragePage();
     });
-    
-    $(".reporter-manage-item:first").trigger("click");
 
-    $("#exit").click(function() {
+    $(".reporter-manage-item:first").click();
+
+    $("#exit").click(function () {
         window.location.assign("../html/login.html");
     })
 });

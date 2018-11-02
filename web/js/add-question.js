@@ -7,12 +7,12 @@ $(document).ready(function () {
 
 function initUI() {
     if (typeof (questionType) != "undefined") {
-        var typeName = getQuestionTypeName(questionType)
+        var typeName = model.getQuestionTypeName(questionType)
         if (typeName != undefined) {
             $("#ad-type").text(typeName);
         }
 
-        var options = getQuestionOptions(questionType);
+        var options = model.getQuestionOptions(questionType);
         if (options != null) {
             for (index in options) {
                 //设置答案
@@ -32,7 +32,7 @@ function initUI() {
 
 function bindEvent() {
     $("#ad-cancel").click(function (e) {
-        closeAddQuestionDialog(null);
+        dialog.closeAddQuestion(null);
     });
 
     $("#ad-confirm").click(function (e) {
@@ -66,8 +66,8 @@ function confirm() {
     result.scoreD = Number($("#ad-score4").val());
     result.optionE = $("#ad-answer5").val();
     result.scoreE = Number($("#ad-score5").val());
-    result.type = questionType.toString();
-    closeAddQuestionDialog(result);
+    result.type = questionType;
+    dialog.closeAddQuestion(result);
 }
 
 function validate() {

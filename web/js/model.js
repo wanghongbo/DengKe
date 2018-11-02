@@ -187,10 +187,12 @@ var questionOptionArray = new Array();
     }
 })();
 
-function getQuestionTypeName(questionType) {
+var model = function () { }
+
+model.getQuestionTypeName = function (questionType) {
     return questionOptionArray[questionType].typeName;
 }
 
-function getQuestionOptions(questionType) {
+model.getQuestionOptions = function (questionType) {
     return questionOptionArray[questionType].options;
 }
