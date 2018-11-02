@@ -6,23 +6,53 @@ $(document).ready(function () {
 });
 
 function initUI() {
-    if (typeof (questionType) != "undefined") {
-        var typeName = model.getQuestionTypeName(questionType)
+    var initData = dialog.initData;
+    console.log("dialogInitData: " + JSON.stringify(initData));
+    if (initData != null) {
+        $("#ad-top-name").text("编辑题目");
+        var typeName = model.getQuestionTypeName(initData.type);
         if (typeName != undefined) {
             $("#ad-type").text(typeName);
         }
-
-        var options = model.getQuestionOptions(questionType);
-        if (options != null) {
-            for (index in options) {
-                //设置答案
-                var item = options[index];
-                var i = Number(index) + 1;
-                var answerId = "#ad-answer" + i;
-                $(answerId).val(item.answer);
-                //设置分数
-                var scoreId = "#ad-score" + i;
-                $(scoreId).val(item.score);
+        $("#ad-title").val(initData.title);
+        if (initData.optionA != "") {
+            $("#ad-answer1").val(initData.optionA);
+            $("#ad-score1").val(initData.scoreA);
+        }
+        if (initData.optionB != "") {
+            $("#ad-answer2").val(initData.optionB);
+            $("#ad-score2").val(initData.scoreB);
+        }
+        if (initData.optionC != "") {
+            $("#ad-answer3").val(initData.optionC);
+            $("#ad-score3").val(initData.scoreC);
+        }
+        if (initData.optionD != "") {
+            $("#ad-answer4").val(initData.optionD);
+            $("#ad-score4").val(initData.scoreD);
+        }
+        if (initData.optionE != "") {
+            $("#ad-answer5").val(initData.optionE);
+            $("#ad-score5").val(initData.scoreE);
+        }
+    } else {
+        if (typeof (questionType) != "undefined") {
+            var typeName = model.getQuestionTypeName(questionType)
+            if (typeName != undefined) {
+                $("#ad-type").text(typeName);
+            }
+            var options = model.getQuestionOptions(questionType);
+            if (options != null) {
+                for (index in options) {
+                    //设置答案
+                    var item = options[index];
+                    var i = Number(index) + 1;
+                    var answerId = "#ad-answer" + i;
+                    $(answerId).val(item.answer);
+                    //设置分数
+                    var scoreId = "#ad-score" + i;
+                    $(scoreId).val(item.score);
+                }
             }
         }
     }
@@ -55,6 +85,11 @@ function bindEvent() {
 
 function confirm() {
     var result = {};
+    if (dialog.initData == null) {  //添加题目
+        result.type = questionType;
+    } else {    //编辑题目
+        result = dialog.initData;
+    }
     result.title = $("#ad-title").val();
     result.optionA = $("#ad-answer1").val();
     result.scoreA = Number($("#ad-score1").val());
@@ -66,7 +101,6 @@ function confirm() {
     result.scoreD = Number($("#ad-score4").val());
     result.optionE = $("#ad-answer5").val();
     result.scoreE = Number($("#ad-score5").val());
-    result.type = questionType;
     dialog.closeAddQuestion(result);
 }
 

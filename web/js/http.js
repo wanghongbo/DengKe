@@ -47,3 +47,26 @@ http.deleteQuestion = function (id, complete) {
         }
     })
 }
+
+http.updateQuestion = function (data, complete) {
+    var url = serverAddress + "/subject/update";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function (data) {
+            console.log("data: " + JSON.stringify(data));
+            if (data.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, data.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("err: " + error);
+            complete(false, error);
+        }
+    })
+}

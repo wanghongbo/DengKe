@@ -1,5 +1,3 @@
-var questionIndex = 0;
-
 layui.use('table', function () {
     var table = layui.table;
 
@@ -10,11 +8,7 @@ layui.use('table', function () {
         , height: 600
         , limit: 100
         , cols: [[
-            {
-                field: 'index', title: '题号', width: 60, align: 'center', templet: function (d) {
-                    return ++questionIndex;
-                }
-            }
+            { field: 'index', title: '题号', width: 60, align: 'center', type: 'numbers' }
             , { field: 'title', title: '题目', width: 400, align: 'center' }
             , {
                 field: 'option', title: '选项', width: 300, align: 'center', templet: function (d) {
@@ -60,25 +54,36 @@ layui.use('table', function () {
         , response: {
             statusCode: 1
         }
-        , done: function (res, curr, count) {
-            questionIndex = 0;
-        }
     });
 
     table.on('tool(question-table)', function (obj) {
         var data = obj.data;
-        console.log("data: " + JSON.stringify(data));
-        if (obj.event === 'edit') {
-        } else if (obj.event === 'del') {
+        var event = obj.event;
+        if (event === 'edit') {
+            dialog.showAddQuestion(data, function (result) {
+                console.log("result: " + JSON.stringify(result));
+                http.updateQuestion(result, function (success, msg) {
+                    if (success) {
+                        // obj.update(result);
+                        var selector = '.question-storage-item[type="' + questionType + '"]';
+                        $(selector)[0].click();
+                    } else {
+                        layer.msg(msg);
+                    }
+                });
+            });
+        } else if (event === 'del') {
             layer.confirm('确定删除题目么？', function (index) {
                 layer.close(index);
                 http.deleteQuestion(data.id, function (success, msg) {
                     if (success) {
-                        obj.del();
+                        // obj.del();
+                        var selector = '.question-storage-item[type="' + questionType + '"]';
+                        $(selector)[0].click();
                     } else {
                         layer.msg(msg);
                     }
-                })
+                });
             });
         }
     });
@@ -86,7 +91,7 @@ layui.use('table', function () {
 
 $(document).ready(function () {
     $("#add-question").click(function (e) {
-        dialog.showAddQuestion(function (result) {
+        dialog.showAddQuestion(null, function (result) {
             console.log(JSON.stringify(result));
             http.addQuestion(result, function (success, msg) {
                 if (success) {
