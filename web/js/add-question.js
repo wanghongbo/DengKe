@@ -16,23 +16,23 @@ function initUI() {
         }
         $("#ad-title").val(initData.title);
         if (initData.optionA != "") {
-            $("#ad-answer1").val(initData.optionA);
+            $("#ad-option1").val(initData.optionA);
             $("#ad-score1").val(initData.scoreA);
         }
         if (initData.optionB != "") {
-            $("#ad-answer2").val(initData.optionB);
+            $("#ad-option2").val(initData.optionB);
             $("#ad-score2").val(initData.scoreB);
         }
         if (initData.optionC != "") {
-            $("#ad-answer3").val(initData.optionC);
+            $("#ad-option3").val(initData.optionC);
             $("#ad-score3").val(initData.scoreC);
         }
         if (initData.optionD != "") {
-            $("#ad-answer4").val(initData.optionD);
+            $("#ad-option4").val(initData.optionD);
             $("#ad-score4").val(initData.scoreD);
         }
         if (initData.optionE != "") {
-            $("#ad-answer5").val(initData.optionE);
+            $("#ad-option5").val(initData.optionE);
             $("#ad-score5").val(initData.scoreE);
         }
     } else {
@@ -47,8 +47,8 @@ function initUI() {
                     //设置答案
                     var item = options[index];
                     var i = Number(index) + 1;
-                    var answerId = "#ad-answer" + i;
-                    $(answerId).val(item.answer);
+                    var optionId = "#ad-option" + i;
+                    $(optionId).val(item.option);
                     //设置分数
                     var scoreId = "#ad-score" + i;
                     $(scoreId).val(item.score);
@@ -91,15 +91,15 @@ function confirm() {
         result = dialog.initData;
     }
     result.title = $("#ad-title").val();
-    result.optionA = $("#ad-answer1").val();
+    result.optionA = $("#ad-option1").val();
     result.scoreA = Number($("#ad-score1").val());
-    result.optionB = $("#ad-answer2").val();
+    result.optionB = $("#ad-option2").val();
     result.scoreB = Number($("#ad-score2").val());
-    result.optionC = $("#ad-answer3").val();
+    result.optionC = $("#ad-option3").val();
     result.scoreC = Number($("#ad-score3").val());
-    result.optionD = $("#ad-answer4").val();
+    result.optionD = $("#ad-option4").val();
     result.scoreD = Number($("#ad-score4").val());
-    result.optionE = $("#ad-answer5").val();
+    result.optionE = $("#ad-option5").val();
     result.scoreE = Number($("#ad-score5").val());
     dialog.closeAddQuestion(result);
 }

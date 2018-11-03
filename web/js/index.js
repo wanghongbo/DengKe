@@ -9,7 +9,7 @@ $(document).ready(function () {
             formType: 0,
             value: '',
             title: '请输入您的姓名开始测试',
-            offset: ['200px', '']
+            offset: ['300px', '']
         }, function (value, index) {
             $.cookie("user_name", value);
             layer.close(index);

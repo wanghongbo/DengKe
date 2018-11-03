@@ -1,21 +1,23 @@
-var questionOptionData = [
+var model = function () { }
+
+model.defaultQuestionOptionData = [
     {
         "type": "1",
         "typeName": "学习动机测评",
         "options": [{
-            "answer": "完全不符合",
+            "option": "完全不符合",
             "score": "1"
         }, {
-            "answer": "不太符合",
+            "option": "不太符合",
             "score": "2"
         }, {
-            "answer": "一般",
+            "option": "一般",
             "score": "3"
         }, {
-            "answer": "比较符合",
+            "option": "比较符合",
             "score": "4"
         }, {
-            "answer": "完全符合",
+            "option": "完全符合",
             "score": "5"
         }]
     },
@@ -23,19 +25,19 @@ var questionOptionData = [
         "type": "2",
         "typeName": "学习压力测评",
         "options": [{
-            "answer": "从不",
+            "option": "从不",
             "score": "5"
         }, {
-            "answer": "很少",
+            "option": "很少",
             "score": "4"
         }, {
-            "answer": "有时",
+            "option": "有时",
             "score": "3"
         }, {
-            "answer": "经常",
+            "option": "经常",
             "score": "2"
         }, {
-            "answer": "总是",
+            "option": "总是",
             "score": "1"
         }]
     },
@@ -43,19 +45,19 @@ var questionOptionData = [
         "type": "3",
         "typeName": "学习拖延测评",
         "options": [{
-            "answer": "完全不符合",
+            "option": "完全不符合",
             "score": "1"
         }, {
-            "answer": "不太符合",
+            "option": "不太符合",
             "score": "2"
         }, {
-            "answer": "一般",
+            "option": "一般",
             "score": "3"
         }, {
-            "answer": "比较符合",
+            "option": "比较符合",
             "score": "4"
         }, {
-            "answer": "完全符合",
+            "option": "完全符合",
             "score": "5"
         }]
     },
@@ -63,19 +65,19 @@ var questionOptionData = [
         "type": "4",
         "typeName": "学习状态测评",
         "options": [{
-            "answer": "从不",
+            "option": "从不",
             "score": "5"
         }, {
-            "answer": "很少",
+            "option": "很少",
             "score": "4"
         }, {
-            "answer": "有时",
+            "option": "有时",
             "score": "3"
         }, {
-            "answer": "经常",
+            "option": "经常",
             "score": "2"
         }, {
-            "answer": "总是",
+            "option": "总是",
             "score": "1"
         }]
     },
@@ -88,10 +90,10 @@ var questionOptionData = [
         "type": "6",
         "typeName": "学习焦虑测评",
         "options": [{
-            "answer": "是",
+            "option": "是",
             "score": "0"
         }, {
-            "answer": "否",
+            "option": "否",
             "score": "5"
         }]
     },
@@ -99,19 +101,19 @@ var questionOptionData = [
         "type": "7",
         "typeName": "学习方法与技能测评",
         "options": [{
-            "answer": "很不符合自己的情况",
+            "option": "很不符合自己的情况",
             "score": "1"
         }, {
-            "answer": "不太符合自己的情况",
+            "option": "不太符合自己的情况",
             "score": "2"
         }, {
-            "answer": "一般",
+            "option": "一般",
             "score": "3"
         }, {
-            "answer": "比较符合自己的情况",
+            "option": "比较符合自己的情况",
             "score": "4"
         }, {
-            "answer": "很符合自己的情况",
+            "option": "很符合自己的情况",
             "score": "5"
         }]
     },
@@ -119,19 +121,19 @@ var questionOptionData = [
         "type": "8",
         "typeName": "学习能力检测",
         "options": [{
-            "answer": "完全不符合",
+            "option": "完全不符合",
             "score": "1"
         }, {
-            "answer": "不太符合",
+            "option": "不太符合",
             "score": "2"
         }, {
-            "answer": "一般",
+            "option": "一般",
             "score": "3"
         }, {
-            "answer": "比较符合",
+            "option": "比较符合",
             "score": "4"
         }, {
-            "answer": "完全符合",
+            "option": "完全符合",
             "score": "5"
         }]
     },
@@ -139,19 +141,19 @@ var questionOptionData = [
         "type": "9",
         "typeName": "时间管理能力测评",
         "options": [{
-            "answer": "完全不符合",
+            "option": "完全不符合",
             "score": "1"
         }, {
-            "answer": "不太符合",
+            "option": "不太符合",
             "score": "2"
         }, {
-            "answer": "一般",
+            "option": "一般",
             "score": "3"
         }, {
-            "answer": "比较符合",
+            "option": "比较符合",
             "score": "4"
         }, {
-            "answer": "完全符合",
+            "option": "完全符合",
             "score": "5"
         }]
     },
@@ -159,46 +161,51 @@ var questionOptionData = [
         "type": "10",
         "typeName": "自主学习能力测评",
         "options": [{
-            "answer": "完全不是这样",
+            "option": "完全不是这样",
             "score": "1"
         }, {
-            "answer": "很少这样或是偶尔有一二次是这样",
+            "option": "很少这样或是偶尔有一二次是这样",
             "score": "2"
         }, {
-            "answer": "有时是这样，有时不是这样",
+            "option": "有时是这样，有时不是这样",
             "score": "3"
         }, {
-            "answer": "经常是这样或是多数情况是这样",
+            "option": "经常是这样或是多数情况是这样",
             "score": "4"
         }, {
-            "answer": "完全是这样",
+            "option": "完全是这样",
             "score": "5"
         }]
     }
 ]
 
-var questionOptionArray = new Array();
+model.questionOptionArray = new Array();
 
 (function initQuestionOptionArray() {
-    for (index in questionOptionData) {
-        var item = questionOptionData[index];
+    for (index in model.defaultQuestionOptionData) {
+        var item = model.defaultQuestionOptionData[index];
         var type = item.type;
-        questionOptionArray[type] = item;
+        model.questionOptionArray[type] = item;
     }
 })();
-
-var model = function () { }
 
 model.getQuestionTypeName = function (questionType) {
     if (questionType == undefined) {
         return undefined;
+    } else {
+        return this.questionOptionArray[questionType].typeName;
     }
-    return questionOptionArray[questionType].typeName;
 }
 
 model.getQuestionOptions = function (questionType) {
     if (questionType == undefined) {
         return undefined;
+    } else {
+        return this.questionOptionArray[questionType].options;
     }
-    return questionOptionArray[questionType].options;
+}
+
+model.parseQuestions = function (questionsData) {
+    var questions = questionsData.data.page;
+
 }

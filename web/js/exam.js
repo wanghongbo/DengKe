@@ -17,6 +17,7 @@ $(document).ready(function () {
     } else {
         initUI();
         bindEvent();
+        initData();
     }
 });
 
@@ -34,7 +35,7 @@ function initUI() {
             if (keyValue.indexOf("=") != -1) {
                 var array = keyValue.split("=");
                 if (array.length == 2) {
-                    var key =array[0];
+                    var key = array[0];
                     var value = array[1];
                     query[key] = value;
                     console.log("query: " + JSON.stringify(query));
@@ -96,5 +97,15 @@ function getLeftTimeText(interval) {
 function bindEvent() {
     $("#exit").click(function (e) {
         window.location.assign("../html/index.html");
+    });
+}
+
+function initData() {
+    http.getQuestions(type, function (data, msg) {
+        if (data != null) {
+            
+        } else {
+            layer.msg(msg);
+        }
     });
 }

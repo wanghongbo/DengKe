@@ -4,7 +4,7 @@ layui.use('element', function () {
 layui.use('layer', function () {
     var layer = layui.layer;
     layer.config({
-        offset: ['200px', '']
+        offset: ['300px', '']
     });
 });
 

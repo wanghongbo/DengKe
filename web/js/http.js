@@ -4,7 +4,8 @@ var serverAddress = "";
 var http = function () { };
 
 http.getQuestions = function (type, complete) {
-    var url = serverAddress + "/subject/getPage?pageNo=1&pageSize=100&type=" + type;
+    // var url = serverAddress + "/subject/getPage?pageNo=1&pageSize=100&type=" + type;
+    var url = "../resource/question-storage.json";
     $.ajax({
         type: "GET",
         url: url,
@@ -13,14 +14,14 @@ http.getQuestions = function (type, complete) {
         success: function (data) {
             console.log("data: " + JSON.stringify(data));
             if (data.code == "1") {
-                complete(true, "");
+                complete(data, "");
             } else {
-                complete(false, data.msg);
+                complete(null, data.msg);
             }
         },
         error: function (xhr, status, error) {
             console.log("err: " + error);
-            complete(false, error);
+            complete(null, error);
         }
     })
 }
