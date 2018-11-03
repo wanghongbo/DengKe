@@ -3,6 +3,28 @@ var serverAddress = "";
 
 var http = function () { };
 
+http.getQuestions = function (type, complete) {
+    var url = serverAddress + "/subject/getPage?pageNo=1&pageSize=100&type=" + type;
+    $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (data) {
+            console.log("data: " + JSON.stringify(data));
+            if (data.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, data.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("err: " + error);
+            complete(false, error);
+        }
+    })
+}
+
 http.addQuestion = function (data, complete) {
     var url = serverAddress + "/subject/add";
     $.ajax({

@@ -24,7 +24,7 @@ body {
     color: rgb(196, 92, 92);
 }
 
-#exam-frame {
+#frame {
     width: 800px;
     height: 620px;
     margin: 0 auto;
@@ -32,13 +32,13 @@ body {
     background-size: 100%;
 }
 
-.exam-frame-center {
+.frame-center {
     float: left;
     width: 800px;
     text-align: center;
 }
 
-#exam-title {
+#title {
     height: 32px;
     margin-top: 170px;
     font-size: 14px;
@@ -49,68 +49,64 @@ body {
     background-position-y: bottom;
 }
 
-.exam-title-span {
-    margin: auto 10px;
-}
-
-#exam-name {
+#type-name {
     margin: 10px auto;
     font-size: 20px;
     font-weight: 600;
     color: #6ACBFE;
 }
 
-.exam-body {
+.body {
     padding: 4px 8px;
     border: #d9d9d9 dashed 1px;
 }
 
-#exam-question-index {
+#question-index {
     font-weight: 600;
     font-size: 14px;
 }
 
-.exam-frame-block {
+.frame-block {
     float: left;
     margin: 6px auto 2px 100px;
     width: 580px;
 }
 
-.exam-frame-left {
+.frame-left {
     float: left;
     margin: 2px auto 2px 0px;
     width: 580px;
 }
 
-#exam-question-title {
+#question-title {
     height: 24px;
     display: inline-block;
     font-weight: 600;
     font-size: 15px;
 }
 
-#exam-question-option {
+#question-option {
     font-size: 14px;
     line-height: 24px;
     border-top: #d9d9d9 dashed 1px;
 }
 
-#exam-answer {
+#answer {
     padding: 6px 8px;
     background-color: #eff0ef;
     border: 1px #dddddd solid;
 }
 
-.exam-answer-input {
+.answer-input {
     cursor: pointer;
 }
 
-#exam-action {
+#action {
     padding: 6px 0px;
     width: 598px;
 }
 
-.exam-action-button {
+.action-button {
     width: 80px;
     margin: 0 10px 0 0;
     padding: 5px 0px;
@@ -121,13 +117,13 @@ body {
     cursor: pointer;
 }
 
-#exam-left-time {
+.left-time {
     padding: 6px 0px;
     font-size: 12px;
     color: red;
     float: right;
 }
 
-#exam-action-submit {
+#action-submit {
     background-color: blanchedalmond;
 }

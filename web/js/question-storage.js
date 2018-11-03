@@ -34,7 +34,11 @@ layui.use('table', function () {
             , {
                 field: 'typeName', title: '类型', width: 160, align: 'center', templet: function (d) {
                     var typeName = model.getQuestionTypeName(questionType);
-                    return typeName;
+                    if (typeName != null) {
+                        return typeName;
+                    } else {
+                        return "";
+                    }
                 }
             }
             , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }

@@ -190,9 +190,15 @@ var questionOptionArray = new Array();
 var model = function () { }
 
 model.getQuestionTypeName = function (questionType) {
+    if (questionType == undefined) {
+        return undefined;
+    }
     return questionOptionArray[questionType].typeName;
 }
 
 model.getQuestionOptions = function (questionType) {
+    if (questionType == undefined) {
+        return undefined;
+    }
     return questionOptionArray[questionType].options;
 }

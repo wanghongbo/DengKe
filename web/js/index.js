@@ -3,6 +3,8 @@ layui.use('layer', function () {
 
 $(document).ready(function () {
     $(".menu-item").click(function () {
+        var type = $(this).attr("type");
+        console.log("type: " + type);
         layer.prompt({
             formType: 0,
             value: '',
@@ -11,7 +13,7 @@ $(document).ready(function () {
         }, function (value, index) {
             $.cookie("user_name", value);
             layer.close(index);
-            window.location.assign("../html/exam.html");
+            window.location.assign("../html/exam.html?type=" + type);
         });
     })
 });
