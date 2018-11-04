@@ -9,9 +9,9 @@ var userName;
 var type;
 var query = {};
 var examTime = 60 * 60;
-var leftTiem = 60 * 60;
+var leftTime = 60 * 60;
 var questions;
-var answers = {};
+var answers = { count: 0 };
 var index = 0;
 var total = 0;
 
@@ -54,9 +54,17 @@ function initData() {
         return false;
     }
 
+    var _leftTime = $.cookie("leftTime");
+    if (_leftTime != undefined && !isNaN(_leftTime)) {
+        leftTime = _leftTime;
+    }
+    if (leftTime > examTime) {
+        leftTime = examTime;
+    }
+
     var _index = $.cookie("index");
-    if (_index != undefined) {
-        index = _index;
+    if (_index != undefined && !isNaN(_index)) {
+        index = Number(_index);
     }
     var _answers = $.cookie("answers");
     if (_answers != undefined) {
@@ -80,27 +88,28 @@ function initUI() {
     $(".totalTime").text(getTotalTimeText(examTime));
 
     //剩余时间
-    var _leftTime = $.cookie("leftTime");
-    if (_leftTime != undefined && !isNaN(_leftTime)) {
-        leftTiem = _leftTime;
+    $("#left-time").text(getLeftTimeText(leftTime));
+    if (leftTime > 0) {
+        var timer = setInterval(() => {
+            if (leftTime > 0) {
+                leftTime--;
+                $.cookie("leftTime", leftTime);
+            }
+            if (leftTime == 60 * 5) {
+                layer.msg("还剩5分钟");
+            }
+            var leftTimeText = getLeftTimeText(leftTime);
+            $("#left-time").text(leftTimeText);
+            if (leftTime == 0) {
+                setTimeout(() => {
+                    // layer.msg("考试时间到了！");
+                    alert("考试时间到了");
+                }, 100);
+                setTimeOverUI();
+                clearInterval(timer);
+            }
+        }, 1000);
     }
-    var leftTimeText = getLeftTimeText(leftTiem);
-    $("#left-time").text(leftTimeText);
-    var timer = setInterval(() => {
-        if (leftTiem > 0) {
-            leftTiem--;
-            $.cookie("leftTime", leftTiem);
-        }
-        if (leftTiem == 60 * 5) {
-            layer.msg("还剩5分钟");
-        }
-        var leftTimeText = getLeftTimeText(leftTiem);
-        $("#left-time").text(leftTimeText);
-        if (leftTiem == 0) {
-            layer.msg("考试结束");
-            clearInterval(timer)
-        }
-    }, 1000);
 }
 
 function getTotalTimeText(interval) {
@@ -129,37 +138,49 @@ function getLeftTimeText(interval) {
 
 function bindEvent() {
     $("#exit").click(function (e) {
-        $.removeCookie('userName');
-        $.removeCookie('leftTime');
+        $.removeCookie("userName");
+        $.removeCookie("leftTime");
+        $.removeCookie("index");
+        $.removeCookie("answers");
         window.location.assign("../html/index.html");
     });
     $("#first").click(function (e) {
         index = 0;
+        $.cookie("index", index);
         updateQuestionUI();
     });
     $("#previous").click(function (e) {
         if (index > 0) {
             index--;
+            $.cookie("index", index);
         }
         updateQuestionUI();
     });
     $("#next").click(function (e) {
         if (index < total - 1) {
             index++;
+            $.cookie("index", index);
         }
         updateQuestionUI();
     });
     $("#last").click(function (e) {
-        if (index < total - 1) {
+        if (answers.count == total) {
             index = total - 1;
+        } else {
+            index = answers.count;
         }
+        $.cookie("index", index);
         updateQuestionUI();
     });
     $("input[name='answer']").each(function () {
         $(this).click(function () {
             var answer = $(this).val();
+            if (answers[index] == undefined) {
+                answers.count += 1;
+            }
             answers[index] = answer;
             $.cookie("answers", JSON.stringify(answers));
+            updateActionUI();
         });
     });
 }
@@ -219,23 +240,44 @@ function updateQuestionUI() {
         }
     }
 
-    if (index > 0) {
-        $("#first").removeAttr("disabled");
-        $("#previous").removeAttr("disabled");
-    } else {
-        $("#first").attr("disabled", true);
-        $("#previous").attr("disabled", true);
-    }
-    if (index < total - 1) {
-        $("#next").removeAttr("disabled");
-        $("#last").removeAttr("disabled");
-    } else {
-        $("#next").attr("disabled", true);
-        $("#last").attr("disabled", true);
-    }
-
     $("input[name='answer']").prop("checked", false);
     if (answers[index] != undefined) {
         $("input[name='answer'][value='" + answers[index] + "']").prop("checked", true);
     }
+
+    updateActionUI();
+}
+
+function updateActionUI() {
+    if (leftTime == 0) {
+        setTimeOverUI();
+    } else {
+        var selectedValue = $("input[name='answer']:checked").val();
+        if (index > 0) {
+            $("#first").removeAttr("disabled");
+            $("#previous").removeAttr("disabled");
+        } else {
+            $("#first").attr("disabled", true);
+            $("#previous").attr("disabled", true);
+        }
+        if (index < total - 1 && selectedValue != undefined) {
+            $("#next").removeAttr("disabled");
+        } else {
+            $("#next").attr("disabled", true);
+        }
+        if (index < total - 1 && index < answers.count) {
+            $("#last").removeAttr("disabled");
+        } else {
+            $("#last").attr("disabled", true);
+        }
+        if (answers.count == total) {
+            $("#action-submit").removeAttr("disabled");
+        }
+    }
+}
+
+function setTimeOverUI() {
+    $("input[name='answer']").attr("disabled", true);
+    $(".action-button").attr("disabled", true);
+    $("#action-submit").removeAttr("disabled");
 }
