@@ -91,7 +91,7 @@ body {
     border-top: #d9d9d9 dashed 1px;
 }
 
-#answer {
+.answer-div {
     padding: 6px 8px;
     background-color: #eff0ef;
     border: 1px #dddddd solid;
@@ -99,9 +99,11 @@ body {
 
 .answer-input {
     cursor: pointer;
+    position: relative;
+    top: 2px;
 }
 
-#action {
+.action-div {
     padding: 6px 0px;
     width: 598px;
 }

@@ -12,7 +12,6 @@ http.getQuestions = function (type, complete) {
         contentType: "application/json",
         dataType: "json",
         success: function (data) {
-            console.log("data: " + JSON.stringify(data));
             if (data.code == "1") {
                 complete(data, "");
             } else {

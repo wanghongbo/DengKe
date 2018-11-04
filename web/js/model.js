@@ -204,8 +204,3 @@ model.getQuestionOptions = function (questionType) {
         return this.questionOptionArray[questionType].options;
     }
 }
-
-model.parseQuestions = function (questionsData) {
-    var questions = questionsData.data.page;
-
-}
