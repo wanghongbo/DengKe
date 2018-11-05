@@ -1,21 +1,19 @@
-
-
 layui.use('table', function () {
     var table = layui.table;
 
     table.render({
-        elem: '#report-table'
-        , url: '../resource/report1.json'
+        elem: '#reporter-table'
+        , url: '../resource/reporter-manage.json'
         , height: 600
         , limit: 10
-        , limits: [10,30,60,90]
+        , limits: [10, 30, 60, 90]
         , cols: [[
-            { field: 'id', title: '编号', width: 60, align: 'center' } 
-            , { field: 'time', title: '时间', width: 200, align: 'center' }
+            { field: 'id', title: '编号', width: 80, align: 'center' }
+            , { field: 'time', title: '时间', width: 180, align: 'center' }
             , { field: 'name', title: '姓名', width: 100, align: 'center' }
-            , { field: 'score', title: '得分', width: 100, align: 'center' }
-            , { field: 'level', title: '评级', width: 100, align: 'center' }
-            , { field: 'catalog', title: '类型', width: 180, align: 'center' }
+            , { field: 'score', title: '得分', width: 80, align: 'center' }
+            , { field: 'level', title: '评级', width: 80, align: 'center' }
+            , { field: 'catalog', title: '类型', width: 200, align: 'center' }
             , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }
         ]]
         , page: true
@@ -36,7 +34,7 @@ layui.use('table', function () {
 layui.use('table', function () {
     var table = layui.table;
     //监听工具条
-    table.on('tool(report-table)', function (obj) {
+    table.on('tool(reporter-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'download') {
             layer.msg('ID：' + data.id + ' 的下载操作');
@@ -49,22 +47,18 @@ layui.use('table', function () {
     });
 
     var $ = layui.$, active = {
-        getCheckData: function () { //获取选中数据
-            var checkStatus = table.checkStatus('idTest')
-                , data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
-        }
-        , getCheckLength: function () { //获取选中数目
-            var checkStatus = table.checkStatus('idTest')
-                , data = checkStatus.data;
-            layer.msg('选中了：' + data.length + ' 个');
-        }
-        , isAll: function () { //验证是否全选
-            var checkStatus = table.checkStatus('idTest');
-            layer.msg(checkStatus.isAll ? '全选' : '未全选')
+        reload: function () {
+            var keywordEle = $('#keyword');
+            table.reload('reporter-table', {
+                where: {
+                    keyword: keywordEle.val()
+                }
+            });
         }
     };
 
-    $('.layui-btn').on('click', function () {
+    $('#search').click(function (e) {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
 });

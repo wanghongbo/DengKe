@@ -1,3 +1,20 @@
 .table-container {
-    margin-left: 18px;
+    margin: 18px auto auto 18px;
+}
+
+#keyword {
+    width: 350px;
+    display: block;
+    margin: 0px;
+    padding: 0 0 0 10px;
+    height: 38px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #fff;
+    border-radius: 2px;
+    border-color: #e6e6e6;
+}
+
+#search {
+    width: 80px;
 }

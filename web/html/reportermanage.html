@@ -16,7 +16,11 @@
 
 <body>
     <div class="table-container">
-        <table id="report-table" class="layui-table" lay-filter="report-table"></table>
+        <div class="layui-inline">
+            <input name="keyword" id="keyword" autocomplete="off" placeholder="可以根据  时间、姓名、评级、类型  进行搜索">
+        </div>
+        <button class="layui-btn" data-type="reload" id="search">搜索</button>
+        <table id="reporter-table" class="layui-table" lay-filter="reporter-table"></table>
     </div>
 </body>
 
