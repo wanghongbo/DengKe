@@ -11,7 +11,7 @@ var query = {};
 var examTime = 60 * 60;
 var leftTime = 60 * 60;
 var questions;
-var answers = { count: 0 };
+var answers = [];
 var index = 0;
 var total = 0;
 
@@ -164,20 +164,26 @@ function bindEvent() {
         updateQuestionUI();
     });
     $("#last").click(function (e) {
-        if (answers.count == total) {
+        if (answers.length == total) {
             index = total - 1;
         } else {
-            index = answers.count;
+            index = answers.length;
         }
         $.cookie("index", index);
         updateQuestionUI();
     });
+    $("#submit").click(function (e) {
+        http.commitExam(answers, function(success, msg) {
+            if (success) {
+
+            } else {
+                layer.msg(msg);
+            }
+        })
+    });
     $("input[name='answer']").each(function () {
         $(this).click(function () {
             var answer = $(this).val();
-            if (answers[index] == undefined) {
-                answers.count += 1;
-            }
             answers[index] = answer;
             $.cookie("answers", JSON.stringify(answers));
             updateActionUI();
@@ -187,9 +193,9 @@ function bindEvent() {
 
 function request() {
     if (type != undefined) {
-        http.getQuestions(type, function (data, msg) {
+        http.getQuestions(userName, type, function (data, msg) {
             if (data != null) {
-                questions = data.data.page;
+                questions = data.data;
                 total = questions.length;
                 updateQuestionUI();
             } else {
@@ -213,30 +219,55 @@ function updateQuestionUI() {
             $("#option-head1").show();
             $("#radio-head1").show();
             $("#radio1").show();
+        } else {
+            $("#option1").text("");
+            $("#option-head1").hide();
+            $("#radio-head1").hide();
+            $("#radio1").hide();
         }
         if (question.optionB != "") {
             $("#option2").text(question.optionB);
             $("#option-head2").show();
             $("#radio-head2").show();
             $("#radio2").show();
+        } else {
+            $("#option2").text("");
+            $("#option-head2").hide();
+            $("#radio-head2").hide();
+            $("#radio2").hide();
         }
         if (question.optionC != "") {
             $("#option3").text(question.optionC);
             $("#option-head3").show();
             $("#radio-head3").show();
             $("#radio3").show();
+        } else {
+            $("#option3").text("");
+            $("#option-head3").hide();
+            $("#radio-head3").hide();
+            $("#radio3").hide();
         }
         if (question.optionD != "") {
             $("#option4").text(question.optionD);
             $("#option-head4").show();
             $("#radio-head4").show();
             $("#radio4").show();
+        } else {
+            $("#option4").text("");
+            $("#option-head4").hide();
+            $("#radio-head4").hide();
+            $("#radio4").hide();
         }
         if (question.optionE != "") {
             $("#option5").text(question.optionE);
             $("#option-head5").show();
             $("#radio-head5").show();
             $("#radio5").show();
+        } else {
+            $("#option5").text("");
+            $("#option-head5").hide();
+            $("#radio-head5").hide();
+            $("#radio5").hide();
         }
     }
 
@@ -265,13 +296,13 @@ function updateActionUI() {
         } else {
             $("#next").attr("disabled", true);
         }
-        if (index < total - 1 && index < answers.count) {
+        if (index < total - 1 && index < answers.length) {
             $("#last").removeAttr("disabled");
         } else {
             $("#last").attr("disabled", true);
         }
-        if (answers.count == total) {
-            $("#action-submit").removeAttr("disabled");
+        if (answers.length == total) {
+            $("#submit").removeAttr("disabled");
         }
     }
 }
@@ -279,5 +310,5 @@ function updateActionUI() {
 function setTimeOverUI() {
     $("input[name='answer']").attr("disabled", true);
     $(".action-button").attr("disabled", true);
-    $("#action-submit").removeAttr("disabled");
+    $("#submit").removeAttr("disabled");
 }

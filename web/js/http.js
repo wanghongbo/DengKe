@@ -1,11 +1,8 @@
-// var serverAddress = "http://6058f2c0.ngrok.io";
-var serverAddress = "";
-
 var http = function () { };
 
-http.getQuestions = function (type, complete) {
-    // var url = serverAddress + "/subject/getPage?pageNo=1&pageSize=100&type=" + type;
-    var url = "../resource/question-storage.json";
+http.getQuestions = function (userName, type, complete) {
+    var url = "/subject/startExam?userName=" + userName + "&subjectType=" + type;
+    // var url = "../resource/question-storage.json";
     $.ajax({
         type: "GET",
         url: url,
@@ -25,8 +22,31 @@ http.getQuestions = function (type, complete) {
     })
 }
 
+http.commitExam = function (data, complete) {
+    var url = "/subject/commitExam";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function (data) {
+            console.log("data: " + JSON.stringify(data));
+            if (data.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, data.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("err: " + error);
+            complete(false, error);
+        }
+    })
+}
+
 http.addQuestion = function (data, complete) {
-    var url = serverAddress + "/subject/add";
+    var url = "/subject/add";
     $.ajax({
         type: "POST",
         url: url,
@@ -49,7 +69,7 @@ http.addQuestion = function (data, complete) {
 }
 
 http.deleteQuestion = function (id, complete) {
-    var url = serverAddress + "/subject/delete?id=" + id;
+    var url = "/subject/delete?id=" + id;
     $.ajax({
         type: "GET",
         url: url,
@@ -71,7 +91,7 @@ http.deleteQuestion = function (id, complete) {
 }
 
 http.updateQuestion = function (data, complete) {
-    var url = serverAddress + "/subject/update";
+    var url = "/subject/update";
     $.ajax({
         type: "POST",
         url: url,
