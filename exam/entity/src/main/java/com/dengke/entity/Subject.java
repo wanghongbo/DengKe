@@ -2,18 +2,18 @@ package com.dengke.entity;
 
 public class Subject {
     private long id;
-    private String title;
-    private String optionA;
+    private String title="";
+    private String optionA="";
     private int scoreA;
-    private String optionB;
+    private String optionB="";
     private int scoreB;
-    private String optionC;
+    private String optionC="";
     private int scoreC;
-    private String optionD;
+    private String optionD="";
     private int scoreD;
-    private String optionE;
+    private String optionE="";
     private int scoreE;
-    private String optionF;
+    private String optionF="";
     private int scoreF;
     private String type;
     private String status;
