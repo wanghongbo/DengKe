@@ -60,6 +60,8 @@ function initUI() {
     activeElement = $("#ad-title");
 }
 
+var ad_onkeydown;
+
 function bindEvent() {
     $("#ad-cancel").click(function (e) {
         dialog.closeAddQuestion(null);
@@ -81,6 +83,14 @@ function bindEvent() {
             activeElement = $(this);
         });
     });
+
+    ad_onkeydown = document.onkeydown;
+    document.onkeydown = function (event) {
+        if (event.keyCode == 13) {
+            console.log("--add enter");
+            $("#ad-confirm").click();
+        }
+    }
 }
 
 function confirm() {
@@ -90,7 +100,7 @@ function confirm() {
     } else {    //编辑题目
         result = dialog.initData;
     }
-    result.title = $("#ad-title").val();
+    result.title = $("#ad-title").val().trim();
     result.optionA = $("#ad-option1").val();
     result.scoreA = Number($("#ad-score1").val());
     result.optionB = $("#ad-option2").val();
@@ -108,7 +118,7 @@ function validate() {
     var pass = true;
     var emptyCount = 0;
     $($("#ad-bg").find("textarea, input").get().reverse()).each(function (e) {
-        if ($(this).val() == "") {
+        if ($(this).val().trim() == "") {
             emptyCount++;
             if (emptyCount > 3) {
                 pass = false;

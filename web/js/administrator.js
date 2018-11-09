@@ -59,6 +59,16 @@ $(document).ready(function () {
     $(".reporter-manage-item:first").click();
 
     $("#exit").click(function () {
-        window.location.assign("../html/login.html");
+        http.logout(function(success, error) {
+            window.location.assign("../html/login.html");
+        })
+    })
+
+    http.getUserName(function(userName) {
+        if (userName != null) {
+            $("#userName").text("欢迎：" + userName);
+        } else {
+            window.location.assign("../html/login.html");
+        }
     })
 });

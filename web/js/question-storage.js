@@ -108,4 +108,10 @@ $(document).ready(function () {
             });
         });
     });
+
+    document.onkeydown = function (event) {
+        if (event.keyCode == 13) {
+            console.log("--administrator enter");
+        }
+    }
 });

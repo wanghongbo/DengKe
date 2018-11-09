@@ -8,16 +8,15 @@ http.getQuestions = function (userName, type, complete) {
         url: url,
         contentType: "application/json",
         dataType: "json",
-        success: function (data) {
-            if (data.code == "1") {
-                complete(data, "");
+        success: function (result) {
+            if (result.code == "1") {
+                complete(result, "");
             } else {
-                complete(null, data.msg);
+                complete(null, result.msg);
             }
         },
         error: function (xhr, status, error) {
-            console.log("err: " + error);
-            complete(null, error);
+            complete(null, xhr.status + ": " + error);
         }
     })
 }
@@ -30,17 +29,102 @@ http.commitExam = function (data, complete) {
         contentType: "application/json",
         data: JSON.stringify(data),
         dataType: "json",
-        success: function (data) {
-            console.log("data: " + JSON.stringify(data));
-            if (data.code == "1") {
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
                 complete(true, "");
             } else {
-                complete(false, data.msg);
+                complete(false, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(false, xhr.status + ": " + error);
+        }
+    })
+}
+
+http.getLoginToken = function (complete) {
+    var url = "/user/getToken";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(result.data, "");
+            } else {
+                complete(null, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(null, xhr.status + ": " + error);
+        }
+    })
+}
+
+http.login = function (data, complete) {
+    var url = "/user/login";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(false, xhr.status + ": " + error);
+        }
+    })
+}
+
+http.logout = function (complete) {
+    var url = "/user/logout";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, result.msg);
             }
         },
         error: function (xhr, status, error) {
             console.log("err: " + error);
-            complete(false, error);
+            complete(false, xhr.status + ": " + error);
+        }
+    })
+}
+
+http.getUserName = function (complete) {
+    var url = "/user/getUserName";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(result.data, "");
+            } else {
+                complete(null, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(null, xhr.status + ": " + error);
         }
     })
 }
@@ -53,17 +137,16 @@ http.addQuestion = function (data, complete) {
         contentType: "application/json",
         data: JSON.stringify(data),
         dataType: "json",
-        success: function (data) {
-            console.log("data: " + JSON.stringify(data));
-            if (data.code == "1") {
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
                 complete(true, "");
             } else {
-                complete(false, data.msg);
+                complete(false, result.msg);
             }
         },
         error: function (xhr, status, error) {
-            console.log("err: " + error);
-            complete(false, error);
+            complete(false, xhr.status + ": " + error);
         }
     })
 }
@@ -75,17 +158,16 @@ http.deleteQuestion = function (id, complete) {
         url: url,
         contentType: "application/json",
         dataType: "json",
-        success: function (data) {
-            console.log("data: " + JSON.stringify(data));
-            if (data.code == "1") {
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
                 complete(true, "");
             } else {
-                complete(false, data.msg);
+                complete(false, result.msg);
             }
         },
         error: function (xhr, status, error) {
-            console.log("err: " + error);
-            complete(false, error);
+            complete(false, xhr.status + ": " + error);
         }
     })
 }
@@ -98,17 +180,16 @@ http.updateQuestion = function (data, complete) {
         contentType: "application/json",
         data: JSON.stringify(data),
         dataType: "json",
-        success: function (data) {
-            console.log("data: " + JSON.stringify(data));
-            if (data.code == "1") {
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
                 complete(true, "");
             } else {
-                complete(false, data.msg);
+                complete(false, result.msg);
             }
         },
         error: function (xhr, status, error) {
-            console.log("err: " + error);
-            complete(false, error);
+            complete(false, xhr.status + ": " + error);
         }
     })
 }

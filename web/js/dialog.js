@@ -21,4 +21,5 @@ dialog.closeAddQuestion = function(result) {
     $("#ad-bg").remove();
     this.initData = null;
     this.closeCallback = null;
+    document.onkeydown = ad_onkeydown;
 }

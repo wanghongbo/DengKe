@@ -89,6 +89,9 @@ function initUI() {
 
     //剩余时间
     $("#left-time").text(getLeftTimeText(leftTime));
+}
+
+function startTimer() {
     if (leftTime > 0) {
         var timer = setInterval(() => {
             if (leftTime > 0) {
@@ -198,6 +201,7 @@ function request() {
                 questions = data.data;
                 total = questions.length;
                 updateQuestionUI();
+                startTimer();
             } else {
                 layer.msg(msg);
             }

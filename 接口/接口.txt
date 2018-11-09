@@ -1,4 +1,4 @@
-后台: http://6058f2c0.ngrok.io
+﻿后台: http://6058f2c0.ngrok.io
 
 1.	查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
 
@@ -77,3 +77,32 @@
 5. 查询报告: GET /report/getPage?pageNo=1&pageSize=10 (参考查询题目接口)
 
 6. 删除报告: GET /report/delete?id=1 (参考删除题目接口)
+
+7. 获取token： GET /user/getToken
+返回值 正常:
+{
+    "code": 1,
+    "msg": "",
+    "data": "ASDGESFSDSDSD"
+}
+异常:{
+    "code": 2,
+    "msg": "",
+    "data": ""
+}
+
+8. 登录：POST /user/login 
+{"userName":"","password":""}
+password = md5(token+md5(userName+md5(password)))
+
+返回值 正常:
+{
+    "code": 1,
+    "msg": "",
+    "data": ""
+}
+异常:{
+    "code": 2,
+    "msg": "",
+    "data": ""
+}
