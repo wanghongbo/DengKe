@@ -24,7 +24,7 @@
         insert into subject
         (title,option_a,score_a,option_b,score_b,
         option_c,score_c,option_d,score_d,option_e,score_e,
-        option_f,score_f,type,status)
+        option_f,score_f,`type`,status)
         values
         (#{title},#{optionA},#{scoreA},#{optionB},#{scoreB},
         #{optionC},#{scoreC},#{optionD},#{scoreD},#{optionE},#{scoreE},

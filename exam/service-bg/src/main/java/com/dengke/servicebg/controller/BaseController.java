@@ -1,11 +1,14 @@
 package com.dengke.servicebg.controller;
 
+import com.dengke.entity.common.Constants;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 public class BaseController {
 
@@ -14,6 +17,19 @@ public class BaseController {
 
     protected static Logger log = LoggerFactory.getLogger(BaseController.class);
 
+    /**
+     * 获取token，如果没有则生成后返回
+     * @param request
+     * @return
+     */
+    protected String token(final HttpServletRequest request) {
+        String token = (String)request.getSession().getAttribute(Constants.SESSION_TOKEN);
+        if(StringUtils.isBlank(token)){
+            token =  UUID.randomUUID().toString();
+            request.getSession().setAttribute(Constants.SESSION_TOKEN,token);
+        }
+        return token;
+    }
 
     /**
      * 获取客户端真实IP

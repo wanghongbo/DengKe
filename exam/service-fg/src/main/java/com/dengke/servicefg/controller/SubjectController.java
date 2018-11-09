@@ -1,6 +1,7 @@
 package com.dengke.servicefg.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
 import com.dengke.entity.Subject;
@@ -12,6 +13,7 @@ import com.dengke.entity.common.Utils;
 import com.dengke.servicefg.service.ReportService;
 import com.dengke.servicefg.service.SubjectService;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,25 +72,20 @@ public class SubjectController extends BaseController {
     }
 
     @RequestMapping("/commitExam")
-    public String commitExam(HttpServletRequest request){
+    public String commitExam(HttpServletRequest request,@RequestBody String[] answer){
         try {
-            String answer = request.getParameter("answer");
-            if(Utils.existsBlank(answer)){
-                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"参数不能为空","");
-            }
-            answer = answer.trim().toLowerCase();
             List<Subject> subjects = (List<Subject>) request.getSession().getAttribute(Constants.SESSION_SUBJECTS);
             if(CollectionUtils.isEmpty(subjects)){
                 return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"题库为空","");
             }
-            if(answer.length()!=subjects.size()){
+            if(answer.length!=subjects.size()){
                 return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"答题数量错误","");
             }
             List<ReportDetail> reportDetails = new ArrayList<>();
             int totalScore = 0;
-            for(int i=0;i<answer.length();i++){
+            for(int i=0;i<answer.length;i++){
                 ReportDetail reportDetail = new ReportDetail();
-                String option = String.valueOf(answer.charAt(i));
+                String option = answer[i].toUpperCase();
                 reportDetail.setSubjectId(subjects.get(i).getId());
                 reportDetail.setOption(option);
                 reportDetails.add(reportDetail);
@@ -110,20 +107,24 @@ public class SubjectController extends BaseController {
 
     private int getScore(Subject subject,String option) throws Exception{
         switch (option){
-            case "a":
+            case "A":
                 return subject.getScoreA();
-            case "b":
+            case "B":
                 return subject.getScoreB();
-            case "c":
+            case "C":
                 return subject.getScoreC();
-            case "d":
+            case "D":
                 return subject.getScoreD();
-            case "e":
+            case "E":
                 return subject.getScoreE();
-            case "f":
+            case "F":
                 return subject.getScoreF();
             default:
                 throw new Exception("选项错误");
         }
+    }
+
+    public static void main(String[] args){
+        System.out.println(JSON.toJSONString(new String[]{"A","B","C"}));
     }
 }

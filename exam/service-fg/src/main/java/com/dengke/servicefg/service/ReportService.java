@@ -5,10 +5,12 @@ import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class ReportService {
 
     protected static Logger log = LoggerFactory.getLogger(ReportService.class);

@@ -8,20 +8,20 @@
             select last_insert_id();
         </selectKey>
         insert into report
-        (type,score,user_id,exam_time)
+        (`type`,score,user_id,exam_time)
         values
         (#{type},#{score},#{userId},#{examTime})
     </insert>
 
-    <update id="addDetail">
+    <insert id="addDetail">
         <selectKey keyProperty="id" resultType="Long" order="AFTER">
             select last_insert_id();
         </selectKey>
         insert into report_detail
-        (subject_id,option,report_id)
+        (subject_id,`option`,report_id)
         values
         (#{subjectId},#{option},#{reportId})
-    </update>
+    </insert>
 
     <select id="getReports" resultType="Report">
         select * from report order by id desc

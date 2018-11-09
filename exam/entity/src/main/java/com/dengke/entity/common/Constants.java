@@ -12,4 +12,5 @@ public class Constants {
 
 
     public static String SESSION_USER_LOGIN = "USER_LOGIN";
+    public static String SESSION_TOKEN = "TOKEN";
 }

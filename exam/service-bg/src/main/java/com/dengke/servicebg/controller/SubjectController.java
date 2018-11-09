@@ -66,6 +66,7 @@ public class SubjectController extends BaseController {
     public String add(@RequestBody Subject subject){
         try {
             log.info(JSON.toJSONString(subject));
+            subject.setStatus(Constants.SUBJECT_STATUS_OK);
             subjectService.addSubject(subject);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
         }catch (Exception e){

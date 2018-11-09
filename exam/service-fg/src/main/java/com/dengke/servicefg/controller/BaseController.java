@@ -1,5 +1,6 @@
 package com.dengke.servicefg.controller;
 
+import com.dengke.entity.common.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ public class BaseController {
     protected RedisTemplate redisTemplate;
 
     protected static Logger log = LoggerFactory.getLogger(BaseController.class);
+
 
 
     /**
