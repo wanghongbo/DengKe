@@ -2,8 +2,8 @@ layui.use('table', function () {
     var table = layui.table;
 
     table.render({
-        elem: '#reporter-table'
-        , url: '../resource/reporter-manage.json'
+        elem: '#report-table'
+        , url: '../resource/report-manage.json'
         , height: 600
         , limit: 10
         , limits: [10, 30, 60, 90]
@@ -34,7 +34,7 @@ layui.use('table', function () {
 layui.use('table', function () {
     var table = layui.table;
     //监听工具条
-    table.on('tool(reporter-table)', function (obj) {
+    table.on('tool(report-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'download') {
             layer.msg('ID：' + data.id + ' 的下载操作');
@@ -49,7 +49,7 @@ layui.use('table', function () {
     var $ = layui.$, active = {
         reload: function () {
             var keywordEle = $('#keyword');
-            table.reload('reporter-table', {
+            table.reload('report-table', {
                 where: {
                     keyword: keywordEle.val()
                 }

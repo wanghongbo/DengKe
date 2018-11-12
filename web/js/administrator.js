@@ -26,7 +26,7 @@ var questionType = "1";
 1：学习状态报告
 2：学习能力报告
 */
-var reporterType = "1";
+var reportType = "1";
 
 function showPage(url) {
     $.ajax({
@@ -37,8 +37,8 @@ function showPage(url) {
     });
 }
 
-function showReporterManagePage() {
-    showPage("../html/reportermanage.html");
+function showReportManagePage() {
+    showPage("../html/reportmanage.html");
 }
 
 function showQuestionStoragePage() {
@@ -46,9 +46,9 @@ function showQuestionStoragePage() {
 }
 
 $(document).ready(function () {
-    $(".reporter-manage-item").click(function (e) {
-        reporterType = $(e.target).attr("type");
-        showReporterManagePage();
+    $(".report-manage-item").click(function (e) {
+        reportType = $(e.target).attr("type");
+        showReportManagePage();
     });
 
     $(".question-storage-item").click(function (e) {
@@ -56,7 +56,7 @@ $(document).ready(function () {
         showQuestionStoragePage();
     });
 
-    $(".reporter-manage-item:first").click();
+    $(".report-manage-item:first").click();
 
     $("#exit").click(function () {
         http.logout(function(success, error) {
