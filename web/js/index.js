@@ -16,4 +16,10 @@ $(document).ready(function () {
             window.location.assign("../html/exam.html?type=" + type);
         });
     })
+
+    document.onkeydown = function (event) {
+        if (event.keyCode == 13) {
+            $(".layui-layer-btn0").click();
+        }
+    }
 });

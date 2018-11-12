@@ -78,7 +78,7 @@ layui.use('table', function () {
                 });
             });
         } else if (event === 'del') {
-            layer.confirm('确定删除题目么？', function (index) {
+            layer.confirm('确定删除题目么？', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 http.deleteQuestion(data.id, function (success, msg) {
                     if (success) {
@@ -95,13 +95,12 @@ layui.use('table', function () {
 });
 
 $(document).ready(function () {
-    $("#add-question").click(function (e) {
+    $("#add-question").click(function () {
         dialog.showAddQuestion(null, function (result) {
             console.log(JSON.stringify(result));
             http.addQuestion(result, function (success, msg) {
                 if (success) {
-                    var selector = '.question-storage-item[type="' + questionType + '"]';
-                    $(selector)[0].click();
+                    reloadTable();
                 } else {
                     layer.msg(msg);
                 }
@@ -109,9 +108,30 @@ $(document).ready(function () {
         });
     });
 
+    $("#empty-question-storage").click(function() {
+        layer.confirm("确定删除此题库么？此操作不可逆！", {icon: 0, title: "警告"}, function (index) {
+            layer.close(index);
+            layer.confirm("请再次确定删除此题库！", {icon: 0, title: "警告"}, function(index) {
+                layer.close(index);
+                http.emptyQuestionStorage(questionType, function(success, error) {
+                    if (success) {
+                        reloadTable();
+                    } else {
+                        layer.msg(error);
+                    }
+                })
+            });
+        });
+    });
+
     document.onkeydown = function (event) {
         if (event.keyCode == 13) {
-            console.log("--administrator enter");
+            $("#add-question").click();
         }
     }
 });
+
+function reloadTable() {
+    var selector = '.question-storage-item[type="' + questionType + '"]';
+    $(selector)[0].click();
+}

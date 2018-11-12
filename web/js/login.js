@@ -30,10 +30,12 @@ $(document).ready(function () {
         }
     });
 
+    $("#input-account").focus();
+
     $(".container").find("input").each(function () {
         $(this).on("input propertychange", function () {
             if ($(this).val() != "") {
-                $(this).css("border-color", "#cccccc");
+                $(this).css("border-color", "#393D49");
             }
         })
     });
@@ -55,7 +57,7 @@ function validate() {
             $(this).focus();
             $(this).css("border-color", "red");
         } else {
-            $(this).css("border-color", "#cccccc");
+            $(this).css("border-color", "#393D49");
         }
     });
     if (pass) {
