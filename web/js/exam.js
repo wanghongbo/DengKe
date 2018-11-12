@@ -93,7 +93,7 @@ function initUI() {
 
 function startTimer() {
     if (leftTime > 0) {
-        var timer = setInterval(() => {
+        var timer = setInterval(function () {
             if (leftTime > 0) {
                 leftTime--;
                 $.cookie("leftTime", leftTime);
@@ -104,14 +104,14 @@ function startTimer() {
             var leftTimeText = getLeftTimeText(leftTime);
             $("#left-time").text(leftTimeText);
             if (leftTime == 0) {
-                setTimeout(() => {
+                setTimeout(function () {
                     // layer.msg("考试时间到了！");
                     alert("考试时间到了");
                 }, 100);
                 setTimeOverUI();
                 clearInterval(timer);
             }
-        }, 1000);
+        }, "1000");
     }
 }
 
@@ -178,7 +178,12 @@ function bindEvent() {
     $("#submit").click(function (e) {
         http.commitExam(answers, function(success, msg) {
             if (success) {
-
+                var href = window.document.location.href;
+                var pathName = window.document.location.pathname;
+                var pos = href.indexOf(pathName)
+                var host = href.substring(0, pos);
+                var reportPath = host + "/subject/getReport";
+                window.open(reportPath);
             } else {
                 layer.msg(msg);
             }
