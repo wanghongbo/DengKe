@@ -2,6 +2,7 @@ var http = function () { };
 
 http.getQuestions = function (userName, type, complete) {
     var url = "/subject/startExam?userName=" + userName + "&subjectType=" + type;
+    url = encodeURI(url)
     // var url = "../resource/question-storage.json";
     $.ajax({
         type: "GET",
