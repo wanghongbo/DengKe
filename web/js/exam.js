@@ -141,10 +141,7 @@ function getLeftTimeText(interval) {
 
 function bindEvent() {
     $("#exit").click(function (e) {
-        $.removeCookie("userName");
-        $.removeCookie("leftTime");
-        $.removeCookie("index");
-        $.removeCookie("answers");
+        cleanCookie();
         window.location.assign("../html/index.html");
     });
     $("#first").click(function (e) {
@@ -178,12 +175,13 @@ function bindEvent() {
     $("#submit").click(function (e) {
         http.commitExam(answers, function(success, msg) {
             if (success) {
+                cleanCookie();
                 var href = window.document.location.href;
                 var pathName = window.document.location.pathname;
                 var pos = href.indexOf(pathName)
                 var host = href.substring(0, pos);
                 var reportPath = host + "/subject/getReport";
-                window.open(reportPath);
+                window.location.assign(reportPath);
             } else {
                 layer.msg(msg);
             }
@@ -197,6 +195,13 @@ function bindEvent() {
             updateActionUI();
         });
     });
+}
+
+function cleanCookie() {
+    $.removeCookie("userName");
+    $.removeCookie("leftTime");
+    $.removeCookie("index");
+    $.removeCookie("answers");
 }
 
 function request() {

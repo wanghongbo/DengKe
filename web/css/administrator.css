@@ -5,3 +5,7 @@
 .child-tab {
     padding-left: 40px !important;
 }
+
+.report-manage-item:hover, .question-storage-item:hover {
+    cursor: pointer;
+}
