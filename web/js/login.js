@@ -55,9 +55,9 @@ function validate() {
             pass = false;
             $(this).val("");
             $(this).focus();
-            $(this).css("border-color", "red");
+            $(this).css("cssText", "border-color: red !important;");
         } else {
-            $(this).css("border-color", "#393D49");
+            $(this).css("cssText", "border-color: lightgray;"); 
         }
     });
     if (pass) {

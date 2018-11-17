@@ -1,18 +1,20 @@
-body {
-    background-color: #393D49;
+.cpw-bg {
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
-.border-div {
+.cpw-border-div {
     width: 100%;
     height: 25%;
 }
 
-.center-div {
+.cpw-center-div {
     width: 100%;
     height: 50%;
 }
 
-.container {
+.cpw-container {
     width: 300px;
     height: 300px;
     margin: auto;
@@ -23,8 +25,8 @@ body {
     box-shadow: 2px 2px 60px black;
 }
 
-.input {
-    width: 274px;
+.cpw-input {
+    width: 202px;
     height: 30px;
     margin: 24px 0 0 0;
     border-radius: 4px;
@@ -37,21 +39,22 @@ body {
     outline: none;
 }
 
-.input:focus {
+.cpw-input:focus {
     border-color: #393D49 !important;
 }
 
-#input-account {
+#cpw-input-account {
     background-image: url('../img/login-account.png');
 }
 
-#input-pwd {
+#cpw-input-pwd-old, #cpw-input-pwd-new {
     background-image: url('../img/login-pwd.png ');
 }
 
-.submit {
-    width: 300px;
+.cpw-btn {
+    width: 140px;
     height: 40px;
+    display: inline-block;
     line-height: 38px;
     text-align: center;
     color: white;
@@ -60,4 +63,12 @@ body {
     border: 1px solid #cccccc;
     margin-top: 30px;
     cursor: pointer;
+}
+
+#cpw-login {
+    float: left;
+}
+
+#cpw-cancel {
+    float: right;
 }

@@ -122,9 +122,9 @@ function validate() {
             emptyCount++;
             if (emptyCount > 3) {
                 pass = false;
-                $(this).css("border-color", "red");
+                $(this).css("cssText", "border-color: red !important;");
             } else {
-                $(this).css("border-color", "#ffd8c8");
+                $(this).css("cssText", "border-color: lightgray;");
             }
             if (activeElement != undefined) {
                 activeElement.focus();

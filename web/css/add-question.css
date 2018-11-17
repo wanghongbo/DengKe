@@ -52,7 +52,7 @@
 .ad-score-select {
     margin-left: 10px;
     width: 60px;
-    border: 1px solid #ffd8c8;
+    border: 1px solid lightgray !important;
 }
 
 .ad-title-bar {
@@ -66,12 +66,12 @@
 }
 
 .ad-title-input {
-    width: 472px;
+    width: 452px;
     height: 60px;
     margin: auto;
     display: block;
     resize: none;
-    border: 1px solid #ffd8c8;
+    border: 1px solid lightgray !important;
     font-size: 16px;
 }   
 
@@ -91,8 +91,12 @@
     height: 20px;
     margin-left: 10px;
     padding-left: 4px;
-    border: 1px solid #ffd8c8;
+    border: 1px solid lightgray !important;
     font-size: 13px;
+}
+
+.ad-title-input:focus, .ad-option-input:focus, .ad-score-select:focus {
+    border-color: #393D49 !important;
 }
 
 .ad-action-container {
@@ -103,15 +107,17 @@
 .ad-action {
     float: right;
     margin: 10px;
-    width: 60px;
-    height: 30px;
-    line-height: 30px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     border-radius: 4px;
     cursor: pointer;
+    color: white;
+    background-color: #393D49;
 }
 
-.ad-confirm {
+/* .ad-confirm {
     color: white;
     background-color: #1E9FFF;
     border-color: #1E9FFF;
@@ -120,7 +126,7 @@
 .ad-cancel {
     background-color: white;
     border: 1px solid #dedede;
-}
+} */
 
 @keyframes showAndMoveAnimation {
     from {

@@ -42,23 +42,32 @@ function showReportManagePage() {
 }
 
 function showQuestionStoragePage() {
-    showPage("..//html/questionstorage.html")
+    showPage("../html/questionstorage.html")
 }
 
 $(document).ready(function () {
     $(".report-manage-item").click(function (e) {
         reportType = $(e.target).attr("type");
         showReportManagePage();
+        var index = Number(reportType) - 1;
+        setChooseItemCookie("report-manage-item", index);
     });
 
     $(".question-storage-item").click(function (e) {
         questionType = $(e.target).attr("type");
         showQuestionStoragePage();
+        var index = Number(questionType) - 1;
+        setChooseItemCookie("question-storage-item", index);
     });
 
-    $(".report-manage-item:first").click();
+    $("#changepwd").click(function() {
+        showPage("../html/changepwd.html");
+    });
 
     $("#exit").click(function () {
+        $.removeCookie("userName");
+        $.removeCookie("chooseClass");
+        $.removeCookie("chooseIndex");
         http.logout(function(success, error) {
             window.location.assign("../html/login.html");
         })
@@ -67,8 +76,26 @@ $(document).ready(function () {
     http.getUserName(function(userName) {
         if (userName != null) {
             $("#userName").text("欢迎：" + userName);
+            $.cookie("userName", userName);
+            setChooseItemUI();
         } else {
             window.location.assign("../html/login.html");
         }
     })
 });
+
+function setChooseItemCookie(chooseClass, chooseIndex) {
+    $.cookie("chooseClass", chooseClass);
+    $.cookie("chooseIndex", chooseIndex);
+}
+
+function setChooseItemUI() {
+    var chooseClass = $.cookie("chooseClass");
+    var chooseIndex = $.cookie("chooseIndex");
+    if (chooseClass != undefined && chooseIndex != undefined) {
+        var selector = "." + chooseClass + ":eq(" + chooseIndex + ")";
+        $(selector).click();
+    } else {
+        $(".report-manage-item:first").click();
+    }
+}
