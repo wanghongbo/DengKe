@@ -175,7 +175,7 @@ function bindEvent() {
     $("#submit").click(function (e) {
         http.commitExam(answers, function(success, msg) {
             if (success) {
-                cleanCookie();
+                // cleanCookie();
                 var href = window.document.location.href;
                 var pathName = window.document.location.pathname;
                 var pos = href.indexOf(pathName)
