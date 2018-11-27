@@ -33,13 +33,13 @@ http.commitExam = function (data, complete) {
         success: function (result) {
             console.log("result: " + JSON.stringify(result));
             if (result.code == "1") {
-                complete(true, "");
+                complete(true, "", result);
             } else {
-                complete(false, result.msg);
+                complete(false, result.msg, result);
             }
         },
         error: function (xhr, status, error) {
-            complete(false, xhr.status + ": " + error);
+            complete(false, xhr.status + ": " + error, null);
         }
     })
 }

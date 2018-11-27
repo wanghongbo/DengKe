@@ -173,15 +173,24 @@ function bindEvent() {
         updateQuestionUI();
     });
     $("#submit").click(function (e) {
-        http.commitExam(answers, function(success, msg) {
+        http.commitExam(answers, function(success, msg, result) {
             if (success) {
-                // cleanCookie();
-                var href = window.document.location.href;
-                var pathName = window.document.location.pathname;
-                var pos = href.indexOf(pathName)
-                var host = href.substring(0, pos);
-                var reportPath = host + "/subject/getReport";
-                window.location.assign(reportPath);
+                var score = result.data.score;
+                var msg = "您的得分是：" + score;
+                layer.confirm(msg, {
+                    icon: 1, title: 'Wow~ 考试完了！',
+                    btn: ['下载报告', '关闭']
+                }, function (index) {
+                    layer.close(index);
+                    var href = window.document.location.href;
+                    var pathName = window.document.location.pathname;
+                    var pos = href.indexOf(pathName)
+                    var host = href.substring(0, pos);
+                    var reportPath = host + "/subject/getReport";
+                    window.location.assign(reportPath);
+                }, function (index) {
+                    layer.close(index);
+                });
             } else {
                 layer.msg(msg);
             }
