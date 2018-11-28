@@ -48,10 +48,14 @@ function initUI() {
                     var item = options[index];
                     var i = Number(index) + 1;
                     var optionId = "#ad-option" + i;
-                    $(optionId).val(item.option);
+                    if (item.option != null) {
+                        $(optionId).val(item.option);
+                    }
                     //设置分数
                     var scoreId = "#ad-score" + i;
-                    $(scoreId).val(item.score);
+                    if (item.score != null) {
+                        $(scoreId).val(item.score);
+                    }
                 }
             }
         }
@@ -101,15 +105,15 @@ function confirm() {
         result = dialog.initData;
     }
     result.title = $("#ad-title").val().trim();
-    result.optionA = $("#ad-option1").val();
+    result.optionA = $("#ad-option1").val().trim();
     result.scoreA = Number($("#ad-score1").val());
-    result.optionB = $("#ad-option2").val();
+    result.optionB = $("#ad-option2").val().trim();
     result.scoreB = Number($("#ad-score2").val());
-    result.optionC = $("#ad-option3").val();
+    result.optionC = $("#ad-option3").val().trim();
     result.scoreC = Number($("#ad-score3").val());
-    result.optionD = $("#ad-option4").val();
+    result.optionD = $("#ad-option4").val().trim();
     result.scoreD = Number($("#ad-score4").val());
-    result.optionE = $("#ad-option5").val();
+    result.optionE = $("#ad-option5").val().trim();
     result.scoreE = Number($("#ad-score5").val());
     dialog.closeAddQuestion(result);
 }

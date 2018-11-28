@@ -5,20 +5,11 @@ model.defaultQuestionOptionData = [
         "type": "1",
         "typeName": "学习动机测评",
         "options": [{
-            "option": "完全不符合",
-            "score": "1"
+            "option": "符合",
+            "score": "0.5"
         }, {
-            "option": "不太符合",
-            "score": "2"
-        }, {
-            "option": "一般",
-            "score": "3"
-        }, {
-            "option": "比较符合",
-            "score": "4"
-        }, {
-            "option": "完全符合",
-            "score": "5"
+            "option": "不符合",
+            "score": "0.5"
         }]
     },
     {
@@ -26,58 +17,58 @@ model.defaultQuestionOptionData = [
         "typeName": "学习压力测评",
         "options": [{
             "option": "从不",
-            "score": "5"
+            "score": "0.5"
         }, {
             "option": "很少",
-            "score": "4"
+            "score": "0.4"
         }, {
             "option": "有时",
-            "score": "3"
+            "score": "0.3"
         }, {
             "option": "经常",
-            "score": "2"
+            "score": "0.2"
         }, {
             "option": "总是",
-            "score": "1"
+            "score": "0.1"
         }]
     },
     {
         "type": "3",
         "typeName": "学习拖延测评",
         "options": [{
-            "option": "完全不符合",
-            "score": "1"
+            "option": "从不",
+            "score": "0.5"
         }, {
-            "option": "不太符合",
-            "score": "2"
+            "option": "很少",
+            "score": "0.4"
         }, {
-            "option": "一般",
-            "score": "3"
+            "option": "有时",
+            "score": "0.3"
         }, {
-            "option": "比较符合",
-            "score": "4"
+            "option": "经常",
+            "score": "0.2"
         }, {
-            "option": "完全符合",
-            "score": "5"
+            "option": "总是",
+            "score": "0.1"
         }]
     },
     {
         "type": "4",
         "typeName": "学习状态测评",
         "options": [{
-            "option": "从不",
-            "score": "5"
+            "option": "完全不符合",
+            "score": "0.2"
         }, {
-            "option": "很少",
-            "score": "4"
+            "option": "不太符合",
+            "score": "0.4"
         }, {
-            "option": "有时",
-            "score": "3"
+            "option": "一般",
+            "score": "0.6"
         }, {
-            "option": "经常",
-            "score": "2"
+            "option": "比较符合",
+            "score": "0.8"
         }, {
-            "option": "总是",
+            "option": "完全符合",
             "score": "1"
         }]
     },
@@ -94,7 +85,7 @@ model.defaultQuestionOptionData = [
             "score": "0"
         }, {
             "option": "否",
-            "score": "5"
+            "score": "0.5"
         }]
     },
     {
@@ -102,19 +93,19 @@ model.defaultQuestionOptionData = [
         "typeName": "学习方法与技能测评",
         "options": [{
             "option": "很不符合自己的情况",
-            "score": "1"
+            "score": "0.2"
         }, {
             "option": "不太符合自己的情况",
-            "score": "2"
+            "score": "0.4"
         }, {
             "option": "一般",
-            "score": "3"
+            "score": "0.6"
         }, {
             "option": "比较符合自己的情况",
-            "score": "4"
+            "score": "0.8"
         }, {
             "option": "很符合自己的情况",
-            "score": "5"
+            "score": "1"
         }]
     },
     {
@@ -122,19 +113,19 @@ model.defaultQuestionOptionData = [
         "typeName": "学习能力检测",
         "options": [{
             "option": "完全不符合",
-            "score": "1"
+            "score": "0.2"
         }, {
             "option": "不太符合",
-            "score": "2"
+            "score": "0.4"
         }, {
             "option": "一般",
-            "score": "3"
+            "score": "0.6"
         }, {
             "option": "比较符合",
-            "score": "4"
+            "score": "0.8"
         }, {
             "option": "完全符合",
-            "score": "5"
+            "score": "1"
         }]
     },
     {
@@ -142,19 +133,19 @@ model.defaultQuestionOptionData = [
         "typeName": "时间管理能力测评",
         "options": [{
             "option": "完全不符合",
-            "score": "1"
+            "score": "0.2"
         }, {
             "option": "不太符合",
-            "score": "2"
+            "score": "0.4"
         }, {
             "option": "一般",
-            "score": "3"
+            "score": "0.6"
         }, {
             "option": "比较符合",
-            "score": "4"
+            "score": "0.8"
         }, {
             "option": "完全符合",
-            "score": "5"
+            "score": "1"
         }]
     },
     {
@@ -162,19 +153,19 @@ model.defaultQuestionOptionData = [
         "typeName": "自主学习能力测评",
         "options": [{
             "option": "完全不是这样",
-            "score": "1"
+            "score": "0.2"
         }, {
             "option": "很少这样或是偶尔有一二次是这样",
-            "score": "2"
+            "score": "0.4"
         }, {
             "option": "有时是这样，有时不是这样",
-            "score": "3"
+            "score": "0.6"
         }, {
             "option": "经常是这样或是多数情况是这样",
-            "score": "4"
+            "score": "0.8"
         }, {
             "option": "完全是这样",
-            "score": "5"
+            "score": "1"
         }]
     }
 ]
