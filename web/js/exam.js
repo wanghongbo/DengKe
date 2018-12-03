@@ -142,7 +142,9 @@ function getLeftTimeText(interval) {
 function bindEvent() {
     $("#exit").click(function (e) {
         cleanCookie();
-        window.location.assign("../html/index.html");
+        http.exitExam(function(success, msg) {
+            window.location.assign("../html/index.html");
+        })
     });
     $("#first").click(function (e) {
         index = 0;
@@ -215,7 +217,7 @@ function cleanCookie() {
 
 function request() {
     if (type != undefined) {
-        http.getQuestions(userName, type, function (data, msg) {
+        http.startExam(userName, type, function (data, msg) {
             if (data != null) {
                 questions = data.data;
                 total = questions.length;

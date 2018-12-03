@@ -1,6 +1,6 @@
 var http = function () { };
 
-http.getQuestions = function (userName, type, complete) {
+http.startExam = function (userName, type, complete) {
     var url = "/subject/startExam?userName=" + userName + "&subjectType=" + type;
     url = encodeURI(url)
     // var url = "../resource/question-storage.json";
@@ -40,6 +40,28 @@ http.commitExam = function (data, complete) {
         },
         error: function (xhr, status, error) {
             complete(false, xhr.status + ": " + error, null);
+        }
+    })
+}
+
+http.exitExam = function (complete) {
+    var url = "/subject/logout";
+    $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("err: " + error);
+            complete(false, xhr.status + ": " + error);
         }
     })
 }
@@ -201,6 +223,28 @@ http.emptyQuestionStorage = function (type, complete) {
         type: "GET",
         url: url,
         contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(false, xhr.status + ": " + error);
+        }
+    })
+}
+
+http.changePwd = function (data, complete) {
+    var url = "/user/updatePassword";
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json",
+        data: JSON.stringify(data),
         dataType: "json",
         success: function (result) {
             console.log("result: " + JSON.stringify(result));

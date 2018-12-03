@@ -25,8 +25,13 @@
     box-shadow: 2px 2px 60px black;
 }
 
+.cpw-container span {
+    width: 70px;
+    display: inline-block;
+}
+
 .cpw-input {
-    width: 212px;
+    width: 196px;
     height: 30px;
     margin: 24px 0 0 0;
     border-radius: 4px;
@@ -47,7 +52,7 @@
     background-image: url('../img/login-account.png');
 }
 
-#cpw-input-pwd-old, #cpw-input-pwd-new {
+#cpw-input-pwd-new, #cpw-input-pwd-confirm {
     background-image: url('../img/login-pwd.png ');
 }
 
