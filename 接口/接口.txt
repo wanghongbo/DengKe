@@ -106,3 +106,22 @@ password = md5(token+md5(userName+md5(password)))
     "msg": "",
     "data": ""
 }
+
+
+
+9. 修改密码：POST /user/updatePassword
+{"userName":"","password":""}
+password = md5(userName+md5(password))
+
+
+10. 查询报告: POST /report/getPage
+{"pageNo":1,"pageSize":10,"minScore":10,"maxScore":90,"name":"","type":""}
+
+
+
+
+
+前台
+
+1 退出: GET /subject/logout
+
