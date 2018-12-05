@@ -43,10 +43,12 @@ body {
 
 #input-account {
     background-image: url('../img/login-account.png');
+    background-size: 22px 22px;
 }
 
 #input-pwd {
     background-image: url('../img/login-pwd.png ');
+    background-size: 22px 22px;
 }
 
 .submit {

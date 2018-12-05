@@ -3,7 +3,10 @@ layui.use('table', function () {
 
     table.render({
         elem: '#report-table'
-        , url: '../resource/report-manage.json'
+        , url: '/report/getPage'
+        // , url: '../resource/report-manage.json'
+        , method: "post"
+        , contentType: "application/json"
         , height: 600
         , limit: 10
         , limits: [10, 30, 60, 90]
@@ -17,18 +20,36 @@ layui.use('table', function () {
             , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }
         ]]
         , page: true
-        // , response: {
-        //     statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-        // }
-        // , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-        //     return {
-        //         "code": res.status, //解析接口状态
-        //         "msg": res.message, //解析提示文本
-        //         "count": res.total, //解析数据长度
-        //         "data": res.rows.item //解析数据列表
-        //     };
-        // }
+        , request: {
+            pageName: 'pageNo',
+            limitName: 'pageSize'
+        }
+        , where: {
+            type: '1,2,3'
+        }
+        , response: {
+            statusCode: 1
+        }
+        , parseData: function (res) {
+            return {
+                "code": res.code,
+                "msg": res.msg,
+                "count": res.data.totalCount,
+                "data": res.data.page
+            };
+        }
     });
+
+    // table.reload('report-table', {
+    //     where: {
+    //         pageNo: 3,
+    //         pageSize: 30,
+    //         type: 3
+    //     }
+    //     , page: {
+    //         curr: 1
+    //     }
+    // });
 });
 
 layui.use('table', function () {

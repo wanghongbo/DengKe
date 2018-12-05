@@ -50,10 +50,12 @@
 
 #cpw-input-account {
     background-image: url('../img/login-account.png');
+    background-size: 22px 22px;
 }
 
-#cpw-input-pwd-new, #cpw-input-pwd-confirm {
+#cpw-input-pwd-old, #cpw-input-pwd-new, #cpw-input-pwd-confirm {
     background-image: url('../img/login-pwd.png ');
+    background-size: 22px 22px;
 }
 
 .cpw-btn {

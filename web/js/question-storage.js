@@ -48,6 +48,9 @@ layui.use('table', function () {
             pageName: 'pageNo'
             , limitName: 'pageSize'
         }
+        , response: {
+            statusCode: 1
+        }
         , parseData: function (res) {
             return {
                 "code": res.code,
@@ -55,9 +58,6 @@ layui.use('table', function () {
                 "count": res.data.totalCount,
                 "data": res.data.page
             };
-        }
-        , response: {
-            statusCode: 1
         }
     });
 

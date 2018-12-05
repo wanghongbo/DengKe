@@ -5,10 +5,11 @@ $(document).ready(function () {
     $("#cpw-login").click(function (e) {
         if (validate()) {
             var userName = $.cookie("userName");
-            var pwd = $("#cpw-input-pwd-new").val();
+            var oldPwd = $("#cpw-input-pwd-old").val();
+            var newPwd = $("#cpw-input-pwd-new").val();
             var data = {};
-            data.userName = userName;
-            data.password = hex_md5(userName + hex_md5(pwd));
+            data.oldPassword = hex_md5(userName + hex_md5(oldPwd));
+            data.password = hex_md5(userName + hex_md5(newPwd));
             http.changePwd(data, function(success, msg) {
                 if (success) {
                     layer.confirm('修改密码成功，请重新登录', {
@@ -42,22 +43,20 @@ function validate() {
     var pass = true;
     var pwd = $("#cpw-input-pwd-new").val();
     var pwdConfirm = $("#cpw-input-pwd-confirm").val();
-    if (pwd != pwdConfirm) {
+    $($(".cpw-container").find("input").get().reverse()).each(function (e) {
+        if ($(this).val().trim() == "") {
+            pass = false;
+            $(this).val("");
+            $(this).focus();
+            $(this).css("cssText", "border-color: red !important;");
+        } else {
+            $(this).css("cssText", "border-color: lightgray;");
+        }
+    });
+    if (pass && pwd != pwdConfirm) {
         $("#cpw-input-pwd-new").css("cssText", "border-color: red !important;");
         $("#cpw-input-pwd-confirm").css("cssText", "border-color: red !important;");
         pass = false;
-    }
-    if (pass) {
-        $($(".cpw-container").find("input").get().reverse()).each(function (e) {
-            if ($(this).val().trim() == "") {
-                pass = false;
-                $(this).val("");
-                $(this).focus();
-                $(this).css("cssText", "border-color: red !important;");
-            } else {
-                $(this).css("cssText", "border-color: lightgray;");
-            }
-        });
     }
     if (pass) {
         return true;
