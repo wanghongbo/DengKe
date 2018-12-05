@@ -8,15 +8,33 @@ layui.use('table', function () {
         , method: "post"
         , contentType: "application/json"
         , height: 600
-        , limit: 10
-        , limits: [10, 30, 60, 90]
+        , limit: 30
+        , limits: [10, 30, 60]
         , cols: [[
-            { field: 'id', title: '编号', width: 80, align: 'center' }
-            , { field: 'time', title: '时间', width: 180, align: 'center' }
-            , { field: 'name', title: '姓名', width: 100, align: 'center' }
+            { 
+                field: 'date', title: '时间', width: 180, align: 'center', templet: function(d) {
+                    var date = new Date(d.examTime);
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                    var second = date.getSeconds();
+                    return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                }
+            }
+            , { field: 'userId', title: '姓名', width: 120, align: 'center' }
             , { field: 'score', title: '分数', width: 80, align: 'center' }
-            // , { field: 'level', title: '评级', width: 80, align: 'center' }
-            , { field: 'catalog', title: '类型', width: 200, align: 'center' }
+            , {
+                field: 'typeName', title: '类型', width: 200, align: 'center', templet: function (d) {
+                    var typeName = model.getQuestionTypeName(d.type);
+                    if (typeName != null) {
+                        return typeName;
+                    } else {
+                        return "";
+                    }
+                }
+            }
             , { title: '操作', width: 180, align: 'center', unresize: true, toolbar: '#table-toolbar' }
         ]]
         , page: true
@@ -24,9 +42,9 @@ layui.use('table', function () {
             pageName: 'pageNo',
             limitName: 'pageSize'
         }
-        // , where: {
-        //     type: '1,2,3'
-        // }
+        , where: {
+            type: questionType
+        }
         , response: {
             statusCode: 1
         }
@@ -39,17 +57,6 @@ layui.use('table', function () {
             };
         }
     });
-
-    // table.reload('report-table', {
-    //     where: {
-    //         pageNo: 3,
-    //         pageSize: 30,
-    //         type: 3
-    //     }
-    //     , page: {
-    //         curr: 1
-    //     }
-    // });
 });
 
 layui.use('table', function () {
@@ -70,22 +77,32 @@ layui.use('table', function () {
     //搜索
     var $ = layui.$, active = {
         reload: function () {
-            var keywordEle = $('#keyword');
-            table.reload('report-table', {
-                where: {
-                    keyword: keywordEle.val()
-                }
-            });
+            var searchKey = getSearchKey();
+            if (JSON.stringify(searchKey) == "{}") {
+                table.reload('report-table', {
+                    where: {
+                        type: questionType
+                    }
+                });
+            } else {
+                table.reload('report-table', {
+                    where: searchKey
+                });
+            }
         }
     };
     $('#search').click(function (e) {
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+    $('#empty').click(function (e) {
+        $('#keyword').val("");
+        $('#search').click();
+    });
 });
 
-function getSearchData() {
-    var searchData = {}
+function getSearchKey() {
+    var searchKey = {}
     var value = $("#keyword").val();
     var keys = value.split(" ");
     for (var i = 0; i < keys.length; i++) {
@@ -93,11 +110,12 @@ function getSearchData() {
         if (key != "") {
             var components = getKeyComponents(key);
             for (var k in components) {
-                searchData[k] = components[k];
+                searchKey[k] = components[k];
             }
         }
     }
-    return searchData;
+    console.log(searchKey);
+    return searchKey;
 }
 
 function getKeyComponents(value) {
