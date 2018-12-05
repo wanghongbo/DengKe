@@ -5,8 +5,13 @@
     <select id="getUser" resultType="AdminUser">
 
         select * from admin_user
+        where user_name = #{userName}
     </select>
 
+    <update id="updatePassword" >
+        update admin_user set password =#{password}
+        where user_name = #{userName}
+    </update>
 
 
     <insert id="addUser">

@@ -69,4 +69,13 @@ public class SubjectService {
             throw  e;
         }
     }
+
+    public void emptySubjects(String type){
+        try{
+            subjectMapper.emptySubjects(type,Constants.SUBJECT_STATUS_DEL);
+        }catch (Exception e){
+            log.error("清空题库出错",e);
+            throw  e;
+        }
+    }
 }

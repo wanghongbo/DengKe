@@ -5,6 +5,7 @@ import com.dengke.entity.common.*;
 import com.dengke.servicebg.service.AdminUserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -78,6 +79,27 @@ public class AdminUserController extends  BaseController{
         }catch (Exception e) {
             log.error("获取用户名出错",e);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED, "", "");
+        }
+    }
+
+    @RequestMapping("/updatePassword")
+    public String updatePassword(HttpServletRequest request, @RequestBody AdminUser user){
+        try{
+            String oldPassword = user.getOldPassword();
+            String password = user.getPassword();
+            if(Utils.existsBlank(oldPassword,password)){
+                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"空值","");
+            }
+            AdminUser currentUser = (AdminUser) request.getSession().getAttribute(Constants.SESSION_USER_NAME);
+            if(!oldPassword.equals(currentUser.getPassword())){
+                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"密码错误","");
+            }
+            adminUserService.updatePassword(currentUser.getUserName(),password);
+            currentUser.setPassword(password);
+            return  JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+        }catch (Exception e){
+            log.error("修改密码出错",e);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
         }
     }
 }

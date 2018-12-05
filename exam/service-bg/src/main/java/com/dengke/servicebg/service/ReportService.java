@@ -5,6 +5,7 @@ import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
 import com.dengke.entity.common.Constants;
 import com.dengke.entity.common.Page;
+import com.dengke.entity.common.QueryParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,11 @@ public class ReportService {
         }
     }
 
-    public Page.PagedData<Report> getReports(String status,int pageNo,int pageSize){
+    public Page.PagedData<Report> getReports(String status, QueryParam query,int pageNo, int pageSize){
         try {
-            int totalCount = reportMapper.getCount(status);
+            int totalCount = reportMapper.getCount(status,query);
             Page.Paging paging = Page.getPaging(pageNo,pageSize,totalCount);
-            List<Report> reports = reportMapper.getPage(status,paging.startIndex,paging.pagesize);
+            List<Report> reports = reportMapper.getPage(status,query,paging.startIndex,paging.pagesize);
             return new Page.PagedData<Report>(paging,reports);
         }catch (Exception e){
             log.error("获取报告出错",e);

@@ -28,11 +28,11 @@ public class ReportController extends BaseController {
     private ReportService reportService;
 
     @RequestMapping("/getPage")
-    public String getPage(HttpServletRequest request){
+    public String getPage(HttpServletRequest request,@RequestBody QueryParam query){
         try{
-            int pageNo = ServletRequestUtils.getIntParameter(request,"pageNo",1);
-            int pageSize = ServletRequestUtils.getIntParameter(request,"pageSize",10);
-            Page.PagedData<Report> pagedData = reportService.getReports(Constants.SUBJECT_STATUS_OK,pageNo,pageSize);
+//            int pageNo = ServletRequestUtils.getIntParameter(request,"pageNo",1);
+//            int pageSize = ServletRequestUtils.getIntParameter(request,"pageSize",10);
+            Page.PagedData<Report> pagedData = reportService.getReports(Constants.SUBJECT_STATUS_OK,query,query.getPageNo(),query.getPageSize());
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"",pagedData);
         }catch (Exception e){
             log.error("查询报告出错",e);

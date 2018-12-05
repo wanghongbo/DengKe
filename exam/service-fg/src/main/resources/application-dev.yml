@@ -53,6 +53,10 @@ spring:
       force: true
       enabled: true
 
+
+  resources:
+    static-locations: ["classpath:report/"]
+
 #####################################################################################################
 # mybatis mapper xml 配置
 mybatis:

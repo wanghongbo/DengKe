@@ -40,7 +40,7 @@ public class MD5Util {
 
     public static void main(String[] args){
         System.out.println(md5("dengke"+md5("dengke*123")));
-        System.out.println(md5("2297cb5c-2d10-4ba5-b1c0-6e5f2794efb6"+"2b9803ed0e0460dc3505132d515e8bb4"));
+        System.out.println(md5("2c0ec430-7b91-48b4-baa3-62a7db6771a6"+"2b9803ed0e0460dc3505132d515e8bb4"));
     }
 
 }

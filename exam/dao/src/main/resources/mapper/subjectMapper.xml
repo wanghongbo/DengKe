@@ -45,6 +45,10 @@
         update subject set status = #{status} where id = #{id}
     </update>
 
+    <update id="emptySubjects">
+        update subject set status = #{status} where type = #{type}
+    </update>
+
     <select id="getCount" resultType="Integer">
         select count(*) from subject where type = #{type} and status  =#{status}
     </select>
