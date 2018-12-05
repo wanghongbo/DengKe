@@ -4,27 +4,19 @@ public class Subject {
     private long id;
     private String title="";
     private String optionA="";
-    private int scoreA;
+    private double scoreA;
     private String optionB="";
-    private int scoreB;
+    private double scoreB;
     private String optionC="";
-    private int scoreC;
+    private double scoreC;
     private String optionD="";
-    private int scoreD;
+    private double scoreD;
     private String optionE="";
-    private int scoreE;
+    private double scoreE;
     private String optionF="";
-    private int scoreF;
+    private double scoreF;
     private String type;
     private String status;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public long getId() {
         return id;
@@ -50,11 +42,11 @@ public class Subject {
         this.optionA = optionA;
     }
 
-    public int getScoreA() {
+    public double getScoreA() {
         return scoreA;
     }
 
-    public void setScoreA(int scoreA) {
+    public void setScoreA(double scoreA) {
         this.scoreA = scoreA;
     }
 
@@ -66,11 +58,11 @@ public class Subject {
         this.optionB = optionB;
     }
 
-    public int getScoreB() {
+    public double getScoreB() {
         return scoreB;
     }
 
-    public void setScoreB(int scoreB) {
+    public void setScoreB(double scoreB) {
         this.scoreB = scoreB;
     }
 
@@ -82,11 +74,11 @@ public class Subject {
         this.optionC = optionC;
     }
 
-    public int getScoreC() {
+    public double getScoreC() {
         return scoreC;
     }
 
-    public void setScoreC(int scoreC) {
+    public void setScoreC(double scoreC) {
         this.scoreC = scoreC;
     }
 
@@ -98,11 +90,11 @@ public class Subject {
         this.optionD = optionD;
     }
 
-    public int getScoreD() {
+    public double getScoreD() {
         return scoreD;
     }
 
-    public void setScoreD(int scoreD) {
+    public void setScoreD(double scoreD) {
         this.scoreD = scoreD;
     }
 
@@ -114,11 +106,11 @@ public class Subject {
         this.optionE = optionE;
     }
 
-    public int getScoreE() {
+    public double getScoreE() {
         return scoreE;
     }
 
-    public void setScoreE(int scoreE) {
+    public void setScoreE(double scoreE) {
         this.scoreE = scoreE;
     }
 
@@ -130,11 +122,11 @@ public class Subject {
         this.optionF = optionF;
     }
 
-    public int getScoreF() {
+    public double getScoreF() {
         return scoreF;
     }
 
-    public void setScoreF(int scoreF) {
+    public void setScoreF(double scoreF) {
         this.scoreF = scoreF;
     }
 
@@ -144,5 +136,13 @@ public class Subject {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

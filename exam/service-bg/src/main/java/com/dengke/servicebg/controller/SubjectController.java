@@ -9,6 +9,7 @@ import com.dengke.entity.SubjectType;
 import com.dengke.entity.common.*;
 import com.dengke.servicebg.service.ReportService;
 import com.dengke.servicebg.service.SubjectService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,6 +84,21 @@ public class SubjectController extends BaseController {
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
         }catch (Exception e){
             log.error("删除题目出错",e);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
+        }
+    }
+
+    @RequestMapping("/empty")
+    public String empty(HttpServletRequest request){
+        try {
+            String type = ServletRequestUtils.getStringParameter(request,"type");
+            if(StringUtils.isBlank(type)){
+                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"参数错误","");
+            }
+            subjectService.emptySubjects(type);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+        }catch (Exception e){
+            log.error("清空题库出错",e);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
         }
     }

@@ -5,10 +5,19 @@ import java.util.Date;
 public class Report {
     private long id;
     private String type;
-    private int score;
+    private double score;
     private String userId;
     private Date examTime;
     private String status;
+    private String scoreDetail;
+
+    public String getScoreDetail() {
+        return scoreDetail;
+    }
+
+    public void setScoreDetail(String scoreDetail) {
+        this.scoreDetail = scoreDetail;
+    }
 
     public String getStatus() {
         return status;
@@ -34,11 +43,11 @@ public class Report {
         this.type = type;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 

@@ -8,9 +8,9 @@
             select last_insert_id();
         </selectKey>
         insert into report
-        (`type`,score,user_id,exam_time)
+        (`type`,score,user_id,exam_time,status,score_detail)
         values
-        (#{type},#{score},#{userId},#{examTime})
+        (#{type},#{score},#{userId},#{examTime},#{status},#{scoreDetail})
     </insert>
 
     <insert id="addDetail">
@@ -33,11 +33,50 @@
 
     <select id="getCount" resultType="Integer">
         select count(*) from report where status  =#{status}
+        <if test="query.minScore gte 0">
+            and score &gt;= #{query.minScore}
+        </if>
+        <if test="query.maxScore gte 0">
+            and score &lt;= #{query.maxScore}
+        </if>
+        <if test="query.name != null">
+            and user_id like concat('%',#{query.name},'%')
+        </if>
+        <if test="query.type != null">
+            and type in (${query.type})
+        </if>
+
     </select>
 
     <select id="getPage" resultType="Report">
         select * from report where status = #{status}
-        and id>=(select id from  report where status = #{status} limit #{start},1)
+        <if test="query.minScore gte 0">
+            and score &gt;= #{query.minScore}
+        </if>
+        <if test="query.maxScore gte 0">
+            and score &lt;= #{query.maxScore}
+        </if>
+        <if test="query.name != null">
+            and user_id like concat('%',#{query.name},'%')
+        </if>
+        <if test="query.type != null">
+            and type in ( ${query.type})
+        </if>
+        and id>=
+            (select id from  report where status = #{status}
+            <if test="query.minScore gte 0">
+                and score &gt;= #{query.minScore}
+            </if>
+            <if test="query.maxScore gte 0">
+                and score &lt;= #{query.maxScore}
+            </if>
+            <if test="query.name != null">
+                and user_id like concat('%',#{query.name},'%')
+            </if>
+            <if test="query.type != null">
+                and type in (${query.type})
+            </if>
+            limit #{start},1)
         limit #{pageSize}
     </select>
 

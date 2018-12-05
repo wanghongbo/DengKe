@@ -12,7 +12,12 @@ import com.dengke.entity.common.RtnConstants;
 import com.dengke.entity.common.Utils;
 import com.dengke.servicefg.service.ReportService;
 import com.dengke.servicefg.service.SubjectService;
+import org.apache.commons.lang3.RandomUtils;
+import org.springframework.boot.system.ApplicationHome;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,8 +101,10 @@ public class SubjectController extends BaseController {
             report.setExamTime(new Date());
             report.setScore(totalScore);
             report.setType(subjects.get(0).getType());
+            report.setStatus(Constants.SUBJECT_STATUS_OK);
             report.setUserId((String)request.getSession().getAttribute(Constants.SESSION_USER_NAME));
             reportService.addReport(report,reportDetails);
+            request.getSession().setAttribute(Constants.SESSION_REPORT,report);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"",report);
         }catch (Exception e){
             log.error("提交试卷错误",e);
@@ -104,8 +112,35 @@ public class SubjectController extends BaseController {
         }
     }
 
+    @RequestMapping("/getReport")
+    public ResponseEntity<FileSystemResource> getReport(HttpServletRequest request){
+        try {
+//            Report report = (Report)request.getSession().getAttribute(Constants.SESSION_REPORT);
+//            if(report==null){
+//                return null;
+//            }
+            int x = RandomUtils.nextInt(1,5);
+            File file = new File(new ApplicationHome(this.getClass()).getSource().getParentFile().getParentFile().getPath()+"/report/"+x+".txt");
+            return export(file);
+        }catch (Exception e){
+            log.error("获取报告出错",e);
+            return null;
+        }
+    }
 
-    private int getScore(Subject subject,String option) throws Exception{
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        try {
+            request.getSession().invalidate();
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"","");
+        }catch (Exception e){
+            log.error("退出系统出错",e);
+            return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"","");
+        }
+    }
+
+
+    private double getScore(Subject subject,String option) throws Exception{
         switch (option){
             case "A":
                 return subject.getScoreA();
