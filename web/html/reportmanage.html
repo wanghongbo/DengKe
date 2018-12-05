@@ -17,9 +17,15 @@
 <body>
     <div class="table-container">
         <div class="layui-inline">
-            <input name="keyword" id="keyword" autocomplete="off" placeholder="可以根据  时间、姓名、评级、类型  进行搜索">
+            <input name="keyword" id="keyword" autocomplete="off" placeholder="可以根据  姓名、分数、类型  进行搜索">
         </div>
         <button class="layui-btn" data-type="reload" id="search">搜索</button>
+        <button class="layui-btn" data-type="reload" id="empty">清空</button>
+        <div class="search-tip">
+            姓名搜索："张三"&nbsp&nbsp分数搜索："8"&nbsp或&nbsp"8.0-9.0"&nbsp或&nbsp"8.0～9.0"&nbsp&nbsp类型搜索："学习动机测评"&nbsp或&nbsp"学习动机"
+            <br>
+            组合搜索："张三 8.0~9.0"&nbsp或&nbsp"张三 学习动机"&nbsp或&nbsp"学习动机 8.0~9.0"&nbsp&nbsp搜索条件用空格分隔
+        </div>
         <table id="report-table" class="layui-table" lay-filter="report-table"></table>
     </div>
 </body>

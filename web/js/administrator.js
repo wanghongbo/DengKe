@@ -19,14 +19,10 @@ layui.use('layer', function () {
 8：学习能力检测
 9：时间管理能力测评
 10：自主学习能力检测
+1,2,3,4,5,6：学习状态报告
+7,8,9,10：学习能力报告
 */
 var questionType = "1";
-
-/*
-1：学习状态报告
-2：学习能力报告
-*/
-var reportType = "1";
 
 function showPage(url) {
     $.ajax({
@@ -47,16 +43,16 @@ function showQuestionStoragePage() {
 
 $(document).ready(function () {
     $(".report-manage-item").click(function (e) {
-        reportType = $(e.target).attr("type");
+        questionType = $(e.target).attr("type");
         showReportManagePage();
-        var index = Number(reportType) - 1;
+        var index = Number($(e.target).attr("index")) - 1;
         setChooseItemCookie("report-manage-item", index);
     });
 
     $(".question-storage-item").click(function (e) {
         questionType = $(e.target).attr("type");
         showQuestionStoragePage();
-        var index = Number(questionType) - 1;
+        var index = Number($(e.target).attr("index")) - 1;
         setChooseItemCookie("question-storage-item", index);
     });
 

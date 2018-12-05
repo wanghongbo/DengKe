@@ -5,7 +5,7 @@
 #keyword {
     width: 350px;
     display: block;
-    margin: 0px;
+    margin: 0 10px 0 0;
     padding: 0 0 0 10px;
     height: 38px;
     border-width: 1px;
@@ -15,6 +15,10 @@
     border-color: #e6e6e6;
 }
 
-#search {
-    width: 80px;
+.search-tip {
+    font-size: 12px;
+    color: gray;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
 }
