@@ -83,8 +83,9 @@ layui.use('table', function () {
                 http.deleteQuestion(data.id, function (success, msg) {
                     if (success) {
                         // obj.del();
-                        var selector = '.question-storage-item[type="' + questionType + '"]';
-                        $(selector)[0].click();
+                        // var selector = '.question-storage-item[type="' + questionType + '"]';
+                        // $(selector)[0].click();
+                        table.reload('question-table');
                     } else {
                         layer.msg(msg);
                     }

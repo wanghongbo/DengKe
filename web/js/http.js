@@ -238,6 +238,27 @@ http.emptyQuestionStorage = function (type, complete) {
     })
 }
 
+http.deleteReport = function (id, complete) {
+    var url = "/report/delete?id=" + id;
+    $.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            console.log("result: " + JSON.stringify(result));
+            if (result.code == "1") {
+                complete(true, "");
+            } else {
+                complete(false, result.msg);
+            }
+        },
+        error: function (xhr, status, error) {
+            complete(false, xhr.status + ": " + error);
+        }
+    })
+}
+
 http.changePwd = function (data, complete) {
     var url = "/user/updatePassword";
     $.ajax({

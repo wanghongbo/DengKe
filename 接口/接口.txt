@@ -1,6 +1,4 @@
-﻿后台: http://6058f2c0.ngrok.io
-
-1.	查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
+1.查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
 
 返回值 正常:
 {
@@ -74,7 +72,7 @@
 
 4. 编辑题目: POST /subject/update (参考新增题目接口，加上id列即可)
 
-5. 查询报告: GET /report/getPage?pageNo=1&pageSize=10 (参考查询题目接口)
+//5. 查询报告: GET /report/getPage?pageNo=1&pageSize=10 (参考查询题目接口)
 
 6. 删除报告: GET /report/delete?id=1 (参考删除题目接口)
 
@@ -124,5 +122,9 @@ password = md5(userName+md5(password))
 
 前台
 
-1 退出: GET /subject/logout
+1. 获取报告: GET /subject/getReport
+2. 开始考试: GET /subject/startExam?userName=userName&subjectType=type
+3. 提交试卷: POST /subject/commitExam
+["A","B","C","D","E"]
+4. 退出: GET /subject/logout
 

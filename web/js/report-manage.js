@@ -12,7 +12,7 @@ layui.use('table', function () {
         , limits: [10, 30, 60]
         , cols: [[
             { 
-                field: 'date', title: '时间', width: 180, align: 'center', templet: function(d) {
+                field: 'date', title: '时间', width: 260, align: 'center', templet: function(d) {
                     var date = new Date(d.examTime);
                     var year = date.getFullYear();
                     var month = date.getMonth();
@@ -23,10 +23,10 @@ layui.use('table', function () {
                     return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
                 }
             }
-            , { field: 'userId', title: '姓名', width: 120, align: 'center' }
-            , { field: 'score', title: '分数', width: 80, align: 'center' }
+            , { field: 'userId', title: '姓名', width: 180, align: 'center' }
+            , { field: 'score', title: '分数', width: 120, align: 'center' }
             , {
-                field: 'typeName', title: '类型', width: 200, align: 'center', templet: function (d) {
+                field: 'typeName', title: '类型', width: 260, align: 'center', templet: function (d) {
                     var typeName = model.getQuestionTypeName(d.type);
                     if (typeName != null) {
                         return typeName;
@@ -74,7 +74,13 @@ layui.use('table', function () {
             layer.msg('ID：' + data.id + ' 的下载操作');
         } else if (obj.event === 'del') {
             layer.confirm('确定删除报告么？', function (index) {
-                obj.del();
+                http.deleteReport(data.id, function(success, msg) {
+                    if (success) {
+                        obj.del();
+                    } else {
+                        layer.msg(msg);
+                    }
+                })
                 layer.close(index);
             });
         }
@@ -122,7 +128,7 @@ function getKeyComponents(value) {
     var maxScore;
     var name;
     var type;
-    if (value == "") {
+    if (value === "") {
         return components;
     }
     if (!isNaN(value) || value.indexOf("~") > -1 || value.indexOf("-") > -1) {    //分数
