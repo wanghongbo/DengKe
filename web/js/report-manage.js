@@ -56,6 +56,12 @@ layui.use('table', function () {
                 "data": res.data.page
             };
         }
+        , done: function(res, curr, count) {
+            //修复where默认会带上上次查询参数的bug
+            this.where = {
+                type: questionType
+            }
+        }
     });
 });
 
@@ -78,17 +84,9 @@ layui.use('table', function () {
     var $ = layui.$, active = {
         reload: function () {
             var searchKey = getSearchKey();
-            if (JSON.stringify(searchKey) == "{}") {
-                table.reload('report-table', {
-                    where: {
-                        type: questionType
-                    }
-                });
-            } else {
-                table.reload('report-table', {
-                    where: searchKey
-                });
-            }
+            table.reload('report-table', {
+                where: searchKey
+            });
         }
     };
     $('#search').click(function (e) {
