@@ -18,8 +18,8 @@ body {
 }
 
 .container {
-    width: 820px;
-    height: 360px;
+    width: 760px;
+    height: 320px;
     margin: 20px auto;
     padding: 10px;
     background-color: white;
@@ -35,17 +35,17 @@ body {
 }
 
 .menu-item {
-    width: 208px;
-    height: 120px;
+    width: 188px;
+    height: 108px;
     margin: 10px;
     float: left;
     position: relative;
-    line-height: 120px;
-    padding-left: 12px;
+    line-height: 108px;
+    padding-left: 18px;
     text-align: center;
     background-size: 40px;
     background-repeat: no-repeat;
-    background-position-x: 8px;
+    background-position-x: 16px;
     background-position-y: center;
     cursor: pointer;
 }
