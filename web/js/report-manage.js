@@ -4,7 +4,6 @@ layui.use('table', function () {
     table.render({
         elem: '#report-table'
         , url: '/report/getPage'
-        // , url: '../resource/report-manage.json'
         , method: "post"
         , contentType: "application/json"
         , height: 600
@@ -42,9 +41,7 @@ layui.use('table', function () {
             pageName: 'pageNo',
             limitName: 'pageSize'
         }
-        , where: {
-            type: questionType
-        }
+        , where: getSearchKey()
         , response: {
             statusCode: 1
         }
@@ -56,22 +53,20 @@ layui.use('table', function () {
                 "data": res.data.page
             };
         }
-        , done: function(res, curr, count) {
-            //修复where默认会带上上次查询参数的bug
-            this.where = {
-                type: questionType
-            }
-        }
     });
-});
-
-layui.use('table', function () {
-    var table = layui.table;
+    
     //监听工具条
     table.on('tool(report-table)', function (obj) {
         var data = obj.data;
         if (obj.event === 'download') {
-            layer.msg('ID：' + data.id + ' 的下载操作');
+            //下载报告
+            var id = data.id;
+            var href = window.document.location.href;
+            var pathName = window.document.location.pathname;
+            var pos = href.indexOf(pathName)
+            var host = href.substring(0, pos);
+            var reportPath = host + "/report/download?id=" + id;
+            window.location.assign(reportPath);
         } else if (obj.event === 'del') {
             layer.confirm('确定删除报告么？', function (index) {
                 http.deleteReport(data.id, function(success, msg) {
@@ -89,9 +84,11 @@ layui.use('table', function () {
     //搜索
     var $ = layui.$, active = {
         reload: function () {
-            var searchKey = getSearchKey();
             table.reload('report-table', {
-                where: searchKey
+                where: getSearchKey()
+                , page: {
+                    curr: 1
+                }
             });
         }
     };
@@ -106,7 +103,14 @@ layui.use('table', function () {
 });
 
 function getSearchKey() {
-    var searchKey = {}
+    //layui的table请求数据时默认会把上次的搜索参数带上，
+    //所以需要用默认值覆盖上次的搜索参数，服务端进行过滤处理
+    var searchKey = {
+        type: questionType,
+        minScore: -1,
+        maxScore: -1,
+        name: ""
+    }
     var value = $("#keyword").val();
     var keys = value.split(" ");
     for (var i = 0; i < keys.length; i++) {

@@ -1,4 +1,4 @@
-1.查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
+﻿1.查询题目: GET  /subject/getPage?type=1&pageNo=1&pageSize=10
 
 返回值 正常:
 {
@@ -117,7 +117,7 @@ password = md5(userName+md5(password))
 {"pageNo":1,"pageSize":10,"minScore":10,"maxScore":90,"name":"","type":""}
 
 
-
+11.下载报告：report/download？id=1
 
 
 前台

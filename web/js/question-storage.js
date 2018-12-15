@@ -4,7 +4,6 @@ layui.use('table', function () {
     table.render({
         elem: '#question-table'
         , url: '/subject/getPage'
-        // , url: '../resource/question-storage.json'
         , where: { type: questionType }
         , height: 600
         , limit: 100
