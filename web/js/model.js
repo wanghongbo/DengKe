@@ -75,7 +75,13 @@ model.defaultQuestionOptionData = [
     {
         "type": "5",
         "typeName": "学习风格测评",
-        "options": null
+        "options": [{
+            "option": null,
+            "score": "1"
+        }, {
+            "option": null,
+            "score": "1"
+        }]
     },
     {
         "type": "6",

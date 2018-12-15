@@ -32,7 +32,7 @@
 }
 
 .ad-type-select {
-    font-size: 13px;
+    font-size: 12px;
     margin: 5px 22px 0px 10px;
 }
 
@@ -67,13 +67,17 @@
 
 .ad-title-input {
     width: 452px;
-    height: 60px;
+    height: 66px;
     margin: auto;
     display: block;
     resize: none;
     border: 1px solid lightgray !important;
     font-size: 16px;
-}   
+}
+
+.ad-title-input::-webkit-input-placeholder {
+    font-size: 12px;
+}
 
 .ad-left {
     width: 400px;
