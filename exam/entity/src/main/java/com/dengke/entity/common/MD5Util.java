@@ -1,6 +1,7 @@
 package com.dengke.entity.common;
 
 
+import java.text.DecimalFormat;
 
 public class MD5Util {
 
@@ -40,7 +41,10 @@ public class MD5Util {
 
     public static void main(String[] args){
         System.out.println(md5("dengke"+md5("dengke*123")));
-        System.out.println(md5("2c0ec430-7b91-48b4-baa3-62a7db6771a6"+"2b9803ed0e0460dc3505132d515e8bb4"));
+        System.out.println(md5("d5022b78-dff7-4bd2-8251-edea05af8064"+"2b9803ed0e0460dc3505132d515e8bb4"));
+        String[] ss = "2.5;3.5;4;".split(";");
+        DecimalFormat df =new DecimalFormat("#0.00");
+        System.out.println(df.format(0.5117));
     }
 
 }

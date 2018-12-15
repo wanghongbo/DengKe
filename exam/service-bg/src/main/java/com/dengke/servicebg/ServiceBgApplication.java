@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableEurekaClient
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class},scanBasePackages = {"com.dengke"})
 @MapperScan("com.dengke.dao.**")
 @EnableAutoConfiguration
 @EnableCaching
