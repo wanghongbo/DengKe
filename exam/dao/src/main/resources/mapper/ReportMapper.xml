@@ -27,6 +27,10 @@
         select * from report order by id desc
     </select>
 
+    <select id="find" resultType="Report">
+        select * from report where id = #{reportId}
+    </select>
+
     <update id="updateStatus">
         update report set status = #{status} where id = #{id}
     </update>
@@ -62,7 +66,7 @@
         <if test="query.type != null">
             and type in ( ${query.type})
         </if>
-        and id>=
+        and id &lt;=
             (select id from  report where status = #{status}
             <if test="query.minScore gte 0">
                 and score &gt;= #{query.minScore}
@@ -76,7 +80,9 @@
             <if test="query.type != null">
                 and type in (${query.type})
             </if>
+            order by id desc
             limit #{start},1)
+        order by id desc
         limit #{pageSize}
     </select>
 

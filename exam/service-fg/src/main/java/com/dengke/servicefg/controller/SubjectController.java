@@ -2,17 +2,18 @@ package com.dengke.servicefg.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.dengke.common.service.SubjectStrategyFatory;
 import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
 import com.dengke.entity.Subject;
 import com.dengke.entity.SubjectType;
-import com.dengke.entity.common.Constants;
-import com.dengke.entity.common.JsonObjectUtil;
-import com.dengke.entity.common.RtnConstants;
-import com.dengke.entity.common.Utils;
+import com.dengke.entity.common.*;
 import com.dengke.servicefg.service.ReportService;
 import com.dengke.servicefg.service.SubjectService;
+import freemarker.template.Template;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.http.client.utils.DateUtils;
+import org.apache.poi.hwpf.HWPFDocument;
 import org.springframework.boot.system.ApplicationHome;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/subject",produces = "application/json;charset=UTF-8")
@@ -82,29 +82,35 @@ public class SubjectController extends BaseController {
         try {
             List<Subject> subjects = (List<Subject>) request.getSession().getAttribute(Constants.SESSION_SUBJECTS);
             if(CollectionUtils.isEmpty(subjects)){
-                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"题库为空","");
+                return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"题库为空,请重新开始考试","");
             }
             if(answer.length!=subjects.size()){
                 return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.FAILED,"答题数量错误","");
             }
             List<ReportDetail> reportDetails = new ArrayList<>();
-            int totalScore = 0;
+            double[] detailScore = new double[answer.length];
             for(int i=0;i<answer.length;i++){
                 ReportDetail reportDetail = new ReportDetail();
                 String option = answer[i].toUpperCase();
                 reportDetail.setSubjectId(subjects.get(i).getId());
                 reportDetail.setOption(option);
                 reportDetails.add(reportDetail);
-                totalScore+=getScore(subjects.get(i),option);
+                double score = getScore(subjects.get(i),option);
+                detailScore[i] = score;
             }
+            String type = subjects.get(0).getType().trim();
+            String[] result = SubjectStrategyFatory.getStrategy(type).scoreDetail(detailScore,answer);
+            Date startExam = (Date)request.getSession().getAttribute(Constants.SESSION_START_EXAM_TIME);
             Report report = new Report();
-            report.setExamTime(new Date());
-            report.setScore(totalScore);
-            report.setType(subjects.get(0).getType());
+            report.setExamTime(startExam);
+            report.setScore(Double.parseDouble(result[1]));
+            report.setType(type);
+            report.setScoreDetail(result[0]);
             report.setStatus(Constants.SUBJECT_STATUS_OK);
             report.setUserId((String)request.getSession().getAttribute(Constants.SESSION_USER_NAME));
             reportService.addReport(report,reportDetails);
             request.getSession().setAttribute(Constants.SESSION_REPORT,report);
+            request.getSession().setAttribute(Constants.SESSION_SUBJECTS,null);
             return JsonObjectUtil.getRtnAndDataJsonObject(RtnConstants.OK,"",report);
         }catch (Exception e){
             log.error("提交试卷错误",e);
@@ -113,18 +119,29 @@ public class SubjectController extends BaseController {
     }
 
     @RequestMapping("/getReport")
-    public ResponseEntity<FileSystemResource> getReport(HttpServletRequest request){
+    public void getReport(HttpServletRequest request ,HttpServletResponse response){
         try {
-//            Report report = (Report)request.getSession().getAttribute(Constants.SESSION_REPORT);
-//            if(report==null){
-//                return null;
-//            }
-            int x = RandomUtils.nextInt(1,5);
-            File file = new File(new ApplicationHome(this.getClass()).getSource().getParentFile().getParentFile().getPath()+"/report/"+x+".txt");
-            return export(file);
+            Report report = (Report)request.getSession().getAttribute(Constants.SESSION_REPORT);
+            if(report==null){
+                return;
+            }
+            // 输出 word 内容文件流，提供下载
+            response.reset();
+            response.setContentType("application/x-msdownload;charset=UTF-8");
+            String fileName = URLEncoder.encode(SubjectTypeEnum.getByType(report.getType()).getDesc()
+                    +"测评报告_"+report.getUserId()+"_"
+                    +DateUtils.formatDate(report.getExamTime(),"yyyyMMdd"),"UTF-8");
+            response.addHeader("Content-Disposition", "attachment; filename=\""+ fileName + ".doc\"");
+            Map<String,Object> dataMap = new HashMap<>();
+            Template template = SubjectStrategyFatory.getStrategy(report.getType()).generateTemplate(report,dataMap);
+            Writer out = new BufferedWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"));
+            //生成文件
+            template.process(dataMap, out);
+            out.flush();
+            out.close();
         }catch (Exception e){
             log.error("获取报告出错",e);
-            return null;
+        }finally {
         }
     }
 

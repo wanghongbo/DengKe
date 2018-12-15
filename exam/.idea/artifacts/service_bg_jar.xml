@@ -6,6 +6,7 @@
         <element id="module-output" name="service-bg" />
         <element id="module-output" name="dao" />
         <element id="module-output" name="entity" />
+        <element id="module-output" name="common" />
       </element>
       <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.5.RELEASE" />
       <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.3" />

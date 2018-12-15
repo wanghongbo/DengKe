@@ -50,4 +50,13 @@ public class ReportService {
             return null;
         }
     }
+
+    public Report get(long reportId){
+        try {
+            return reportMapper.find(reportId);
+        }catch (Exception e){
+            log.error("获取报告出错",e );
+            return null;
+        }
+    }
 }
