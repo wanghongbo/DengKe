@@ -9,9 +9,9 @@ layui.use('table', function () {
         , limit: 100
         , cols: [[
             { field: 'index', title: '题号', width: 60, align: 'center', type: 'numbers' }
-            , { field: 'title', title: '题目', width: 460, align: 'center' }
+            , { field: 'title', title: '题目', width: 400, align: 'center' }
             , {
-                field: 'option', title: '选项', width: 300, align: 'center', templet: function (d) {
+                field: 'option', title: '选项', width: 360, align: 'center', templet: function (d) {
                     var option = "";
                     if (d.optionA != "") {
                         option += "A: " + d.optionA + "(" + d.scoreA + ")" + " ";

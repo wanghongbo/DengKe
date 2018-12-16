@@ -11,15 +11,18 @@ var query = {};
 var examTime = 60 * 60;
 var leftTime = 60 * 60;
 var questions;
+var total = 0;
 var answers = [];
 var index = 0;
-var total = 0;
+var scoreMsg;
+
+var timer;
 
 $(document).ready(function () {
     if (initData()) {
         initUI();
         bindEvent();
-        request();
+        startExam();
     } else {
         window.location.assign("../html/index.html");
     }
@@ -71,6 +74,11 @@ function initData() {
         answers = JSON.parse(_answers);
     }
 
+    var _scoreMsg = $.cookie("scoreMsg");
+    if (_scoreMsg != undefined) {
+        scoreMsg = _scoreMsg;
+    }
+
     return true;
 }
 
@@ -89,11 +97,15 @@ function initUI() {
 
     //剩余时间
     $("#left-time").text(getLeftTimeText(leftTime));
+
+    if (scoreMsg != undefined) {
+        disableRadio();
+    }
 }
 
 function startTimer() {
     if (leftTime > 0) {
-        var timer = setInterval(function () {
+        timer = setInterval(function () {
             if (leftTime > 0) {
                 leftTime--;
                 $.cookie("leftTime", leftTime);
@@ -175,28 +187,22 @@ function bindEvent() {
         updateQuestionUI();
     });
     $("#submit").click(function (e) {
-        http.commitExam(answers, function(success, msg, result) {
-            if (success) {
-                var score = result.data.score;
-                var msg = "您的得分是：" + score;
-                layer.confirm(msg, {
-                    icon: 1, title: 'Wow~ 考试完了！',
-                    btn: ['下载报告', '关闭']
-                }, function (index) {
-                    layer.close(index);
-                    var href = window.document.location.href;
-                    var pathName = window.document.location.pathname;
-                    var pos = href.indexOf(pathName)
-                    var host = href.substring(0, pos);
-                    var reportPath = host + "/subject/getReport";
-                    window.location.assign(reportPath);
-                }, function (index) {
-                    layer.close(index);
-                });
-            } else {
-                layer.msg(msg);
-            }
-        })
+        if (scoreMsg != undefined) {
+            showDownload(scoreMsg);
+        } else {
+            http.commitExam(answers, function (success, msg, result) {
+                if (success) {
+                    var score = result.data.score;
+                    scoreMsg = "您的得分是：" + score;
+                    $.cookie("scoreMsg", scoreMsg);
+                    showDownload(scoreMsg);
+                    disableRadio();
+                    clearInterval(timer);
+                } else {
+                    layer.msg(msg);
+                }
+            })
+        }
     });
     $("input[name='answer']").each(function () {
         $(this).click(function () {
@@ -208,21 +214,45 @@ function bindEvent() {
     });
 }
 
+function showDownload(scoreMsg) {
+    layer.confirm(scoreMsg, {
+        icon: 1, title: 'Wow~ 考试完了！',
+        btn: ['下载报告', '关闭']
+    }, function (index) {
+        layer.close(index);
+        var href = window.document.location.href;
+        var pathName = window.document.location.pathname;
+        var pos = href.indexOf(pathName)
+        var host = href.substring(0, pos);
+        var reportPath = host + "/subject/getReport";
+        window.location.assign(reportPath);
+    }, function (index) {
+        layer.close(index);
+    });
+}
+
+function disableRadio() {
+    $(":radio").prop("disabled", true);
+}
+
 function cleanCookie() {
     $.removeCookie("userName");
     $.removeCookie("leftTime");
     $.removeCookie("index");
     $.removeCookie("answers");
+    $.removeCookie("scoreMsg");
 }
 
-function request() {
+function startExam() {
     if (type != undefined) {
         http.startExam(userName, type, function (data, msg) {
             if (data != null) {
                 questions = data.data;
                 total = questions.length;
                 updateQuestionUI();
-                startTimer();
+                if (scoreMsg == undefined) {
+                    startTimer();
+                }
             } else {
                 layer.msg(msg);
             }
