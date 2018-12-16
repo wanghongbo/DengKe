@@ -16,8 +16,6 @@ import java.util.Map;
 @Service("subjectStatusStrategy")
 public class SubjectStatusStrategyImpl extends SubjectStrategy {
 
-    private DecimalFormat df = new DecimalFormat("#0.00");
-
     @Override
     public String[] scoreDetail(double[] scores,String[] options) {
         double knowScore = 0;

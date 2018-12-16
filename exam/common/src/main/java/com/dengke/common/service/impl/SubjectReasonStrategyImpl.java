@@ -88,7 +88,7 @@ public class SubjectReasonStrategyImpl extends SubjectStrategy {
             dataMap.put("tarResult","否");
             dataMap.put("tarReport",Constants.REPORT_TYPE_1_4_2_10);
         }
-        dataMap.put("totalScore",report.getScore());
+        dataMap.put("totalScore",df.format(report.getScore()));
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }

@@ -18,7 +18,6 @@ public class SubjectStyleStrategyImpl extends SubjectStrategy {
 
     @Override
     public String[] scoreDetail(double[] scores,String[] options) {
-        DecimalFormat df = new DecimalFormat("#0.00");
         double thinkScore = 0;
         double offenScore = 0;
         double feelScore = 0;
@@ -111,7 +110,7 @@ public class SubjectStyleStrategyImpl extends SubjectStrategy {
             dataMap.put("swReport",Constants.REPORT_TYPE_5_4_2);
         }
 
-//        dataMap.put("totalScore",report.getScore());
+        dataMap.put("totalScore",report.getScore());
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }

@@ -13,8 +13,9 @@ import java.util.Map;
 
 public abstract class SubjectStrategy {
 
+    protected DecimalFormat df = new DecimalFormat("#0.00");
+
     public String[] scoreDetail(double[] scores,String[] options){
-        DecimalFormat df = new DecimalFormat("#0.00");
         double totalScore = 0;
         for(int i=0;i<scores.length;i++){
             totalScore+=scores[i];
@@ -40,6 +41,7 @@ public abstract class SubjectStrategy {
         }
         dataMap.put("name",report.getUserId());
         dataMap.put("date", DateUtils.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
+        dataMap.put("totalScore",totalScore);
         return ReportDocUtil.xml2XmlDoc(Constants.REPORT_FILE_PATH+tempFile);
     }
 

@@ -39,12 +39,12 @@ public class MD5Util {
         return md5(source.getBytes());
     }
 
-    public static void main(String[] args){
-        System.out.println(md5("dengke"+md5("dengke*123")));
-        System.out.println(md5("d5022b78-dff7-4bd2-8251-edea05af8064"+"2b9803ed0e0460dc3505132d515e8bb4"));
-        String[] ss = "2.5;3.5;4;".split(";");
-        DecimalFormat df =new DecimalFormat("#0.00");
-        System.out.println(df.format(0.5117));
-    }
+//    public static void main(String[] args){
+//        System.out.println(md5("dengke"+md5("dengke*123")));
+//        System.out.println(md5("d5022b78-dff7-4bd2-8251-edea05af8064"+"2b9803ed0e0460dc3505132d515e8bb4"));
+//        String[] ss = "2.5;3.5;4;".split(";");
+//        DecimalFormat df =new DecimalFormat("#0.00");
+//        System.out.println(df.format(0.5117));
+//    }
 
 }

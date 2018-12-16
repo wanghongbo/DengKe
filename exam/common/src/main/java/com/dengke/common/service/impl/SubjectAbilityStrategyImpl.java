@@ -16,7 +16,6 @@ import java.util.Map;
 @Service("subjectAbilityStrategy")
 public class SubjectAbilityStrategyImpl extends SubjectStrategy {
 
-    private DecimalFormat df = new DecimalFormat("#0.00");
     @Override
     public String[] scoreDetail(double[] scores,String[] options) {
         double preScore = 0;
@@ -142,7 +141,7 @@ public class SubjectAbilityStrategyImpl extends SubjectStrategy {
             dataMap.put("timeLevel2","高于平均水平");
         }
 
-//        dataMap.put("totalScore",df.format(report.getScore()));
+        dataMap.put("totalScore",df.format(report.getScore()));
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }
