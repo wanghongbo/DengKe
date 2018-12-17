@@ -26,6 +26,33 @@ $(document).ready(function () {
     } else {
         window.location.assign("../html/index.html");
     }
+
+    document.onkeydown = function (event) {
+        var ele;
+        if (event.keyCode == 13 || event.keyCode == 39) {  //回车或者➡️
+            ele = document.getElementById("next");
+        } else if (event.keyCode == 65) {   //A
+            ele = document.getElementById("radio1");
+        } else if (event.keyCode == 66) {   //B
+            ele = document.getElementById("radio2");
+        } else if (event.keyCode == 67) {   //C
+            ele = document.getElementById("radio3");
+        } else if (event.keyCode == 68) {   //D
+            ele = document.getElementById("radio4");
+        } else if (event.keyCode == 69) {   //E
+            ele = document.getElementById("radio5");
+        } else if (event.keyCode == 37) {   //⬅️
+            ele = document.getElementById("previous");
+        } else if (event.keyCode == 38) {   //⬆️
+            ele = document.getElementById("first");
+        } else if (event.keyCode == 40) {   //⬇️
+            ele = document.getElementById("last");
+        }
+        if (ele != undefined && ele.getAttribute("disabled") == null) {
+            //这里不能使用jQuery的click方法，否则会导致后面updateActionUI()获取到的selectedValue值为空
+            ele.click();
+        }
+    }
 });
 
 function initData() {
@@ -205,12 +232,20 @@ function bindEvent() {
         }
     });
     $("input[name='answer']").each(function () {
-        $(this).click(function () {
+        // $(this).click(function () {
+        //     var answer = $(this).val();
+        //     answers[index] = answer;
+        //     $.cookie("answers", JSON.stringify(answers));
+        //     updateActionUI();
+        // });
+        //这里不能使用jQuery的绑定方法，否则会导致后面updateActionUI()获取到的selectedValue值为空
+        var id = $(this).prop("id");
+        document.getElementById(id).onclick = function() {
             var answer = $(this).val();
             answers[index] = answer;
             $.cookie("answers", JSON.stringify(answers));
             updateActionUI();
-        });
+        }
     });
 }
 
