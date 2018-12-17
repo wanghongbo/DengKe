@@ -153,7 +153,7 @@ function getLeftTimeText(interval) {
 
 function bindEvent() {
     $("#exit").click(function (e) {
-        cleanCookie();
+        cleanExamCookie();
         http.exitExam(function(success, msg) {
             window.location.assign("../html/index.html");
         })
@@ -233,14 +233,6 @@ function showDownload(scoreMsg) {
 
 function disableRadio() {
     $(":radio").prop("disabled", true);
-}
-
-function cleanCookie() {
-    $.removeCookie("userName");
-    $.removeCookie("leftTime");
-    $.removeCookie("index");
-    $.removeCookie("answers");
-    $.removeCookie("scoreMsg");
 }
 
 function startExam() {

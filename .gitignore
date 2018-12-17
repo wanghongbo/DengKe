@@ -1,3 +1,5 @@
 exam/.idea/
 *.class
 *.jar
+exam/out
+*.lst

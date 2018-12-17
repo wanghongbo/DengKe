@@ -11,6 +11,7 @@ $(document).ready(function () {
             title: '请输入您的姓名开始测试',
             offset: ['300px', '']
         }, function (value, index) {
+            cleanExamCookie();
             $.cookie("userName", value);
             layer.close(index);
             window.location.assign("../html/exam.html?type=" + type);

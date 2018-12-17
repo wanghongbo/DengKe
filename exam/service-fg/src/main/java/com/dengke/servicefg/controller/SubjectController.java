@@ -176,7 +176,7 @@ public class SubjectController extends BaseController {
         }
     }
 
-    public static void main(String[] args){
-        System.out.println(JSON.toJSONString(new String[]{"A","B","C"}));
-    }
+//    public static void main(String[] args){
+//        System.out.println(JSON.toJSONString(new String[]{"A","B","C"}));
+//    }
 }
