@@ -48,7 +48,7 @@ $(document).ready(function () {
         } else if (event.keyCode == 40) {   //⬇️
             ele = document.getElementById("last");
         }
-        if (ele != undefined && ele.getAttribute("disabled") == null) {
+        if (ele != undefined && ele.getAttribute("disabled") == null && ele.getAttribute("hidden") == null) {
             //这里不能使用jQuery的click方法，否则会导致后面updateActionUI()获取到的selectedValue值为空
             ele.click();
         }
@@ -298,58 +298,58 @@ function updateQuestionUI() {
         $("#question-title").text(title);
         if (question.optionA != "") {
             $("#option1").text(question.optionA);
-            $("#option-head1").show();
-            $("#radio-head1").show();
-            $("#radio1").show();
+            $("#option-head1").removeAttr("hidden");
+            $("#radio-head1").removeAttr("hidden");
+            $("#radio1").removeAttr("hidden");
         } else {
             $("#option1").text("");
-            $("#option-head1").hide();
-            $("#radio-head1").hide();
-            $("#radio1").hide();
+            $("#option-head1").attr("hidden", true);
+            $("#radio-head1").attr("hidden", true);
+            $("#radio1").attr("hidden", true);
         }
         if (question.optionB != "") {
             $("#option2").text(question.optionB);
-            $("#option-head2").show();
-            $("#radio-head2").show();
-            $("#radio2").show();
+            $("#option-head2").removeAttr("hidden");
+            $("#radio-head2").removeAttr("hidden");
+            $("#radio2").removeAttr("hidden");
         } else {
             $("#option2").text("");
-            $("#option-head2").hide();
-            $("#radio-head2").hide();
-            $("#radio2").hide();
+            $("#option-head2").attr("hidden", true);
+            $("#radio-head2").attr("hidden", true);
+            $("#radio2").attr("hidden", true);
         }
         if (question.optionC != "") {
             $("#option3").text(question.optionC);
-            $("#option-head3").show();
-            $("#radio-head3").show();
-            $("#radio3").show();
+            $("#option-head3").removeAttr("hidden");
+            $("#radio-head3").removeAttr("hidden");
+            $("#radio3").removeAttr("hidden");
         } else {
             $("#option3").text("");
-            $("#option-head3").hide();
-            $("#radio-head3").hide();
-            $("#radio3").hide();
+            $("#option-head3").attr("hidden", true);
+            $("#radio-head3").attr("hidden", true);
+            $("#radio3").attr("hidden", true);
         }
         if (question.optionD != "") {
             $("#option4").text(question.optionD);
-            $("#option-head4").show();
-            $("#radio-head4").show();
-            $("#radio4").show();
+            $("#option-head4").removeAttr("hidden");
+            $("#radio-head4").removeAttr("hidden");
+            $("#radio4").removeAttr("hidden");
         } else {
             $("#option4").text("");
-            $("#option-head4").hide();
-            $("#radio-head4").hide();
-            $("#radio4").hide();
+            $("#option-head4").attr("hidden", true);
+            $("#radio-head4").attr("hidden", true);
+            $("#radio4").attr("hidden", true);
         }
         if (question.optionE != "") {
             $("#option5").text(question.optionE);
-            $("#option-head5").show();
-            $("#radio-head5").show();
-            $("#radio5").show();
+            $("#option-head5").removeAttr("hidden");
+            $("#radio-head5").removeAttr("hidden");
+            $("#radio5").removeAttr("hidden");
         } else {
             $("#option5").text("");
-            $("#option-head5").hide();
-            $("#radio-head5").hide();
-            $("#radio5").hide();
+            $("#option-head5").attr("hidden", true);
+            $("#radio-head5").attr("hidden", true);
+            $("#radio5").attr("hidden", true);
         }
     }
 
