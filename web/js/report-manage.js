@@ -100,6 +100,12 @@ layui.use('table', function () {
         $('#keyword').val("");
         $('#search').click();
     });
+    
+    document.onkeydown = function (event) {
+        if (event.keyCode == 13) {
+            $("#search").click();
+        }
+    }
 });
 
 function getSearchKey() {
