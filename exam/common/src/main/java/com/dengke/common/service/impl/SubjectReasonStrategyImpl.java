@@ -24,18 +24,10 @@ public class SubjectReasonStrategyImpl extends SubjectStrategy {
         double interestScore = 0;
         double targetScore = 0;
         for(int i=0;i<Constants.SUBJECT_REASON_LESS;i++){
-            if("A".equalsIgnoreCase(options[i])){
-                lessScore+=scores[i];
-            }else if("B".equalsIgnoreCase(options[i])){
-                moreScore+=scores[i];
-            }
+            lessScore+=scores[i];
         }
         for(int i=Constants.SUBJECT_REASON_LESS;i<Constants.SUBJECT_REASON_MORE;i++){
-            if("A".equalsIgnoreCase(options[i])){
-                moreScore+=scores[i];
-            }else if("B".equalsIgnoreCase(options[i])){
-                lessScore+=scores[i];
-            }
+            moreScore+=scores[i];
         }
         for(int i=Constants.SUBJECT_REASON_MORE;i<Constants.SUBJECT_REASON_INTEREST;i++){
             interestScore+=scores[i];

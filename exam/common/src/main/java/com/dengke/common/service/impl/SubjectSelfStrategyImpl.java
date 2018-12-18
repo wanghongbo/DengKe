@@ -44,7 +44,7 @@ public class SubjectSelfStrategyImpl extends SubjectStrategy {
         return new String[]{
                 Utils.generateDetailScore(offenScore,effectScore,loveScore,
                         openScore,stillScore),
-                df.format(offenScore+effectScore+loveScore+openScore+stillScore)
+                df.format((offenScore+effectScore+loveScore+openScore+stillScore) * 5 / 21)
         };
     }
     @Override

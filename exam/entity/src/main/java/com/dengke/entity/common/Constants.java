@@ -44,7 +44,7 @@ public class Constants {
     public static int SUBJECT_SELF_OPEN = 35;
     public static int SUBJECT_SELF_STILL = 42;
 
-    public static int SUBJECT_REASON_LESS = 7;
+    public static int SUBJECT_REASON_LESS = 5;
     public static int SUBJECT_REASON_MORE = 10;
     public static int SUBJECT_REASON_INTEREST = 15;
     public static int SUBJECT_REASON_TARGET = 20;
