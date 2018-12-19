@@ -50,7 +50,7 @@ public class SubjectStatusStrategyImpl extends SubjectStrategy {
                 Utils.generateDetailScore(knowScore,emotionScore,actionScore,interestScore,
                         reasonScore,attentionScore,beliefScore),
                 df.format(((knowScore+emotionScore+actionScore)/3+interestScore+reasonScore+
-                attentionScore+beliefScore)/5)
+                attentionScore+beliefScore)*2/5)
         };
     }
 
