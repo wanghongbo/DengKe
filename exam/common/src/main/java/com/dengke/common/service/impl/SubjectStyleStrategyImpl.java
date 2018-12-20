@@ -57,8 +57,7 @@ public class SubjectStyleStrategyImpl extends SubjectStrategy {
         return new String[]{
                 Utils.generateDetailScore(thinkScore,offenScore,feelScore,straightScore,
                         viewScore,hearScore,slowScore,wholeScore),
-                df.format(thinkScore+offenScore+feelScore+straightScore+
-                viewScore+hearScore+slowScore+wholeScore)
+                "-1"    //学习风格没有总分
         };
     }
 
@@ -110,7 +109,7 @@ public class SubjectStyleStrategyImpl extends SubjectStrategy {
             dataMap.put("swReport",Constants.REPORT_TYPE_5_4_2);
         }
 
-        dataMap.put("totalScore",report.getScore());
+        dataMap.put("totalScore","请参考下文");
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }

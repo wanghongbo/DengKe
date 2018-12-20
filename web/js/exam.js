@@ -220,7 +220,11 @@ function bindEvent() {
             http.commitExam(answers, function (success, msg, result) {
                 if (success) {
                     var score = result.data.score;
-                    scoreMsg = "您的得分是：" + score;
+                    if (Number(score) >= 0) {
+                        scoreMsg = "您的得分是：" + score;
+                    } else {
+                        scoreMsg = "请下载报告后查看得分";
+                    }
                     $.cookie("scoreMsg", scoreMsg);
                     showDownload(scoreMsg);
                     disableRadio();

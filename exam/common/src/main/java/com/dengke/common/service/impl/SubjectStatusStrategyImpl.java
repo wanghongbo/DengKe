@@ -151,7 +151,7 @@ public class SubjectStatusStrategyImpl extends SubjectStrategy {
             dataMap.put("belLevel2","达到平均水平");
         }
 
-        dataMap.put("totalScore",report.getScore());
+        dataMap.put("totalScore",df.format(report.getScore()));
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }

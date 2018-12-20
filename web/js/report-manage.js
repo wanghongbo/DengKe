@@ -23,7 +23,14 @@ layui.use('table', function () {
                 }
             }
             , { field: 'userId', title: '姓名', width: 180, align: 'center' }
-            , { field: 'score', title: '分数', width: 120, align: 'center' }
+            , { field: 'score', title: '分数', width: 120, align: 'center', templet: function(d) {
+                var score = d.score
+                if (Number(d.score) >= 0) {
+                    return d.score
+                } else {
+                    return "无"
+                }
+            } }
             , {
                 field: 'typeName', title: '类型', width: 260, align: 'center', templet: function (d) {
                     var typeName = model.getQuestionTypeName(d.type);
