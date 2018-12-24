@@ -5,7 +5,8 @@
 
     <groupId>com.dengke</groupId>
     <artifactId>eurekaserver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>1234@qwer
+
     <packaging>jar</packaging>
 
     <name>eurekaserver</name>

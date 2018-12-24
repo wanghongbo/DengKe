@@ -49,8 +49,8 @@ public class SubjectStatusStrategyImpl extends SubjectStrategy {
         return new String[]{
                 Utils.generateDetailScore(knowScore,emotionScore,actionScore,interestScore,
                         reasonScore,attentionScore,beliefScore),
-                df.format((knowScore+emotionScore+actionScore)/3+interestScore+reasonScore+
-                attentionScore+beliefScore)
+                df.format(((knowScore+emotionScore+actionScore)/3+interestScore+reasonScore+
+                attentionScore+beliefScore)*2/5)
         };
     }
 
@@ -151,7 +151,7 @@ public class SubjectStatusStrategyImpl extends SubjectStrategy {
             dataMap.put("belLevel2","达到平均水平");
         }
 
-        dataMap.put("totalScore",report.getScore());
+        dataMap.put("totalScore",df.format(report.getScore()));
         return ReportDocUtil.xml2XmlDoc(tempFile);
     }
 }

@@ -66,11 +66,11 @@ public class QueryParam {
         return type;
     }
 
-    public static void main(String[] args){
-        QueryParam qp = new QueryParam();
-//        qp.setType(new String[]{"1","2"});
-        System.out.println(JSON.toJSONString(qp));
-    }
+//    public static void main(String[] args){
+//        QueryParam qp = new QueryParam();
+////        qp.setType(new String[]{"1","2"});
+//        System.out.println(JSON.toJSONString(qp));
+//    }
 
     public void setType(String type) {
         this.type = type;
