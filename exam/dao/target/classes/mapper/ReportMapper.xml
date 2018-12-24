@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dengke.dao.ReportMapper">
+
+
+    <insert id="add">
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into report
+        (`type`,score,user_id,exam_time,status,score_detail)
+        values
+        (#{type},#{score},#{userId},#{examTime},#{status},#{scoreDetail})
+    </insert>
+
+    <insert id="addDetail">
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into report_detail
+        (subject_id,`option`,report_id)
+        values
+        (#{subjectId},#{option},#{reportId})
+    </insert>
+
+    <select id="getReports" resultType="Report">
+        select * from report order by id desc
+    </select>
+
+    <select id="find" resultType="Report">
+        select * from report where id = #{reportId}
+    </select>
+
+    <update id="updateStatus">
+        update report set status = #{status} where id = #{id}
+    </update>
+
+    <select id="getCount" resultType="Integer">
+        select count(*) from report where status  =#{status}
+        <if test="query.minScore gte 0">
+            and score &gt;= #{query.minScore}
+        </if>
+        <if test="query.maxScore gte 0">
+            and score &lt;= #{query.maxScore}
+        </if>
+        <if test="query.name != null">
+            and user_id like concat('%',#{query.name},'%')
+        </if>
+        <if test="query.type != null">
+            and type in (${query.type})
+        </if>
+
+    </select>
+
+    <select id="getPage" resultType="Report">
+        select * from report where status = #{status}
+        <if test="query.minScore gte 0">
+            and score &gt;= #{query.minScore}
+        </if>
+        <if test="query.maxScore gte 0">
+            and score &lt;= #{query.maxScore}
+        </if>
+        <if test="query.name != null">
+            and user_id like concat('%',#{query.name},'%')
+        </if>
+        <if test="query.type != null">
+            and type in ( ${query.type})
+        </if>
+        and id &lt;=
+            (select id from  report where status = #{status}
+            <if test="query.minScore gte 0">
+                and score &gt;= #{query.minScore}
+            </if>
+            <if test="query.maxScore gte 0">
+                and score &lt;= #{query.maxScore}
+            </if>
+            <if test="query.name != null">
+                and user_id like concat('%',#{query.name},'%')
+            </if>
+            <if test="query.type != null">
+                and type in (${query.type})
+            </if>
+            order by id desc
+            limit #{start},1)
+        order by id desc
+        limit #{pageSize}
+    </select>
+
+    <select id="getReportDetails" resultType="ReportDetail">
+        select * from report_detail
+        where report_id = #{reportId}
+        order by id
+    </select>
+</mapper>

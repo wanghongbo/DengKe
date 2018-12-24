@@ -14,7 +14,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://106.12.107.79:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
     ##?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8
-    username: dev
+    username: root
     password: 123456
     #tomcat:
      # initSQL: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
