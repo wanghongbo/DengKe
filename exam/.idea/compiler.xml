@@ -15,4 +15,14 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="dao" options="-parameters" />
+      <module name="entity" options="-parameters" />
+      <module name="eurekaserver" options="-parameters" />
+      <module name="service-bg" options="-parameters" />
+      <module name="service-fg" options="-parameters" />
+    </option>
+  </component>
 </project>
