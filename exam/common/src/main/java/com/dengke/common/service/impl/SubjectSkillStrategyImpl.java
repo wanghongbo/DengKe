@@ -1,6 +1,7 @@
 package com.dengke.common.service.impl;
 
 import com.dengke.common.service.SubjectStrategy;
+import com.dengke.common.utils.DateUtil;
 import com.dengke.entity.Report;
 import com.dengke.entity.common.Constants;
 import com.dengke.entity.common.ReportDocUtil;
@@ -58,7 +59,7 @@ public class SubjectSkillStrategyImpl extends SubjectStrategy {
         String[] scores = report.getScoreDetail().split(Constants.REPORT_SCORE_SPLIT);
 
         dataMap.put("name",report.getUserId());
-        dataMap.put("date", DateUtils.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
+        dataMap.put("date", DateUtil.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
         double totalScore = report.getScore();
         if(totalScore<=3){
             dataMap.put("level","较差");

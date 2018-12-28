@@ -1,5 +1,6 @@
 package com.dengke.common.service;
 
+import com.dengke.common.utils.DateUtil;
 import com.dengke.entity.Report;
 import com.dengke.entity.common.Constants;
 import com.dengke.entity.common.ReportDocUtil;
@@ -40,7 +41,7 @@ public abstract class SubjectStrategy {
             tempFile = "temp_"+type+"_75_100.xml";
         }
         dataMap.put("name",report.getUserId());
-        dataMap.put("date", DateUtils.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
+        dataMap.put("date", DateUtil.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
         dataMap.put("totalScore",totalScore);
         return ReportDocUtil.xml2XmlDoc(Constants.REPORT_FILE_PATH+tempFile);
     }
