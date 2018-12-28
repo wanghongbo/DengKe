@@ -11,6 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @EnableEurekaClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class},scanBasePackages = {"com.dengke"})
 @MapperScan("com.dengke.dao.**")
@@ -22,5 +25,10 @@ public class ServiceFgApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceFgApplication.class, args);
+    }
+
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
     }
 }

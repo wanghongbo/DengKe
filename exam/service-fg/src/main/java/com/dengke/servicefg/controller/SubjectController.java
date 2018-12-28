@@ -3,6 +3,7 @@ package com.dengke.servicefg.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.dengke.common.service.SubjectStrategyFatory;
+import com.dengke.common.utils.DateUtil;
 import com.dengke.entity.Report;
 import com.dengke.entity.ReportDetail;
 import com.dengke.entity.Subject;
@@ -130,7 +131,7 @@ public class SubjectController extends BaseController {
             response.setContentType("application/x-msdownload;charset=UTF-8");
             String fileName = URLEncoder.encode(SubjectTypeEnum.getByType(report.getType()).getDesc()
                     +"测评报告_"+report.getUserId()+"_"
-                    +DateUtils.formatDate(report.getExamTime(),"yyyyMMdd"),"UTF-8");
+                    + DateUtil.formatDate(report.getExamTime(),"yyyyMMdd"),"UTF-8");
             response.addHeader("Content-Disposition", "attachment; filename=\""+ fileName + ".doc\"");
             Map<String,Object> dataMap = new HashMap<>();
             Template template = SubjectStrategyFatory.getStrategy(report.getType()).generateTemplate(report,dataMap);

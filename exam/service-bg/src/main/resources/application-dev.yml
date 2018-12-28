@@ -12,7 +12,8 @@ spring:
 # mysql 属性配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://106.12.107.79:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    url: jdbc:mysql://106.12.107.79:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/dengke?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&useSSL=false
     ##?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8
     username: root
     password: 123456
