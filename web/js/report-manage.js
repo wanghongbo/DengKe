@@ -14,7 +14,7 @@ layui.use('table', function () {
                 field: 'date', title: '时间', width: 260, align: 'center', templet: function(d) {
                     var date = new Date(d.examTime);
                     var year = date.getFullYear();
-                    var month = date.getMonth();
+                    var month = date.getMonth() + 1;
                     var day = date.getDate();
                     var hour = date.getHours();
                     var minute = date.getMinutes();
