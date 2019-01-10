@@ -31,14 +31,14 @@ public abstract class SubjectStrategy {
         double totalScore = report.getScore();
         String type = report.getType();
         String tempFile = "";
-        if(totalScore < 2.5){
-            tempFile = "temp_"+type+"_0_25.xml";
-        }else if(totalScore<5){
-            tempFile = "temp_"+type+"_25_50.xml";
-        }else if(totalScore<7.5){
-            tempFile = "temp_"+type+"_50_75.xml";
+        if(totalScore < 4){
+            tempFile = "temp_"+type+"_0_40.xml";
+        }else if(totalScore<6){
+            tempFile = "temp_"+type+"_40_60.xml";
+        }else if(totalScore<8){
+            tempFile = "temp_"+type+"_60_80.xml";
         }else {
-            tempFile = "temp_"+type+"_75_100.xml";
+            tempFile = "temp_"+type+"_80_100.xml";
         }
         dataMap.put("name",report.getUserId());
         dataMap.put("date", DateUtil.formatDate(report.getExamTime(),"yyyy-MM-dd HH:mm:ss"));
